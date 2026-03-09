@@ -10,7 +10,7 @@ export function FeaturedCaseStudy() {
   if (!featured) return null;
 
   return (
-    <section className="bg-midnight py-16 sm:py-20">
+    <section className="bg-midnight dark-texture py-16 sm:py-20">
       <Container>
         <FadeIn>
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.1em] text-gold text-center">

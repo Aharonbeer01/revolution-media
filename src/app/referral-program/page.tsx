@@ -81,7 +81,7 @@ export default function ReferralProgramPage() {
         eyebrow="REFERRAL AMBASSADOR PROGRAM"
         title="Earn While You Connect"
         subtitle="Know a hospitality business that needs better marketing? Refer them to Revolution Media and earn a 15% commission when they sign on."
-        primaryCTA={{ label: "Become an Ambassador", href: "#signup" }}
+        primaryCTA={{ label: "Start Earning Today", href: "#signup" }}
         secondaryCTA={{ label: "Learn More", href: "#how-it-works" }}
       />
 
@@ -116,7 +116,7 @@ export default function ReferralProgramPage() {
       </section>
 
       {/* ---- Who Can Join ---- */}
-      <section className="bg-midnight py-16 sm:py-20">
+      <section className="bg-midnight dark-texture py-16 sm:py-20">
         <Container>
           <FadeIn>
             <SectionHeading
@@ -185,7 +185,7 @@ export default function ReferralProgramPage() {
           <FadeIn>
             <SectionHeading
               eyebrow="JOIN THE PROGRAM"
-              title="Become a Referral Ambassador"
+              title="Refer, We Close, You Earn"
             />
           </FadeIn>
 

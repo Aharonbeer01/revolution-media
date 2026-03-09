@@ -6,7 +6,7 @@ interface MetricProps {
 
 export function Metric({ value, label, prefix }: MetricProps) {
   return (
-    <div className="text-center">
+    <div>
       <p className="text-3xl font-bold text-gold sm:text-4xl">
         {prefix}
         {value}

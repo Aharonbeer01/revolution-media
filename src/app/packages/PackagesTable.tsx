@@ -1,9 +1,149 @@
 "use client";
 
+import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 
 /* ------------------------------------------------------------------ */
-/*  Table data — matches the PDF comparison grid                       */
+/*  Market Segment data                                                */
+/* ------------------------------------------------------------------ */
+
+const segments = [
+  {
+    title: "Boutique Property",
+    subtitle: "Up to 10 rooms",
+    description:
+      "You need visibility and a consistent online presence. Build brand awareness, attract direct bookings, and establish your digital footprint.",
+    recommended: ["Visibility", "Foundation"],
+    icon: "🏠",
+  },
+  {
+    title: "Medium-Sized Property",
+    subtitle: "10–50 rooms",
+    description:
+      "You need growth-focused marketing. Scale your reach, run targeted campaigns, and start reducing OTA dependency with a dedicated strategy.",
+    recommended: ["Foundation", "Growth"],
+    icon: "🏨",
+  },
+  {
+    title: "Large Property",
+    subtitle: "50–150 rooms",
+    description:
+      "You need performance at scale. Multi-platform management, paid advertising, content strategy, and data-driven optimisation across all channels.",
+    recommended: ["Performance", "Total Rev."],
+    icon: "🏢",
+  },
+  {
+    title: "Enterprise / Group",
+    subtitle: "150+ rooms or multi-property",
+    description:
+      "You need a full-service digital partner. Total revenue management across every touchpoint — social, search, email, paid media, and reporting.",
+    recommended: ["Total Rev."],
+    icon: "🌐",
+  },
+];
+
+/* ------------------------------------------------------------------ */
+/*  Package detail data for accordions                                  */
+/* ------------------------------------------------------------------ */
+
+interface PackageDetail {
+  name: string;
+  tagline: string;
+  isBoost?: boolean;
+  features: string[];
+}
+
+const packageDetails: PackageDetail[] = [
+  {
+    name: "Visibility",
+    tagline: "Build awareness and establish your online presence",
+    features: [
+      "8 social posts per month",
+      "12 stories per month",
+      "Reel editing included",
+      "1–2 platforms managed",
+      "Monthly performance report",
+      "Monthly strategy call",
+    ],
+  },
+  {
+    name: "Boost",
+    tagline: "Paid advertising only — amplify your reach",
+    isBoost: true,
+    features: [
+      "1 ad campaign managed",
+      "3 ad sets per campaign",
+      "Retargeting included",
+      "Bi-monthly performance report",
+      "Bi-monthly strategy call",
+      "Can be added to any organic package",
+    ],
+  },
+  {
+    name: "Foundation",
+    tagline: "Organic marketing with GBP optimisation",
+    features: [
+      "12 social posts per month",
+      "16 stories per month",
+      "Reel editing included",
+      "2–3 platforms managed",
+      "Google Business Profile management",
+      "Bi-monthly performance report",
+      "Bi-monthly strategy call",
+    ],
+  },
+  {
+    name: "Growth",
+    tagline: "Organic + paid for scaling properties",
+    features: [
+      "12 social posts per month",
+      "16 stories per month",
+      "Reel editing included",
+      "2–3 platforms managed",
+      "Google Business Profile management",
+      "1 ad campaign with 3 ad sets",
+      "Retargeting included",
+      "Weekly strategy calls",
+      "Monthly performance report",
+    ],
+  },
+  {
+    name: "Performance",
+    tagline: "Multi-channel marketing with content and ads",
+    features: [
+      "16 social posts per month",
+      "20 stories per month",
+      "Reel editing included",
+      "3–4 platforms managed",
+      "Google Business Profile management",
+      "2 blog posts per month",
+      "2 ad campaigns with 3 ad sets each",
+      "Retargeting included",
+      "Weekly strategy calls",
+      "Monthly report + quarterly review",
+    ],
+  },
+  {
+    name: "Total Rev.",
+    tagline: "Full-service digital marketing across every channel",
+    features: [
+      "16 social posts per month",
+      "24 stories per month",
+      "Reel editing included",
+      "5–8 platforms managed",
+      "Google Business Profile management",
+      "4 blog posts per month",
+      "Email marketing included",
+      "2+ ad campaigns with 5 ad sets each",
+      "Retargeting included",
+      "Bi-weekly strategy calls",
+      "Monthly report + quarterly review",
+    ],
+  },
+];
+
+/* ------------------------------------------------------------------ */
+/*  Comparison table data                                               */
 /* ------------------------------------------------------------------ */
 
 const packages = [
@@ -59,85 +199,217 @@ function CheckMark() {
   );
 }
 
+function CheckIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+      className="mt-0.5 h-4 w-4 flex-shrink-0 text-gold"
+    >
+      <path
+        fillRule="evenodd"
+        d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
+        clipRule="evenodd"
+      />
+    </svg>
+  );
+}
+
 function CellContent({ value }: { value: CellValue }) {
   if (value === true) return <CheckMark />;
   if (value === false) return <span className="text-midnight/30">—</span>;
   return <span>{value}</span>;
 }
 
+function ChevronDown({ open }: { open: boolean }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+      className={`h-5 w-5 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+    >
+      <path
+        fillRule="evenodd"
+        d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
+        clipRule="evenodd"
+      />
+    </svg>
+  );
+}
+
 /* ------------------------------------------------------------------ */
-/*  Component                                                          */
+/*  Accordion Item                                                     */
+/* ------------------------------------------------------------------ */
+
+function PackageAccordion({ pkg }: { pkg: PackageDetail }) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div className={`rounded-lg border shadow-sm transition-all ${pkg.isBoost ? "border-gold/40 bg-gold/5" : "border-midnight/10 bg-white"}`}>
+      <button
+        onClick={() => setOpen(!open)}
+        className="flex w-full items-center justify-between px-6 py-5 text-left"
+      >
+        <div>
+          <div className="flex items-center gap-3">
+            <h3 className="text-lg font-bold text-midnight">{pkg.name}</h3>
+            {pkg.isBoost && (
+              <span className="rounded-full bg-gold/20 px-3 py-0.5 text-xs font-semibold text-gold-deep">
+                PAID ADS ONLY
+              </span>
+            )}
+          </div>
+          <p className="mt-1 text-sm text-warm-gray">{pkg.tagline}</p>
+        </div>
+        <ChevronDown open={open} />
+      </button>
+
+      {open && (
+        <div className="border-t border-midnight/10 px-6 pb-6 pt-4">
+          <ul className="grid gap-2 sm:grid-cols-2">
+            {pkg.features.map((feature) => (
+              <li key={feature} className="flex items-start gap-2 text-sm text-midnight/80">
+                <CheckIcon />
+                {feature}
+              </li>
+            ))}
+          </ul>
+          <div className="mt-5">
+            <Button href="/contact" variant="primary" className="text-sm">
+              Get Started with {pkg.name}
+            </Button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Main Component                                                     */
 /* ------------------------------------------------------------------ */
 
 export function PackagesTable() {
   return (
-    <div className="space-y-8">
-      {/* Scrollable table */}
-      <div className="overflow-x-auto rounded-lg border border-midnight/10 bg-white shadow-sm">
-        <table className="w-full min-w-[700px] text-sm">
-          {/* Header */}
-          <thead>
-            <tr className="bg-midnight text-soft-white">
-              <th className="px-4 py-3 text-left font-semibold" />
-              {packages.map((name) => (
-                <th
-                  key={name}
-                  className="px-3 py-3 text-center font-semibold text-gold"
-                >
-                  {name}
-                </th>
-              ))}
-            </tr>
-          </thead>
-
-          {/* Body */}
-          <tbody>
-            {rows.map((row, i) => (
-              <tr
-                key={row.label}
-                className={i % 2 === 0 ? "bg-white" : "bg-soft-white/50"}
-              >
-                <td className="whitespace-nowrap px-4 py-3 font-medium text-midnight">
-                  {row.label}
-                </td>
-                {row.values.map((val, j) => (
-                  <td
-                    key={`${row.label}-${j}`}
-                    className="px-3 py-3 text-center text-midnight/80"
+    <div className="space-y-20">
+      {/* ---- SECTION 1: Find Your Fit ---- */}
+      <div>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {segments.map((seg) => (
+            <div
+              key={seg.title}
+              className="rounded-lg border border-midnight/10 bg-white p-6 shadow-sm"
+            >
+              <span className="text-3xl">{seg.icon}</span>
+              <h3 className="mt-3 text-lg font-bold text-midnight">{seg.title}</h3>
+              <p className="text-sm font-medium text-gold-deep">{seg.subtitle}</p>
+              <p className="mt-3 text-sm leading-relaxed text-warm-gray">
+                {seg.description}
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {seg.recommended.map((pkg) => (
+                  <span
+                    key={pkg}
+                    className="rounded-full bg-midnight px-3 py-1 text-xs font-semibold text-gold"
                   >
-                    <CellContent value={val} />
-                  </td>
+                    {pkg}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* ---- SECTION 2: Package Details (Accordions) ---- */}
+      <div>
+        <h3 className="mb-2 text-center text-sm font-semibold uppercase tracking-[0.1em] text-gold-deep">
+          PACKAGE DETAILS
+        </h3>
+        <p className="mb-8 text-center text-2xl font-bold text-midnight sm:text-3xl">
+          Explore What&apos;s Included
+        </p>
+
+        <div className="mx-auto max-w-3xl space-y-3">
+          {packageDetails.map((pkg) => (
+            <PackageAccordion key={pkg.name} pkg={pkg} />
+          ))}
+        </div>
+      </div>
+
+      {/* ---- SECTION 3: Comparison Table ---- */}
+      <div>
+        <h3 className="mb-2 text-center text-sm font-semibold uppercase tracking-[0.1em] text-gold-deep">
+          SIDE-BY-SIDE COMPARISON
+        </h3>
+        <p className="mb-8 text-center text-2xl font-bold text-midnight sm:text-3xl">
+          Compare All Packages
+        </p>
+
+        <div className="overflow-x-auto rounded-lg border border-midnight/10 bg-white shadow-sm">
+          <table className="w-full min-w-[700px] text-sm">
+            <thead>
+              <tr className="bg-midnight text-soft-white">
+                <th className="px-4 py-3 text-left font-semibold" />
+                {packages.map((name) => (
+                  <th
+                    key={name}
+                    className="px-3 py-3 text-center font-semibold text-gold"
+                  >
+                    {name}
+                  </th>
                 ))}
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              {rows.map((row, i) => (
+                <tr
+                  key={row.label}
+                  className={i % 2 === 0 ? "bg-white" : "bg-soft-white/50"}
+                >
+                  <td className="whitespace-nowrap px-4 py-3 font-medium text-midnight">
+                    {row.label}
+                  </td>
+                  {row.values.map((val, j) => (
+                    <td
+                      key={`${row.label}-${j}`}
+                      className="px-3 py-3 text-center text-midnight/80"
+                    >
+                      <CellContent value={val} />
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
-      {/* CTA row — one button per package */}
-      <div className="grid grid-cols-3 gap-3 sm:grid-cols-6">
-        {packages.map((name) => (
-          <Button
-            key={name}
+        <div className="mt-6 grid grid-cols-3 gap-3 sm:grid-cols-6">
+          {packages.map((name) => (
+            <Button
+              key={name}
+              href="/contact"
+              variant="primary"
+              className="w-full text-xs sm:text-sm"
+            >
+              {name}
+            </Button>
+          ))}
+        </div>
+
+        <p className="mt-6 text-center text-sm text-warm-gray">
+          Not sure which package is right for you?{" "}
+          <a
             href="/contact"
-            variant="primary"
-            className="w-full text-xs sm:text-sm"
+            className="font-medium text-gold-deep underline underline-offset-2 hover:text-gold"
           >
-            {name}
-          </Button>
-        ))}
+            Book a free discovery call
+          </a>{" "}
+          and we&apos;ll help you choose.
+        </p>
       </div>
-
-      <p className="text-center text-sm text-midnight/50">
-        Not sure which package is right for you?{" "}
-        <a
-          href="/contact"
-          className="font-medium text-gold underline underline-offset-2 hover:text-deep-gold"
-        >
-          Book a free discovery call
-        </a>{" "}
-        and we&apos;ll help you choose.
-      </p>
     </div>
   );
 }

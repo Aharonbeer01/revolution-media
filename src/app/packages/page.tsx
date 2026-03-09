@@ -189,14 +189,14 @@ export default function PackagesPage() {
         secondaryCTA={{ label: "View Our Services", href: "/services" }}
       />
 
-      {/* Monthly Packages — Comparison Table */}
+      {/* Find Your Fit */}
       <section className="bg-soft-white py-16 sm:py-20">
         <Container>
           <FadeIn>
             <SectionHeading
-              eyebrow="MONTHLY PACKAGES"
-              title="Ongoing Marketing That Delivers"
-              subtitle="Every package is tailored to hospitality. No generic playbooks — just strategy built around direct bookings and guest acquisition."
+              eyebrow="FIND YOUR FIT"
+              title="Which Property Are You?"
+              subtitle="Start by identifying your property type. We'll recommend the right package based on your size, goals, and marketing needs."
             />
           </FadeIn>
 
@@ -207,7 +207,7 @@ export default function PackagesPage() {
       </section>
 
       {/* How We Work */}
-      <section className="bg-midnight py-16 sm:py-20">
+      <section className="bg-midnight dark-texture py-16 sm:py-20">
         <Container>
           <FadeIn>
             <SectionHeading
@@ -323,7 +323,7 @@ export default function PackagesPage() {
       </section>
 
       {/* One-Time & Strategy Services */}
-      <section className="bg-midnight py-16 sm:py-20">
+      <section className="bg-midnight dark-texture py-16 sm:py-20">
         <Container>
           <FadeIn>
             <SectionHeading

@@ -29,7 +29,7 @@ export function Hero({
 
   return (
     <section
-      className={`relative flex items-center ${heights[size]} bg-midnight`}
+      className={`relative flex items-center ${heights[size]} bg-midnight dark-texture`}
     >
       <Container className="relative z-10 py-20">
         <div className="max-w-3xl">

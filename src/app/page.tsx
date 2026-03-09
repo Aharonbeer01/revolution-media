@@ -19,17 +19,100 @@ export default function HomePage() {
         secondaryCTA={{ label: "See Our Work", href: "/case-studies" }}
       />
 
-      {/* --- Positioning Statement --- */}
+      {/* --- Knife Twist — Pain Points --- */}
       <section className="bg-soft-white py-16 sm:py-20">
+        <Container>
+          <FadeIn>
+            <p className="mb-3 text-center text-sm font-semibold uppercase tracking-[0.15em] text-gold-deep">
+              SOUND FAMILIAR?
+            </p>
+            <h2 className="mx-auto max-w-3xl text-center text-3xl font-bold text-midnight sm:text-4xl">
+              Your Revenue Is Leaking — and You Already Know It
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-center text-lg text-warm-gray">
+              If any of these feel familiar, you&apos;re not alone. Most hospitality businesses face the same challenges — and keep paying the price.
+            </p>
+          </FadeIn>
+
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                icon: "💸",
+                title: "OTAs Are Eating Your Margins",
+                description:
+                  "Booking.com and Expedia take 15–25% of every reservation. That's revenue you earned — paid to a middleman.",
+              },
+              {
+                icon: "📉",
+                title: "Inconsistent Online Presence",
+                description:
+                  "Outdated photos, inactive social media, unanswered Google reviews. Guests scroll past — straight to your competitors.",
+              },
+              {
+                icon: "🎯",
+                title: "Ad Spend with No Clear Return",
+                description:
+                  "You've boosted posts or tried Google Ads, but with no strategy behind it the budget disappears and bookings don't follow.",
+              },
+              {
+                icon: "🔁",
+                title: "Dependency on Third Parties",
+                description:
+                  "When OTAs change their algorithm or policies, your occupancy takes the hit. You don't own the guest relationship.",
+              },
+              {
+                icon: "🕐",
+                title: "No Time to Market Properly",
+                description:
+                  "You're running a property — not a marketing agency. Content creation, campaigns, and strategy keep falling to the bottom of the list.",
+              },
+              {
+                icon: "📊",
+                title: "No Data, No Direction",
+                description:
+                  "Without proper tracking and reporting, you're making decisions in the dark. You can't improve what you can't measure.",
+              },
+            ].map((pain, index) => (
+              <FadeIn key={pain.title} delay={index * 0.08}>
+                <div className="rounded-lg border border-midnight/10 bg-white p-6 shadow-sm">
+                  <span className="text-2xl">{pain.icon}</span>
+                  <h3 className="mt-3 text-lg font-semibold text-midnight">
+                    {pain.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-warm-gray">
+                    {pain.description}
+                  </p>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+
+          <FadeIn delay={0.5}>
+            <div className="mt-12 text-center">
+              <p className="text-lg font-semibold text-midnight">
+                We built Revolution Media to solve exactly this.
+              </p>
+              <div className="mt-6">
+                <Button href="/contact" variant="primary">
+                  Let&apos;s Fix This Together
+                </Button>
+              </div>
+            </div>
+          </FadeIn>
+        </Container>
+      </section>
+
+      {/* --- Positioning Statement --- */}
+      <section className="bg-cream py-16 sm:py-20">
         <Container className="text-center">
           <FadeIn>
-            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.15em] text-gold">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.15em] text-gold-deep">
               WHO WE ARE
             </p>
             <h2 className="mx-auto max-w-2xl text-3xl font-bold text-midnight sm:text-4xl">
               Where Strategy Meets Hospitality
             </h2>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-midnight/60">
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-warm-gray">
               Revolution Media is a specialist digital marketing agency built
               exclusively for travel and hospitality businesses. From boutique
               hotels to luxury resorts, we combine deep industry knowledge with
@@ -70,19 +153,19 @@ export default function HomePage() {
       <section className="bg-cream py-16 sm:py-20">
         <Container className="text-center">
           <FadeIn>
-            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.15em] text-gold">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.15em] text-gold-deep">
               REFERRAL AMBASSADOR PROGRAM
             </p>
             <h2 className="mx-auto max-w-2xl text-3xl font-bold text-midnight sm:text-4xl">
               Know a Property That Needs Better Marketing?
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-lg text-midnight/60">
+            <p className="mx-auto mt-4 max-w-xl text-lg text-warm-gray">
               Earn a 15% commission for every hospitality business you refer to
-              Revolution Media. Join our Ambassador Program today.
+              Revolution Media. It&apos;s simple — refer, we close, you get paid.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Button href="/referral-program" variant="primary">
-                Become an Ambassador
+                Refer &amp; Earn 15%
               </Button>
               <Button href="/ambassador" variant="ghost">
                 Ambassador Login

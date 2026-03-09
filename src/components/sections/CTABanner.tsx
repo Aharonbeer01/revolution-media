@@ -16,7 +16,7 @@ export function CTABanner({
   ctaHref = "/contact",
   variant = "dark",
 }: CTABannerProps) {
-  const bgClass = variant === "gold" ? "bg-gold" : "bg-midnight";
+  const bgClass = variant === "gold" ? "bg-gold" : "bg-midnight dark-texture";
   const titleColor = variant === "gold" ? "text-midnight" : "text-soft-white";
   const subtitleColor =
     variant === "gold" ? "text-midnight/70" : "text-soft-white/60";

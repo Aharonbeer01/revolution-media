@@ -3,24 +3,42 @@
 import { useState, FormEvent } from "react";
 import { Button } from "@/components/ui/Button";
 
-const serviceOptions = [
-  "Visibility Package",
-  "Boost Package",
-  "Foundation Package",
-  "Growth Package",
-  "Performance Package",
-  "Total Revenue Package",
-  "Essential Shoot (Photography)",
-  "Property Showcase (Photography)",
-  "Complete Visual Identity (Photography)",
-  "Seasonal Refresh (Photography)",
-  "Revolution Motion (Video)",
-  "Digital Presence Audit",
-  "Direct Booking Strategy",
-  "Content Calendar & Scripts",
-  "Ad Campaign Setup",
-  "Google Business Profile Overhaul",
-  "Not sure yet — help me decide",
+const serviceGroups = [
+  {
+    label: "Marketing Packages",
+    options: [
+      "Visibility Package",
+      "Boost Package (Paid Ads Only)",
+      "Foundation Package",
+      "Growth Package",
+      "Performance Package",
+      "Total Revenue Package",
+    ],
+  },
+  {
+    label: "Photography & Video",
+    options: [
+      "Essential Shoot",
+      "Property Showcase",
+      "Complete Visual Identity",
+      "Seasonal Refresh",
+      "Revolution Motion (Video)",
+    ],
+  },
+  {
+    label: "One-Time Services",
+    options: [
+      "Digital Presence Audit",
+      "Direct Booking Strategy",
+      "Content Calendar & Scripts",
+      "Ad Campaign Setup",
+      "Google Business Profile Overhaul",
+    ],
+  },
+  {
+    label: "Other",
+    options: ["Not sure yet — help me decide"],
+  },
 ];
 
 export function ContactForm() {
@@ -61,14 +79,14 @@ export function ContactForm() {
   return (
     <div className="rounded-lg bg-warm-white p-6 shadow-sm sm:p-8">
       <h2 className="text-2xl font-bold text-midnight">Send Us a Message</h2>
-      <p className="mt-2 text-sm text-midnight/60">
+      <p className="mt-2 text-sm text-warm-gray">
         Fill out the form below and we will get back to you within 24 hours.
       </p>
 
       <form onSubmit={handleSubmit} className="mt-6 space-y-4">
         <div>
           <label htmlFor="name" className="mb-1 block text-sm font-medium text-midnight">
-            Name <span className="text-gold">*</span>
+            Name <span className="text-gold-deep">*</span>
           </label>
           <input
             id="name"
@@ -83,7 +101,7 @@ export function ContactForm() {
 
         <div>
           <label htmlFor="email" className="mb-1 block text-sm font-medium text-midnight">
-            Email <span className="text-gold">*</span>
+            Email <span className="text-gold-deep">*</span>
           </label>
           <input
             id="email"
@@ -98,7 +116,7 @@ export function ContactForm() {
 
         <div>
           <label htmlFor="propertyName" className="mb-1 block text-sm font-medium text-midnight">
-            Property Name <span className="text-gold">*</span>
+            Property Name <span className="text-gold-deep">*</span>
           </label>
           <input
             id="propertyName"
@@ -113,7 +131,7 @@ export function ContactForm() {
 
         <div>
           <label htmlFor="interestedIn" className="mb-1 block text-sm font-medium text-midnight">
-            Interested In <span className="text-gold">*</span>
+            Interested In <span className="text-gold-deep">*</span>
           </label>
           <select
             id="interestedIn"
@@ -125,17 +143,21 @@ export function ContactForm() {
             <option value="" disabled>
               Select a service or package
             </option>
-            {serviceOptions.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
+            {serviceGroups.map((group) => (
+              <optgroup key={group.label} label={group.label}>
+                {group.options.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </optgroup>
             ))}
           </select>
         </div>
 
         <div>
           <label htmlFor="message" className="mb-1 block text-sm font-medium text-midnight">
-            Message <span className="text-gold">*</span>
+            Message <span className="text-gold-deep">*</span>
           </label>
           <textarea
             id="message"
