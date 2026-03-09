@@ -37,45 +37,49 @@ export default function HomePage() {
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[
               {
-                icon: "💸",
                 title: "OTAs Are Eating Your Margins",
                 description:
-                  "Booking.com and Expedia take 15–25% of every reservation. That's revenue you earned — paid to a middleman.",
+                  "Third-party booking platforms take 15–25% of every reservation. That's revenue you earned — paid to a middleman.",
+                iconPath: "M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z",
               },
               {
-                icon: "📉",
                 title: "Inconsistent Online Presence",
                 description:
                   "Outdated photos, inactive social media, unanswered Google reviews. Guests scroll past — straight to your competitors.",
+                iconPath: "M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z",
               },
               {
-                icon: "🎯",
                 title: "Ad Spend with No Clear Return",
                 description:
                   "You've boosted posts or tried Google Ads, but with no strategy behind it the budget disappears and bookings don't follow.",
+                iconPath: "M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z",
               },
               {
-                icon: "🔁",
                 title: "Dependency on Third Parties",
                 description:
                   "When OTAs change their algorithm or policies, your occupancy takes the hit. You don't own the guest relationship.",
+                iconPath: "M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182",
               },
               {
-                icon: "🕐",
                 title: "No Time to Market Properly",
                 description:
                   "You're running a property — not a marketing agency. Content creation, campaigns, and strategy keep falling to the bottom of the list.",
+                iconPath: "M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z",
               },
               {
-                icon: "📊",
                 title: "No Data, No Direction",
                 description:
                   "Without proper tracking and reporting, you're making decisions in the dark. You can't improve what you can't measure.",
+                iconPath: "M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z",
               },
             ].map((pain, index) => (
               <FadeIn key={pain.title} delay={index * 0.08}>
                 <div className="rounded-lg border border-midnight/10 bg-white p-6 shadow-sm">
-                  <span className="text-2xl">{pain.icon}</span>
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gold/10">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-5 w-5 text-gold-deep">
+                      <path strokeLinecap="round" strokeLinejoin="round" d={pain.iconPath} />
+                    </svg>
+                  </div>
                   <h3 className="mt-3 text-lg font-semibold text-midnight">
                     {pain.title}
                   </h3>
