@@ -132,11 +132,12 @@ export function AmbassadorSignupForm() {
             htmlFor="phone"
             className="mb-1 block text-sm font-medium text-midnight"
           >
-            Phone Number
+            Phone Number <span className="text-gold">*</span>
           </label>
           <input
             id="phone"
             type="tel"
+            required
             placeholder="+27 000 000 0000"
             value={formData.phone}
             onChange={(e) =>
@@ -152,11 +153,12 @@ export function AmbassadorSignupForm() {
             htmlFor="heardAboutUs"
             className="mb-1 block text-sm font-medium text-midnight"
           >
-            How did you hear about us?
+            How did you hear about us? <span className="text-gold">*</span>
           </label>
           <input
             id="heardAboutUs"
             type="text"
+            required
             placeholder="e.g. LinkedIn, a friend, Google..."
             value={formData.heardAboutUs}
             onChange={(e) =>

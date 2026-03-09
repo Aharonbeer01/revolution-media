@@ -1,13 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
+import { createClient } from "@/lib/supabase/server";
 import { sendNotificationEmail } from "@/lib/email";
 
-interface AmbassadorReferralData {
-  // Ambassador
-  ambassadorName: string;
-  ambassadorEmail: string;
-  referralCode: string;
-  referralDate: string;
-  // Client
+interface ReferralPayload {
   contactName: string;
   businessName: string;
   businessType: string;
@@ -15,7 +10,6 @@ interface AmbassadorReferralData {
   clientEmail: string;
   phone?: string;
   website?: string;
-  // Context
   relationship: string;
   discussedRevolution: string;
   servicesNeeded?: string[];
@@ -24,12 +18,34 @@ interface AmbassadorReferralData {
 
 export async function POST(request: NextRequest) {
   try {
-    const body: AmbassadorReferralData = await request.json();
+    const supabase = await createClient();
+
+    // Verify auth
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    if (!user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    // Get ambassador record
+    const { data: ambassador } = await supabase
+      .from("ambassadors")
+      .select("id, full_name, email, referral_code")
+      .eq("auth_user_id", user.id)
+      .single();
+
+    if (!ambassador) {
+      return NextResponse.json(
+        { error: "Ambassador record not found." },
+        { status: 404 }
+      );
+    }
+
+    const body: ReferralPayload = await request.json();
 
     const {
-      ambassadorName,
-      ambassadorEmail,
-      referralCode,
       contactName,
       businessName,
       businessType,
@@ -41,9 +57,6 @@ export async function POST(request: NextRequest) {
 
     // Validate required fields
     if (
-      !ambassadorName ||
-      !ambassadorEmail ||
-      !referralCode ||
       !contactName ||
       !businessName ||
       !businessType ||
@@ -58,56 +71,60 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (!clientEmail.includes("@")) {
+    // Insert referral into database
+    const { error: insertError } = await supabase.from("referrals").insert({
+      ambassador_id: ambassador.id,
+      contact_name: contactName,
+      business_name: businessName,
+      business_type: businessType,
+      location,
+      client_email: clientEmail,
+      phone: body.phone || null,
+      website: body.website || null,
+      relationship,
+      discussed_revolution: discussedRevolution,
+      services_needed: body.servicesNeeded || [],
+      additional_context: body.additionalContext || null,
+    });
+
+    if (insertError) {
+      console.error("[Referral Insert Error]", insertError);
       return NextResponse.json(
-        { error: "A valid client email address is required." },
-        { status: 400 }
+        { error: "Failed to save referral. Please try again." },
+        { status: 500 }
       );
     }
 
-    // Send notification email
+    // Send notification email to admin
     await sendNotificationEmail({
-      subject: "New Referral Submission — Revolution Media Ambassador Program",
+      subject: `New Referral from ${ambassador.full_name} (${ambassador.referral_code})`,
       body: [
-        "A new referral has been submitted by an ambassador.",
+        `Ambassador: ${ambassador.full_name} (${ambassador.email})`,
+        `Referral Code: ${ambassador.referral_code}`,
         "",
-        "--- Ambassador Details ---",
-        `Name: ${ambassadorName}`,
-        `Email: ${ambassadorEmail}`,
-        `Referral Code: ${referralCode}`,
-        `Date: ${body.referralDate}`,
-        "",
-        "--- Referred Client Details ---",
-        `Contact Name: ${contactName}`,
-        `Business Name: ${businessName}`,
-        `Business Type: ${businessType}`,
+        "--- Referred Client ---",
+        `Contact: ${contactName}`,
+        `Business: ${businessName} (${businessType})`,
         `Location: ${location}`,
-        `Client Email: ${clientEmail}`,
-        `Phone: ${body.phone || "Not provided"}`,
-        `Website: ${body.website || "Not provided"}`,
+        `Email: ${clientEmail}`,
+        `Phone: ${body.phone || "N/A"}`,
+        `Website: ${body.website || "N/A"}`,
         "",
         "--- Context ---",
         `Relationship: ${relationship}`,
-        `Discussed Revolution Media: ${discussedRevolution}`,
-        `Services Needed: ${body.servicesNeeded?.length ? body.servicesNeeded.join(", ") : "None specified"}`,
-        `Additional Context: ${body.additionalContext || "None"}`,
+        `Discussed Revolution: ${discussedRevolution}`,
+        `Services: ${body.servicesNeeded?.join(", ") || "None specified"}`,
+        `Notes: ${body.additionalContext || "None"}`,
       ].join("\n"),
     });
 
     return NextResponse.json(
-      {
-        success: true,
-        message:
-          "Referral submitted successfully. We will review and reach out to the client within 48 hours.",
-      },
+      { success: true, message: "Referral submitted successfully." },
       { status: 200 }
     );
   } catch {
     return NextResponse.json(
-      {
-        error:
-          "Invalid request. Please check your submission and try again.",
-      },
+      { error: "Invalid request. Please try again." },
       { status: 400 }
     );
   }
