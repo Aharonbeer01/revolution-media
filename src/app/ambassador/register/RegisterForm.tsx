@@ -66,7 +66,10 @@ export function RegisterForm({
       return;
     }
 
-    // Redirect to dashboard — the auth callback will link the user to ambassador record
+    // Link auth user to ambassador record
+    await fetch("/api/ambassador-link", { method: "POST" });
+
+    // Redirect to dashboard
     router.push("/ambassador/dashboard");
     router.refresh();
   }

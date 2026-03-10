@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { createClient } from "@/lib/supabase/server";
+import { createClient, createServiceRoleClient } from "@/lib/supabase/server";
 import { AmbassadorNav } from "../AmbassadorNav";
 import { ProfileContent } from "./ProfileContent";
 
@@ -14,11 +14,28 @@ export default async function ProfilePage() {
     redirect("/ambassador");
   }
 
-  const { data: ambassador } = await supabase
+  let { data: ambassador } = await supabase
     .from("ambassadors")
     .select("*")
     .eq("auth_user_id", user.id)
     .single();
+
+  if (!ambassador && user.email) {
+    const serviceClient = createServiceRoleClient();
+    const { data: byEmail } = await serviceClient
+      .from("ambassadors")
+      .select("*")
+      .eq("email", user.email)
+      .single();
+
+    if (byEmail) {
+      await serviceClient
+        .from("ambassadors")
+        .update({ auth_user_id: user.id, status: "active" })
+        .eq("id", byEmail.id);
+      ambassador = { ...byEmail, auth_user_id: user.id, status: "active" };
+    }
+  }
 
   if (!ambassador) {
     redirect("/ambassador");

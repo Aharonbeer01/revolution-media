@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { createClient } from "@/lib/supabase/server";
+import { createClient, createServiceRoleClient } from "@/lib/supabase/server";
 import { AmbassadorNav } from "../AmbassadorNav";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
@@ -30,11 +30,28 @@ export default async function ReferralsPage() {
   }
 
   // Get ambassador
-  const { data: ambassador } = await supabase
+  let { data: ambassador } = await supabase
     .from("ambassadors")
     .select("id")
     .eq("auth_user_id", user.id)
     .single();
+
+  if (!ambassador && user.email) {
+    const serviceClient = createServiceRoleClient();
+    const { data: byEmail } = await serviceClient
+      .from("ambassadors")
+      .select("id")
+      .eq("email", user.email)
+      .single();
+
+    if (byEmail) {
+      await serviceClient
+        .from("ambassadors")
+        .update({ auth_user_id: user.id, status: "active" })
+        .eq("id", byEmail.id);
+      ambassador = byEmail;
+    }
+  }
 
   if (!ambassador) {
     redirect("/ambassador");

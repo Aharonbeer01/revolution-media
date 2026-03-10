@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { createClient } from "@/lib/supabase/server";
+import { createClient, createServiceRoleClient } from "@/lib/supabase/server";
 import { AmbassadorNav } from "../AmbassadorNav";
 import { DashboardContent } from "./DashboardContent";
 
@@ -14,12 +14,30 @@ export default async function DashboardPage() {
     redirect("/ambassador");
   }
 
-  // Fetch ambassador record
-  const { data: ambassador } = await supabase
+  // Fetch ambassador record by auth_user_id
+  let { data: ambassador } = await supabase
     .from("ambassadors")
     .select("*")
     .eq("auth_user_id", user.id)
     .single();
+
+  // Fallback: if not found by auth_user_id, try by email and link
+  if (!ambassador && user.email) {
+    const serviceClient = createServiceRoleClient();
+    const { data: byEmail } = await serviceClient
+      .from("ambassadors")
+      .select("*")
+      .eq("email", user.email)
+      .single();
+
+    if (byEmail) {
+      await serviceClient
+        .from("ambassadors")
+        .update({ auth_user_id: user.id, status: "active" })
+        .eq("id", byEmail.id);
+      ambassador = { ...byEmail, auth_user_id: user.id, status: "active" };
+    }
+  }
 
   if (!ambassador) {
     redirect("/ambassador");
