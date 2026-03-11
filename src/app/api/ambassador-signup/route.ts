@@ -19,7 +19,8 @@ export async function POST(request: NextRequest) {
     if (!fullName || typeof fullName !== "string" || fullName.trim().length === 0) {
       return NextResponse.json({ error: "Full name is required." }, { status: 400 });
     }
-    if (!email || typeof email !== "string" || !email.includes("@")) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    if (!email || typeof email !== "string" || !emailRegex.test(email.trim())) {
       return NextResponse.json({ error: "A valid email address is required." }, { status: 400 });
     }
     if (!phone || typeof phone !== "string" || phone.trim().length === 0) {
@@ -60,9 +61,10 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Failed to save application." }, { status: 500 });
     }
 
-    // Send HTML email to admin with Approve button
+    // Send HTML email to admin with Approve and Reject buttons
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
     const approveUrl = `${siteUrl}/api/ambassador-approve/${ambassador.id}?token=${ambassador.approval_token}`;
+    const rejectUrl = `${siteUrl}/api/ambassador-reject/${ambassador.id}?token=${ambassador.approval_token}`;
 
     await sendAdminHtmlEmail({
       subject: "New Referral Ambassador Application — Revolution Media",
@@ -77,11 +79,14 @@ export async function POST(request: NextRequest) {
             <tr><td style="padding: 8px 0; color: #666;">Hospitality Connection</td><td style="padding: 8px 0;">${body.hospitalityConnection?.trim() || "Not provided"}</td></tr>
           </table>
           <div style="margin: 32px 0; text-align: center;">
-            <a href="${approveUrl}" style="display: inline-block; background-color: #DC9427; color: #000; padding: 14px 32px; text-decoration: none; border-radius: 6px; font-weight: 700; font-size: 16px;">
+            <a href="${approveUrl}" style="display: inline-block; background-color: #DC9427; color: #000; padding: 14px 32px; text-decoration: none; border-radius: 6px; font-weight: 700; font-size: 16px; margin-right: 12px;">
               Approve Ambassador
             </a>
+            <a href="${rejectUrl}" style="display: inline-block; background-color: #cc3333; color: #fff; padding: 14px 32px; text-decoration: none; border-radius: 6px; font-weight: 700; font-size: 16px;">
+              Do Not Approve
+            </a>
           </div>
-          <p style="color: #999; font-size: 12px;">Clicking approve will send the applicant an invitation to create their ambassador account.</p>
+          <p style="color: #999; font-size: 12px;">Clicking approve will send the applicant an invitation to create their ambassador account. Clicking reject will decline the application.</p>
         </div>
       `,
     });

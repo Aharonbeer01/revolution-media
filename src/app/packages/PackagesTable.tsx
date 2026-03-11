@@ -7,6 +7,66 @@ import { Button } from "@/components/ui/Button";
 /*  Market Segment data                                                */
 /* ------------------------------------------------------------------ */
 
+/* SVG icons for market segments */
+function BoutiqueIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="h-8 w-8 text-gold">
+      <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
+      <path d="M3 21h18" />
+      <path d="M19 21V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v16" />
+      <path d="M9 7h1" />
+      <path d="M14 7h1" />
+    </svg>
+  );
+}
+
+function MediumPropertyIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="h-8 w-8 text-gold">
+      <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
+      <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
+      <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
+      <path d="M10 6h4" />
+      <path d="M10 10h4" />
+      <path d="M10 14h4" />
+      <path d="M10 18h4" />
+    </svg>
+  );
+}
+
+function LargePropertyIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="h-8 w-8 text-gold">
+      <rect width="16" height="20" x="4" y="2" rx="2" ry="2" />
+      <path d="M9 22v-4h6v4" />
+      <path d="M8 6h.01" />
+      <path d="M16 6h.01" />
+      <path d="M12 6h.01" />
+      <path d="M12 10h.01" />
+      <path d="M12 14h.01" />
+      <path d="M16 10h.01" />
+      <path d="M16 14h.01" />
+      <path d="M8 10h.01" />
+      <path d="M8 14h.01" />
+    </svg>
+  );
+}
+
+function EnterpriseIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="h-8 w-8 text-gold">
+      <path d="M2 22h20" />
+      <path d="M9 22V2h6v20" />
+      <path d="M1 22V12a1 1 0 0 1 1-1h5" />
+      <path d="M17 22V8a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v14" />
+      <path d="M11 6h2" />
+      <path d="M11 10h2" />
+      <path d="M11 14h2" />
+      <path d="M11 18h2" />
+    </svg>
+  );
+}
+
 const segments = [
   {
     title: "Boutique Property",
@@ -14,7 +74,7 @@ const segments = [
     description:
       "You need visibility and a consistent online presence. Build brand awareness, attract direct bookings, and establish your digital footprint.",
     recommended: ["Visibility", "Foundation"],
-    icon: "🏠",
+    icon: BoutiqueIcon,
   },
   {
     title: "Medium-Sized Property",
@@ -22,7 +82,7 @@ const segments = [
     description:
       "You need growth-focused marketing. Scale your reach, run targeted campaigns, and start reducing OTA dependency with a dedicated strategy.",
     recommended: ["Foundation", "Growth"],
-    icon: "🏨",
+    icon: MediumPropertyIcon,
   },
   {
     title: "Large Property",
@@ -30,7 +90,7 @@ const segments = [
     description:
       "You need performance at scale. Multi-platform management, paid advertising, content strategy, and data-driven optimisation across all channels.",
     recommended: ["Performance", "Total Rev."],
-    icon: "🏢",
+    icon: LargePropertyIcon,
   },
   {
     title: "Enterprise / Group",
@@ -38,7 +98,7 @@ const segments = [
     description:
       "You need a full-service digital partner. Total revenue management across every touchpoint — social, search, email, paid media, and reporting.",
     recommended: ["Total Rev."],
-    icon: "🌐",
+    icon: EnterpriseIcon,
   },
 ];
 
@@ -302,7 +362,7 @@ export function PackagesTable() {
               key={seg.title}
               className="rounded-lg border border-midnight/10 bg-white p-6 shadow-sm"
             >
-              <span className="text-3xl">{seg.icon}</span>
+              <seg.icon />
               <h3 className="mt-3 text-lg font-bold text-midnight">{seg.title}</h3>
               <p className="text-sm font-medium text-gold-deep">{seg.subtitle}</p>
               <p className="mt-3 text-sm leading-relaxed text-warm-gray">
@@ -339,8 +399,8 @@ export function PackagesTable() {
         </div>
       </div>
 
-      {/* ---- SECTION 3: Comparison Table ---- */}
-      <div>
+      {/* ---- SECTION 3: Comparison Table (hidden on mobile) ---- */}
+      <div className="hidden md:block">
         <h3 className="mb-2 text-center text-sm font-semibold uppercase tracking-[0.1em] text-gold-deep">
           SIDE-BY-SIDE COMPARISON
         </h3>

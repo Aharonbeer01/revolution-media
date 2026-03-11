@@ -23,7 +23,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (!email || typeof email !== "string" || !email.includes("@")) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    if (!email || typeof email !== "string" || !emailRegex.test(email.trim())) {
       return NextResponse.json(
         { error: "A valid email address is required." },
         { status: 400 }

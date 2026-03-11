@@ -52,7 +52,10 @@ export function Header() {
             ))}
           </nav>
 
-          <div className="hidden lg:block">
+          <div className="hidden items-center gap-3 lg:flex">
+            <Button href="/ambassador" variant="secondary" className="text-xs">
+              Ambassador Login
+            </Button>
             <Button href="/contact" variant="primary" className="text-xs">
               Book a Discovery Call
             </Button>

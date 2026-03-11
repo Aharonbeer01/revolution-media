@@ -40,6 +40,7 @@ type SubmitStatus = "idle" | "sending" | "success" | "error";
 export function ReferralForm({ ambassador }: { ambassador: Ambassador }) {
   const router = useRouter();
   const [submitStatus, setSubmitStatus] = useState<SubmitStatus>("idle");
+  const [emailError, setEmailError] = useState("");
 
   const [formData, setFormData] = useState({
     contactName: "",
@@ -71,6 +72,14 @@ export function ReferralForm({ ambassador }: { ambassador: Ambassador }) {
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    if (!emailRegex.test(formData.clientEmail.trim())) {
+      setEmailError("Please enter a valid email address (e.g. client@example.com)");
+      return;
+    }
+    setEmailError("");
+
     setSubmitStatus("sending");
 
     try {
@@ -299,11 +308,25 @@ export function ReferralForm({ ambassador }: { ambassador: Ambassador }) {
                   id="ref-client-email"
                   type="email"
                   required
+                  pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,}$"
                   placeholder="client@example.com"
                   value={formData.clientEmail}
-                  onChange={(e) => updateField("clientEmail", e.target.value)}
-                  className={INPUT_STYLES}
+                  onChange={(e) => {
+                    updateField("clientEmail", e.target.value);
+                    if (emailError) setEmailError("");
+                  }}
+                  onBlur={() => {
+                    if (formData.clientEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(formData.clientEmail.trim())) {
+                      setEmailError("Please enter a valid email address (e.g. client@example.com)");
+                    } else {
+                      setEmailError("");
+                    }
+                  }}
+                  className={`${INPUT_STYLES} ${emailError ? "border-red-500 focus:border-red-500 focus:ring-red-500" : ""}`}
                 />
+                {emailError && (
+                  <p className="mt-1 text-xs text-red-600">{emailError}</p>
+                )}
               </div>
               <div>
                 <label htmlFor="ref-phone" className={LABEL_STYLES}>

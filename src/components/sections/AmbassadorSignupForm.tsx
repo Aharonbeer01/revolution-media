@@ -15,6 +15,7 @@ export function AmbassadorSignupForm() {
   const [status, setStatus] = useState<
     "idle" | "sending" | "success" | "error"
   >("idle");
+  const [emailError, setEmailError] = useState("");
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -22,6 +23,13 @@ export function AmbassadorSignupForm() {
     if (!formData.agreedToTerms) {
       return;
     }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    if (!emailRegex.test(formData.email.trim())) {
+      setEmailError("Please enter a valid email address (e.g. you@example.com)");
+      return;
+    }
+    setEmailError("");
 
     setStatus("sending");
 
@@ -117,13 +125,25 @@ export function AmbassadorSignupForm() {
             id="email"
             type="email"
             required
+            pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,}$"
             placeholder="you@example.com"
             value={formData.email}
-            onChange={(e) =>
-              setFormData({ ...formData, email: e.target.value })
-            }
-            className={inputStyles}
+            onChange={(e) => {
+              setFormData({ ...formData, email: e.target.value });
+              if (emailError) setEmailError("");
+            }}
+            onBlur={() => {
+              if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(formData.email.trim())) {
+                setEmailError("Please enter a valid email address (e.g. you@example.com)");
+              } else {
+                setEmailError("");
+              }
+            }}
+            className={`${inputStyles} ${emailError ? "border-red-500 focus:border-red-500 focus:ring-red-500" : ""}`}
           />
+          {emailError && (
+            <p className="mt-1 text-xs text-red-600">{emailError}</p>
+          )}
         </div>
 
         {/* Phone Number */}

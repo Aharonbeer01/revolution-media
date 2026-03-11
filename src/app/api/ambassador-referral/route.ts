@@ -71,6 +71,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    if (!emailRegex.test(clientEmail.trim())) {
+      return NextResponse.json(
+        { error: "A valid email address is required for the client." },
+        { status: 400 }
+      );
+    }
+
     // Insert referral into database
     const { error: insertError } = await supabase.from("referrals").insert({
       ambassador_id: ambassador.id,
