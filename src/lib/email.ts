@@ -1,4 +1,4 @@
-const NOTIFY_EMAIL = "aharon@revolutionmedia.agency";
+const NOTIFY_EMAIL = "info@revolutionmedia.agency";
 
 interface EmailPayload {
   subject: string;

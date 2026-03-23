@@ -213,10 +213,10 @@ export function ContactForm() {
       <p className="mt-6 text-center text-sm text-midnight/50">
         Or email us directly at{" "}
         <a
-          href="mailto:aharon@revolutionmedia.agency"
+          href="mailto:info@revolutionmedia.agency"
           className="font-medium text-gold underline underline-offset-2 hover:text-gold-deep"
         >
-          aharon@revolutionmedia.agency
+          info@revolutionmedia.agency
         </a>
       </p>
     </div>

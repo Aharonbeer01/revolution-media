@@ -13,6 +13,6 @@ export const SOCIAL_LINKS = {
   tiktok: "#",
 } as const;
 
-export const CONTACT_EMAIL = "aharon@revolutionmedia.agency";
+export const CONTACT_EMAIL = "info@revolutionmedia.agency";
 
 export const SITE_URL = "https://revolutionmedia.agency";

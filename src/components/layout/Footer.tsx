@@ -130,7 +130,7 @@ export function Footer() {
               Get in Touch
             </h3>
             <p className="text-sm text-soft-white/60">
-              aharon@revolutionmedia.agency
+              info@revolutionmedia.agency
             </p>
             <p className="mt-1 text-sm text-soft-white/60">
               revolutionmedia.agency

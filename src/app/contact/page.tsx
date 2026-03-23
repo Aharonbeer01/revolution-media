@@ -141,9 +141,9 @@ export default function ContactPage() {
       <CTABanner
         variant="dark"
         title="Prefer Email? Reach Out Directly"
-        subtitle="Send us a message at aharon@revolutionmedia.agency and we'll get back to you within 24 hours."
+        subtitle="Send us a message at info@revolutionmedia.agency and we'll get back to you within 24 hours."
         ctaLabel="Send an Email"
-        ctaHref="mailto:aharon@revolutionmedia.agency"
+        ctaHref="mailto:info@revolutionmedia.agency"
       />
     </>
   );
