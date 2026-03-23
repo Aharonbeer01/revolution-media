@@ -147,8 +147,18 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 border-t border-soft-white/10 pt-8 text-center text-xs text-soft-white/40">
-          <p>&copy; {new Date().getFullYear()} Revolution Media Agency. All rights reserved.</p>
+        <div className="mt-12 border-t border-soft-white/10 pt-8 text-xs text-soft-white/40">
+          <div className="flex flex-col items-center gap-2 sm:flex-row sm:justify-between">
+            <p>&copy; {new Date().getFullYear()} Revolution Media Agency. All rights reserved.</p>
+            <div className="flex gap-4">
+              <Link href="/privacy-policy" className="transition-colors hover:text-gold">
+                Privacy Policy
+              </Link>
+              <Link href="/terms" className="transition-colors hover:text-gold">
+                Terms of Service
+              </Link>
+            </div>
+          </div>
         </div>
       </Container>
     </footer>

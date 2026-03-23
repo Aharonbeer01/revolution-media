@@ -3,6 +3,7 @@ import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -42,6 +43,30 @@ export default function RootLayout({
   return (
     <html lang="en" className={dmSans.variable}>
       <body className="antialiased">
+        <GoogleAnalytics />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ProfessionalService",
+              name: "Revolution Media Agency",
+              description:
+                "Specialist digital marketing agency for travel and hospitality businesses. We drive direct bookings and reduce OTA dependency.",
+              url: "https://revolutionmedia.agency",
+              email: "info@revolutionmedia.agency",
+              areaServed: "Worldwide",
+              serviceType: [
+                "Digital Marketing",
+                "Google Ads Management",
+                "Social Media Marketing",
+                "SEO",
+                "Content Creation",
+                "Hotel Marketing",
+              ],
+            }),
+          }}
+        />
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded focus:bg-gold focus:px-4 focus:py-2 focus:text-midnight focus:font-semibold"
