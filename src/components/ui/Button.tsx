@@ -7,6 +7,7 @@ interface ButtonBaseProps {
   variant?: ButtonVariant;
   children: ReactNode;
   className?: string;
+  "data-track"?: string;
 }
 
 interface ButtonAsLink extends ButtonBaseProps {
@@ -38,6 +39,7 @@ export function Button({
   variant = "primary",
   children,
   className = "",
+  "data-track": dataTrack,
   ...props
 }: ButtonProps) {
   const baseStyles =
@@ -47,7 +49,7 @@ export function Button({
 
   if ("href" in props && props.href) {
     return (
-      <Link href={props.href} className={classes}>
+      <Link href={props.href} className={classes} data-track={dataTrack}>
         {children}
       </Link>
     );
@@ -58,6 +60,7 @@ export function Button({
       type={(props as ButtonAsButton).type || "button"}
       onClick={(props as ButtonAsButton).onClick}
       className={classes}
+      data-track={dataTrack}
     >
       {children}
     </button>

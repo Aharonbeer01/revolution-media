@@ -61,7 +61,7 @@ export function FeaturedCaseStudy() {
             </div>
 
             <div className="mt-8">
-              <Button href={`/case-studies/${featured.slug}`} variant="primary">
+              <Button href={`/case-studies/${featured.slug}`} variant="primary" data-track="featured_case_study">
                 Read the Full Story
               </Button>
             </div>

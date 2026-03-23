@@ -75,10 +75,10 @@ export function MobileNav({ isOpen, onClose, links }: MobileNavProps) {
         </nav>
 
         <div className="mt-8 space-y-3">
-          <Button href="/ambassador" variant="secondary" className="w-full text-center">
+          <Button href="/ambassador" variant="secondary" className="w-full text-center" data-track="mobile_ambassador_login">
             Ambassador Login
           </Button>
-          <Button href="/contact" variant="primary" className="w-full text-center">
+          <Button href="/contact" variant="primary" className="w-full text-center" data-track="mobile_book_call">
             Book a Discovery Call
           </Button>
         </div>

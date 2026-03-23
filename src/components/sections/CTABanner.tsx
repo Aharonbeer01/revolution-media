@@ -34,7 +34,7 @@ export function CTABanner({
           </p>
         )}
         <div className="mt-8">
-          <Button href={ctaHref} variant={buttonVariant}>
+          <Button href={ctaHref} variant={buttonVariant} data-track="cta_banner">
             {ctaLabel}
           </Button>
         </div>

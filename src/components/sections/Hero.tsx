@@ -68,11 +68,11 @@ export function Hero({
             transition={{ duration: 0.5, delay: 0.5 }}
             className="mt-8 flex flex-wrap gap-4"
           >
-            <Button href={primaryCTA.href} variant="primary">
+            <Button href={primaryCTA.href} variant="primary" data-track="hero_cta_primary">
               {primaryCTA.label}
             </Button>
             {secondaryCTA && (
-              <Button href={secondaryCTA.href} variant="secondary">
+              <Button href={secondaryCTA.href} variant="secondary" data-track="hero_cta_secondary">
                 {secondaryCTA.label}
               </Button>
             )}

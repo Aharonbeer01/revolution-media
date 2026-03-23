@@ -53,10 +53,10 @@ export function Header() {
           </nav>
 
           <div className="hidden items-center gap-3 lg:flex">
-            <Button href="/ambassador" variant="secondary" className="text-xs">
+            <Button href="/ambassador" variant="secondary" className="text-xs" data-track="header_ambassador_login">
               Ambassador Login
             </Button>
-            <Button href="/contact" variant="primary" className="text-xs">
+            <Button href="/contact" variant="primary" className="text-xs" data-track="header_book_call">
               Book a Discovery Call
             </Button>
           </div>

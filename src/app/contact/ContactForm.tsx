@@ -51,6 +51,19 @@ export function ContactForm() {
   });
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [emailError, setEmailError] = useState("");
+  const [formStarted, setFormStarted] = useState(false);
+
+  function handleFormStart() {
+    if (!formStarted) {
+      setFormStarted(true);
+      if (typeof window !== "undefined" && window.dataLayer) {
+        window.dataLayer.push({
+          event: "form_start",
+          form_name: "contact_form",
+        });
+      }
+    }
+  }
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -74,6 +87,18 @@ export function ContactForm() {
       if (response.ok) {
         setStatus("success");
         setFormData({ name: "", email: "", propertyName: "", interestedIn: "", message: "" });
+
+        // Push events to GTM dataLayer
+        if (typeof window !== "undefined" && window.dataLayer) {
+          window.dataLayer.push({
+            event: "contact_form_submit",
+            form_service: formData.interestedIn,
+          });
+          window.dataLayer.push({
+            event: "generate_lead",
+            lead_source: "contact_form",
+          });
+        }
       } else {
         setStatus("error");
       }
@@ -92,7 +117,7 @@ export function ContactForm() {
         Fill out the form below and we will get back to you within 24 hours.
       </p>
 
-      <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+      <form onSubmit={handleSubmit} onFocus={handleFormStart} className="mt-6 space-y-4">
         <div>
           <label htmlFor="name" className="mb-1 block text-sm font-medium text-midnight">
             Name <span className="text-gold-deep">*</span>

@@ -16,6 +16,19 @@ export function AmbassadorSignupForm() {
     "idle" | "sending" | "success" | "error"
   >("idle");
   const [emailError, setEmailError] = useState("");
+  const [formStarted, setFormStarted] = useState(false);
+
+  function handleFormStart() {
+    if (!formStarted) {
+      setFormStarted(true);
+      if (typeof window !== "undefined" && window.dataLayer) {
+        window.dataLayer.push({
+          event: "form_start",
+          form_name: "ambassador_signup",
+        });
+      }
+    }
+  }
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -50,6 +63,16 @@ export function AmbassadorSignupForm() {
           hospitalityConnection: "",
           agreedToTerms: false,
         });
+
+        if (typeof window !== "undefined" && window.dataLayer) {
+          window.dataLayer.push({
+            event: "ambassador_signup_submit",
+          });
+          window.dataLayer.push({
+            event: "generate_lead",
+            lead_source: "ambassador_signup",
+          });
+        }
       } else {
         setStatus("error");
       }
@@ -91,7 +114,7 @@ export function AmbassadorSignupForm() {
 
   return (
     <div className="rounded-lg bg-warm-white p-6 shadow-sm sm:p-8">
-      <form onSubmit={handleSubmit} className="space-y-5">
+      <form onSubmit={handleSubmit} onFocus={handleFormStart} className="space-y-5">
         {/* Full Name */}
         <div>
           <label
