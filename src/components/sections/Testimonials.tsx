@@ -1,28 +1,109 @@
-import { testimonials } from "@/lib/testimonials";
+"use client";
+
+import { useEffect, useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { TestimonialCard } from "@/components/ui/TestimonialCard";
+import { GoogleReviewCard } from "@/components/ui/GoogleReviewCard";
+import { StarRating } from "@/components/ui/StarRating";
 import { FadeIn } from "@/components/motion/FadeIn";
+import { GoogleReview } from "@/types/google-review";
+
+interface ReviewsData {
+  reviews: GoogleReview[];
+  rating: number;
+  totalReviews: number;
+}
 
 export function Testimonials() {
+  const [data, setData] = useState<ReviewsData | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("/api/google-reviews")
+      .then((res) => res.json())
+      .then((json) => setData(json))
+      .catch(() => setData(null))
+      .finally(() => setLoading(false));
+  }, []);
+
+  // Don't render section if no reviews available
+  if (!loading && (!data || data.reviews.length === 0)) {
+    return null;
+  }
+
   return (
     <section className="bg-soft-white py-16 sm:py-20">
       <Container>
         <FadeIn>
           <SectionHeading
-            eyebrow="Testimonials"
-            title="Trusted by Hospitality Leaders"
-            subtitle="Hear from property owners and managers who partnered with us to grow their direct bookings."
+            eyebrow="Google Reviews"
+            title="What Our Clients Say"
+            subtitle="Real reviews from real clients on Google."
           />
+
+          {/* Overall rating summary */}
+          {data && data.rating > 0 && (
+            <div className="mb-10 flex flex-col items-center gap-2">
+              <div className="flex items-center gap-3">
+                <span className="text-4xl font-bold text-midnight">{data.rating.toFixed(1)}</span>
+                <StarRating rating={data.rating} />
+              </div>
+              <p className="text-sm text-midnight/50">
+                Based on {data.totalReviews} Google {data.totalReviews === 1 ? "review" : "reviews"}
+              </p>
+            </div>
+          )}
         </FadeIn>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {testimonials.slice(0, 3).map((testimonial, i) => (
-            <FadeIn key={testimonial.author} delay={i * 0.1}>
-              <TestimonialCard {...testimonial} />
-            </FadeIn>
-          ))}
-        </div>
+        {loading ? (
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {[0, 1, 2].map((i) => (
+              <div key={i} className="h-64 animate-pulse rounded-lg bg-midnight/5" />
+            ))}
+          </div>
+        ) : (
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {data?.reviews.slice(0, 3).map((review, i) => (
+              <FadeIn key={review.time} delay={i * 0.1}>
+                <GoogleReviewCard review={review} />
+              </FadeIn>
+            ))}
+          </div>
+        )}
+
+        {/* Link to Google profile */}
+        {data && data.totalReviews > 0 && (
+          <FadeIn delay={0.3}>
+            <div className="mt-10 text-center">
+              <a
+                href={`https://search.google.com/local/reviews?placeid=${process.env.NEXT_PUBLIC_GOOGLE_PLACE_ID || ""}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-midnight/10 bg-white px-6 py-3 text-sm font-medium text-midnight shadow-sm transition-colors hover:border-gold hover:text-gold"
+              >
+                <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">
+                  <path
+                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"
+                    fill="#4285F4"
+                  />
+                  <path
+                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                    fill="#34A853"
+                  />
+                  <path
+                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                    fill="#FBBC05"
+                  />
+                  <path
+                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                    fill="#EA4335"
+                  />
+                </svg>
+                See All Reviews on Google
+              </a>
+            </div>
+          </FadeIn>
+        )}
       </Container>
     </section>
   );

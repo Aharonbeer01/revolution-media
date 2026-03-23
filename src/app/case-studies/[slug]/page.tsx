@@ -132,26 +132,6 @@ export default async function CaseStudyPage({ params }: PageProps) {
               <p className="mt-6 text-lg leading-relaxed text-soft-white/70">
                 {caseStudy.results}
               </p>
-
-              {/* Testimonial Quote Block */}
-              {caseStudy.testimonial && (
-                <blockquote className="mt-12 border-l-4 border-gold pl-6">
-                  <span className="text-5xl leading-none text-gold">
-                    &ldquo;
-                  </span>
-                  <p className="mt-2 text-lg italic leading-relaxed text-soft-white/90">
-                    {caseStudy.testimonial.quote}
-                  </p>
-                  <footer className="mt-6">
-                    <p className="font-semibold text-gold">
-                      {caseStudy.testimonial.author}
-                    </p>
-                    <p className="text-sm text-soft-white/60">
-                      {caseStudy.testimonial.role}
-                    </p>
-                  </footer>
-                </blockquote>
-              )}
             </div>
           </FadeIn>
         </Container>

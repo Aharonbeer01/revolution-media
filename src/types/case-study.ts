@@ -16,9 +16,4 @@ export interface CaseStudy {
   strategy: string;
   execution: string;
   results: string;
-  testimonial?: {
-    quote: string;
-    author: string;
-    role: string;
-  };
 }

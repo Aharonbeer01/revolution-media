@@ -2,119 +2,105 @@ import { CaseStudy } from "@/types/case-study";
 
 export const caseStudies: CaseStudy[] = [
   {
-    slug: "azure-coast-boutique-hotel",
-    title: "Azure Coast Boutique Hotel: From OTA-Dependent to Direct Booking Powerhouse",
-    propertyType: "Boutique Hotel",
-    location: "Hermanus, Western Cape",
-    tags: ["Paid Media", "SEO & Content", "Brand Strategy"],
+    slug: "boutique-safari-lodge",
+    title: "From OTA-Dependent to Direct Booking Powerhouse",
+    propertyType: "Boutique Safari Lodge",
+    location: "South Africa",
+    tags: ["Viral Content", "Paid Media", "Conversion Optimisation"],
     heroImage: "/images/case-studies/placeholder.jpg",
     metrics: [
       {
-        label: "Increase in Direct Bookings",
-        value: "142%",
+        label: "Direct Booking Rate",
+        value: "80%+",
       },
       {
-        label: "Return on Ad Spend",
-        value: "8.4x",
+        label: "Total Digital Views",
+        value: "2M+",
       },
       {
-        label: "Reduction in OTA Commission Costs",
-        value: "37%",
+        label: "Ad Click-Through Rate",
+        value: "13%",
       },
       {
-        label: "Growth in Organic Website Traffic",
-        value: "215%",
+        label: "Time on Booking Page",
+        value: "+67%",
       },
     ],
     problem:
-      "Azure Coast was haemorrhaging revenue to OTA commissions, with over 78% of bookings flowing through third-party platforms. Their direct website generated minimal traffic and had a conversion rate below 1%. Ownership was frustrated by shrinking margins despite consistently high occupancy during peak season.",
+      "This boutique safari lodge was almost entirely dependent on Online Travel Agencies (OTAs) for bookings. When we began, 90% of all reservations came through third-party platforms — leaving the business exposed to heavy commission fees and with little control over guest relationships. Only 10% of bookings were direct.",
     strategy:
-      "We developed a full-funnel digital strategy designed to reclaim the guest relationship and shift booking behaviour toward the hotel's own channels. The approach combined high-intent Google search campaigns with aspirational social media content that showcased the property's ocean-facing suites and whale-watching experiences. A parallel SEO programme targeted long-tail travel queries specific to the Hermanus coast.",
+      "Rather than a conventional marketing funnel, we built a self-perpetuating viral ecosystem with four interconnected stages: The Spark (viral content for mass awareness), The Acceleration (high-performance paid advertising), The Momentum (optimised on-site experience to convert visitors), and The Impact (direct bookings replacing OTA dependency, compounding over time).",
     execution:
-      "We rebuilt the hotel's website with conversion-optimised landing pages, integrated a best-rate-guarantee banner, and launched segmented Google Ads campaigns targeting travellers actively searching for Western Cape coastal accommodation. On social media, we produced a series of short-form video tours and guest-experience reels that drove over 650,000 impressions in the first quarter. Email automations were set up to nurture past guests and recover abandoned bookings.",
+      "We engineered content that captured over 2 million organic views across Facebook and Instagram before a single rand was spent on ads. Paid campaigns achieved a 13% click-through rate — 5x the industry average — at a cost per click of just R0.24 against an industry standard of R2–R5. On-site engagement showed visitors arriving with genuine purchase intent: time on the reservations page was 67% above industry standard. A critical insight revealed that 90% of visitors arrived on Android via Facebook's in-app browser, leading to targeted technical optimisations of the booking engine.",
     results:
-      "Within eight months, direct bookings climbed by 142% and the property's OTA dependency dropped from 78% to 49%. The paid media campaigns delivered a consistent 8.4x return on ad spend, while organic search traffic grew by 215%. The hotel estimated annual savings of over R1.2 million in reduced commission fees alone.",
-    testimonial: {
-      quote:
-        "Revolution Media completely changed the trajectory of our business. We went from handing a third of our revenue to OTAs to building a direct relationship with our guests. The results speak for themselves — our margins have never been healthier.",
-      author: "James van der Merwe",
-      role: "Owner & General Manager, Azure Coast Boutique Hotel",
-    },
+      "Direct bookings surged from 10% to over 80% — achieved alongside a simultaneous rate increase. The industry norm for independent hotels is just 30–40% direct bookings. The property now sits at more than double the industry benchmark, with maximised revenue, full customer data ownership, and complete brand control. Link clicks converted to reservations at 9.7%, over 3x the industry average of 2.82%.",
   },
   {
-    slug: "leadwood-safari-lodge",
-    title: "Leadwood Safari Lodge: Filling Shoulder-Season Beds Through Targeted Digital Campaigns",
-    propertyType: "Safari Lodge",
-    location: "Greater Kruger, Limpopo",
-    tags: ["Paid Media", "Social Media", "Email Marketing"],
+    slug: "event-furniture-rental",
+    title: "Building a High-Performance Growth Engine That Outperformed at Every Stage",
+    propertyType: "B2B & B2C Event Rental",
+    location: "Gauteng, South Africa",
+    tags: ["Paid Search", "Lead Generation", "Conversion Optimisation"],
     heroImage: "/images/case-studies/placeholder.jpg",
     metrics: [
       {
-        label: "Shoulder-Season Occupancy Increase",
-        value: "61%",
+        label: "YoY Traffic Growth",
+        value: "100%",
       },
       {
-        label: "Cost Per Booking Acquired",
-        value: "R380",
+        label: "Qualified Leads",
+        value: "120+",
       },
       {
-        label: "Return on Ad Spend",
-        value: "11.2x",
+        label: "Top Ad CTR",
+        value: "15.5%",
+      },
+      {
+        label: "Form Conversion Rate",
+        value: "6.6%",
       },
     ],
     problem:
-      "Leadwood Safari Lodge experienced severe occupancy drops during the shoulder and green seasons, with rooms sitting at just 35% capacity from November through March. Previous marketing efforts relied almost entirely on inbound tour operators and a dated website that failed to convey the lodge's premium positioning. Revenue during off-peak months barely covered operational costs.",
+      "This event furniture rental company needed to grow its digital presence and generate qualified leads in a competitive B2B/B2C market. The goal was not simply to buy traffic — it was to attract and convert higher-quality traffic than competitors, and to build a sustainable lead acquisition engine with a measurable cost per acquisition.",
     strategy:
-      "We crafted a campaign strategy focused on converting domestic and regional travellers who were open to flexible travel dates but highly responsive to value-driven messaging. The plan centred on Meta and Google paid media targeting South African and Botswanan audiences, paired with an email reactivation campaign to the lodge's dormant guest database of over 4,000 contacts.",
+      "We built a three-stage self-reinforcing system: Winning the Click (hyper-relevant ad copy targeting high-intent users), Earning the Engagement (on-site experience designed to guide users toward commercial action), and Driving the Action (dual conversion pathways — Instant Chat for immediate inquiries and Formal Quote forms for serious B2B leads). Each stage amplified the next.",
     execution:
-      "We produced a suite of immersive video and carousel ads showcasing the green-season experience — lush landscapes, newborn wildlife, and dramatic storm skies — reframing the off-peak period as an exclusive, uncrowded safari opportunity. Limited-time shoulder-season packages were promoted through retargeting funnels and a four-part email sequence. Landing pages were A/B tested to optimise conversion rates across mobile and desktop.",
+      "Top headline ads achieved a 15.5% click-through rate — 3x the industry norm. Average time on page reached 80 seconds, 48% above the global average, with a bounce rate of 49.55% versus the industry norm of 60–70% for B2B paid traffic. The catalogue page was the second most-visited page on the entire site with 1,710 views, signalling immediate commercial intent. Mobile-optimised CTAs including click-to-call and WhatsApp chat validated the mobile-first strategy.",
     results:
-      "Shoulder-season occupancy rose from 35% to 56% within the first off-peak cycle, representing a 61% improvement. The digital campaigns acquired bookings at an average cost of R380 per reservation against an average booking value of R4,250, delivering an 11.2x ROAS. The email reactivation campaign alone generated R280,000 in direct revenue from previously inactive guests.",
-    testimonial: {
-      quote:
-        "Our green season used to be a period we simply endured. Revolution Media turned it into a genuine revenue opportunity. The campaigns they built didn't just fill beds — they attracted exactly the kind of guests we want at the lodge.",
-      author: "Lindiwe Mkhize",
-      role: "Managing Director, Leadwood Safari Lodge",
-    },
+      "Year-over-year traffic and acquisition doubled. The campaign generated 120+ qualified leads and captured 2,000+ high-intent active users. Ad conversion rate hit 3.5% (28% above the 2.73% industry average) while formal quote forms converted at 6.6% — well above the 2–5% industry standard. Cost per qualified lead came in at approximately R218–R360, highly sustainable given the high lifetime value of recurring event rental contracts.",
   },
   {
-    slug: "the-carrington-hotel",
-    title: "The Carrington Hotel: Building a Luxury Brand Presence That Converts",
-    propertyType: "City Boutique Hotel",
-    location: "Cape Town, Western Cape",
-    tags: ["Brand Strategy", "SEO & Content", "Social Media", "Web Design"],
+    slug: "luxury-private-island",
+    title: "From Hidden Gem to Market Leader With a Full-Funnel Digital Strategy",
+    propertyType: "Ultra-Luxury Private Island",
+    location: "Seychelles",
+    tags: ["Full-Funnel Strategy", "Google Ads", "Meta Ads", "SEO & Content"],
     heroImage: "/images/case-studies/placeholder.jpg",
     metrics: [
       {
-        label: "Growth in Direct Revenue",
-        value: "94%",
+        label: "Active User Growth",
+        value: "+114%",
       },
       {
-        label: "Increase in Average Daily Rate",
-        value: "22%",
+        label: "Organic Traffic Growth",
+        value: "+36%",
       },
       {
-        label: "Social Media Follower Growth",
-        value: "340%",
+        label: "Google Ads Sessions",
+        value: "7,200+",
       },
       {
-        label: "Organic Search Impressions",
-        value: "1.8M",
+        label: "Facebook Reach",
+        value: "340K+",
       },
     ],
     problem:
-      "The Carrington had recently completed a significant renovation but its digital presence still reflected the previous mid-range positioning. The website was outdated, social media channels were inconsistent, and the property was invisible on search engines for high-value queries like 'luxury boutique hotel Cape Town'. Despite a beautiful physical product, online perception lagged far behind reality.",
+      "This ultra-luxury private island resort was operating on a passive, organic-only digital strategy — relying solely on users who already knew the brand or were searching for very specific terms. This approach capped growth potential and left significant revenue on the table for competitors to capture. There was no proactive mechanism to create awareness, build trust with new audiences, or intercept high-value travellers at the moment they expressed interest.",
     strategy:
-      "We proposed a comprehensive brand repositioning across every digital touchpoint, aligning the online experience with the property's new luxury standard. The strategy combined a full website redesign with an ongoing content programme built around Cape Town's art, culinary, and design scenes — positioning The Carrington as a lifestyle destination rather than simply a place to sleep.",
+      "We transitioned the property to a proactive, full-funnel digital acquisition model built on three integrated pillars: Fame (Facebook/Meta Ads for mass awareness and brand recall), Trust (foundational organic content to build search authority), and Demand (Google Ads to capture high-intent users actively searching and ready to book). The success came from the seamless integration of all three — fame creates recognition, trust builds credibility, demand captures the result.",
     execution:
-      "We designed and developed a new website with editorial-style imagery, seamless booking integration, and city-guide content hubs that targeted over 120 high-intent keywords. On Instagram and TikTok, we launched a 'Curated Cape Town' content series featuring local chefs, artists, and designers, which generated significant organic reach. A monthly blog cadence supported the SEO strategy while building the hotel's authority in the luxury Cape Town travel space.",
+      "A consistent publishing schedule of 2 high-quality blog posts per month drove organic traffic growth of 36%. Google Ads targeted users searching for high-intent terms, generating 7,200+ qualified sessions at a mobile CTR of 10.3% (37% above the industry standard) and a CPC of just \u20AC0.60 versus the \u20AC1.50 benchmark — achieving what Google classifies as 'Unicorn' status. Facebook campaigns reached 340,000+ unique people with 1.3M+ impressions delivered for approximately \u20AC700, achieving a CPM of \u20AC0.52 — 8x more efficient than the industry benchmark of \u20AC4.40.",
     results:
-      "Over twelve months, direct revenue grew by 94% and the average daily rate increased by 22% as the hotel successfully attracted a higher-spending guest segment. Social media following grew by 340%, with Instagram becoming a meaningful booking-intent channel. The SEO programme delivered 1.8 million organic impressions, with the hotel ranking on page one for 34 target keywords including 'boutique hotel Cape Town' and 'luxury accommodation Cape Town CBD'.",
-    testimonial: {
-      quote:
-        "Revolution Media didn't just market our hotel — they helped us define what it stands for. The brand they built online matches the experience we deliver in person, and that alignment has transformed our commercial performance. We're attracting guests who genuinely value what we offer.",
-      author: "Michael Fortuin",
-      role: "Co-Founder & Director, The Carrington Hotel",
-    },
+      "Total active users grew 114% from 22,762 to 48,732. Key international markets surged: US +115%, Germany +116%, UK +128%. The campaign tracked 344 click-to-book events, 315 deep engagement events (60+ seconds on page), and 64 contact form submissions — all signals of genuine purchase intent from high-value travellers. The property transformed from a destination discovered by chance to a market leader with a proactive digital presence.",
   },
 ];
