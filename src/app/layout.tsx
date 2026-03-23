@@ -3,7 +3,7 @@ import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
+import { GoogleTagManager, GoogleTagManagerNoScript } from "@/components/analytics/GoogleAnalytics";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -43,7 +43,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={dmSans.variable}>
       <body className="antialiased">
-        <GoogleAnalytics />
+        <GoogleTagManager />
+        <GoogleTagManagerNoScript />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
