@@ -7,6 +7,10 @@ import { SlideUp } from "@/components/motion/SlideUp";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
 import { PackagesTable } from "./PackagesTable";
+import { FAQAccordion } from "./FAQAccordion";
+import { MobileTrackingSection } from "./MobileTrackingSection";
+import { MobilePhotographyBundles } from "./MobilePhotographyBundles";
+import { MobileOneTimeServices } from "./MobileOneTimeServices";
 
 export const metadata: Metadata = {
   title: "Packages | Revolution Media — Digital Marketing for Hospitality",
@@ -274,7 +278,11 @@ export default function PackagesPage() {
             />
           </FadeIn>
 
-          <div className="mx-auto max-w-5xl">
+          {/* Mobile: collapsible accordion version */}
+          <MobileTrackingSection />
+
+          {/* Desktop: full layout */}
+          <div className="mx-auto hidden max-w-5xl md:block">
             {/* The Problem */}
             <FadeIn delay={0.1}>
               <div className="mb-8 rounded-lg border border-midnight/10 bg-white p-6 shadow-sm sm:p-8">
@@ -405,51 +413,60 @@ export default function PackagesPage() {
             />
           </FadeIn>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {photographyBundles.map((pkg, index) => (
-              <SlideUp key={pkg.name} delay={index * 0.1}>
-                <div className="flex h-full flex-col rounded-lg border border-midnight/10 bg-white p-6 shadow-sm">
-                  <div className="mb-4 border-b border-midnight/10 pb-4">
-                    <h3 className="text-lg font-bold text-midnight">{pkg.name}</h3>
-                  </div>
-                  <ul className="mb-6 flex-1 space-y-3">
-                    {pkg.features.map((feature) => (
-                      <li
-                        key={feature}
-                        className="flex items-start gap-2 text-sm text-midnight/70"
-                      >
-                        <CheckIcon />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  <Button href="/contact" variant="primary" className="w-full">
-                    Get Started
-                  </Button>
-                </div>
-              </SlideUp>
-            ))}
-          </div>
+          {/* Mobile: collapsible accordion */}
+          <MobilePhotographyBundles
+            bundles={photographyBundles}
+            addOns={photographyAddOns}
+          />
 
-          {/* Photography Add-ons */}
-          <FadeIn delay={0.3}>
-            <div className="mt-12 rounded-lg border border-midnight/10 bg-white p-8 shadow-sm">
-              <h3 className="mb-4 text-center text-lg font-bold text-midnight">
-                Photography Add-Ons
-              </h3>
-              <ul className="mx-auto grid max-w-3xl gap-3 sm:grid-cols-2">
-                {photographyAddOns.map((addOn) => (
-                  <li
-                    key={addOn}
-                    className="flex items-center gap-3 text-sm text-midnight/70"
-                  >
-                    <CircleCheckIcon />
-                    <span>{addOn}</span>
-                  </li>
-                ))}
-              </ul>
+          {/* Desktop: card grid */}
+          <div className="hidden md:block">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+              {photographyBundles.map((pkg, index) => (
+                <SlideUp key={pkg.name} delay={index * 0.1}>
+                  <div className="flex h-full flex-col rounded-lg border border-midnight/10 bg-white p-6 shadow-sm">
+                    <div className="mb-4 border-b border-midnight/10 pb-4">
+                      <h3 className="text-lg font-bold text-midnight">{pkg.name}</h3>
+                    </div>
+                    <ul className="mb-6 flex-1 space-y-3">
+                      {pkg.features.map((feature) => (
+                        <li
+                          key={feature}
+                          className="flex items-start gap-2 text-sm text-midnight/70"
+                        >
+                          <CheckIcon />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                    <Button href="/contact" variant="primary" className="w-full">
+                      Get Started
+                    </Button>
+                  </div>
+                </SlideUp>
+              ))}
             </div>
-          </FadeIn>
+
+            {/* Photography Add-ons */}
+            <FadeIn delay={0.3}>
+              <div className="mt-12 rounded-lg border border-midnight/10 bg-white p-8 shadow-sm">
+                <h3 className="mb-4 text-center text-lg font-bold text-midnight">
+                  Photography Add-Ons
+                </h3>
+                <ul className="mx-auto grid max-w-3xl gap-3 sm:grid-cols-2">
+                  {photographyAddOns.map((addOn) => (
+                    <li
+                      key={addOn}
+                      className="flex items-center gap-3 text-sm text-midnight/70"
+                    >
+                      <CircleCheckIcon />
+                      <span>{addOn}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </FadeIn>
+          </div>
         </Container>
       </section>
 
@@ -465,7 +482,11 @@ export default function PackagesPage() {
             />
           </FadeIn>
 
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+          {/* Mobile: collapsible accordion */}
+          <MobileOneTimeServices services={oneTimeServices} />
+
+          {/* Desktop: card grid */}
+          <div className="hidden gap-4 md:grid md:grid-cols-3 lg:grid-cols-5">
             {oneTimeServices.map((service, index) => (
               <FadeIn key={service.title} delay={index * 0.06}>
                 <div className="flex h-full flex-col items-center rounded-lg border border-gold/20 bg-deep-black p-5 text-center">
@@ -495,20 +516,9 @@ export default function PackagesPage() {
             />
           </FadeIn>
 
-          <div className="mx-auto max-w-3xl space-y-4">
-            {faqItems.map((item, index) => (
-              <FadeIn key={item.question} delay={index * 0.05}>
-                <div className="rounded-lg bg-white/60 p-6">
-                  <h3 className="font-semibold text-midnight">
-                    {item.question}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-midnight/60">
-                    {item.answer}
-                  </p>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
+          <FadeIn delay={0.1}>
+            <FAQAccordion items={faqItems} />
+          </FadeIn>
         </Container>
       </section>
 

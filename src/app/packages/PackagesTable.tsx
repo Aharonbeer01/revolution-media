@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
+import { MobilePropertyCards } from "./MobilePropertyCards";
 
 /* ------------------------------------------------------------------ */
 /*  Market Segment data                                                */
@@ -437,7 +438,8 @@ export function PackagesTable() {
     <div className="space-y-20">
       {/* ---- SECTION 1: Find Your Fit ---- */}
       <div>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {/* Desktop: card grid */}
+        <div className="hidden gap-6 md:grid md:grid-cols-2 lg:grid-cols-4">
           {segments.map((seg) => (
             <div
               key={seg.title}
@@ -462,6 +464,16 @@ export function PackagesTable() {
             </div>
           ))}
         </div>
+
+        {/* Mobile: collapsible accordion */}
+        <MobilePropertyCards
+          segments={segments.map((seg) => ({
+            title: seg.title,
+            subtitle: seg.subtitle,
+            description: seg.description,
+            recommended: seg.recommended,
+          }))}
+        />
       </div>
 
       {/* ---- SECTION 2: Package Details (Accordions) ---- */}
