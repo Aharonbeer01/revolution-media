@@ -123,7 +123,7 @@ export function MobileTrackingSection() {
         }
       >
         <p className="mb-3 text-sm leading-relaxed text-midnight/60">
-          We still report social metrics — they matter for growth. But our key conversions are tied to real business actions:
+          We still report social metrics; they matter for growth. But our key conversions are tied to real business actions:
         </p>
         <ul className="space-y-2">
           {conversions.map((item) => (
@@ -162,7 +162,7 @@ export function MobileTrackingSection() {
       </AccordionSection>
 
       <p className="text-center text-xs leading-relaxed text-midnight/60">
-        We set up proper analytics infrastructure on day one — GA4, Google Tag Manager, and custom event tracking — so every click, call, and form submission is captured.
+        We set up proper analytics infrastructure on day one (GA4, Google Tag Manager, and custom event tracking), so every click, call, and form submission is captured.
       </p>
     </div>
   );

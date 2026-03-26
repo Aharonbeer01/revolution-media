@@ -13,7 +13,7 @@ import { MobilePhotographyBundles } from "./MobilePhotographyBundles";
 import { MobileOneTimeServices } from "./MobileOneTimeServices";
 
 export const metadata: Metadata = {
-  title: "Packages | Revolution Media — Digital Marketing for Hospitality",
+  title: "Packages | Revolution Media: Digital Marketing for Hospitality",
   description:
     "Explore our monthly marketing packages, photography bundles, and one-time strategy services built exclusively for hotels, lodges, and hospitality businesses.",
 };
@@ -104,7 +104,7 @@ const faqItems = [
   {
     question: "Is there a minimum contract term?",
     answer:
-      "Yes — all monthly packages run on a 3-month minimum commitment so we have time to build, optimise, and deliver results.",
+      "Yes. All monthly packages run on a 3-month minimum commitment so we have time to build, optimise, and deliver results.",
   },
   {
     question: "What am I responsible for?",
@@ -114,7 +114,7 @@ const faqItems = [
   {
     question: "Is ad spend included?",
     answer:
-      "No — ad spend is paid directly to the advertising platforms (Google, Meta, TikTok). Our fees cover strategy, creative, management, and reporting.",
+      "No. Ad spend is paid directly to the advertising platforms (Google, Meta, TikTok). Our fees cover strategy, creative, management, and reporting.",
   },
   {
     question: "Do you build websites?",
@@ -124,7 +124,7 @@ const faqItems = [
   {
     question: "What about SEO?",
     answer:
-      "Our SEO work focuses on Google Business Profile optimisation, blog content strategy, and on-page improvements — not technical site audits.",
+      "Our SEO work focuses on Google Business Profile optimisation, blog content strategy, and on-page improvements, not technical site audits.",
   },
   {
     question: "Can I upgrade my package?",
@@ -188,7 +188,7 @@ export default function PackagesPage() {
         size="medium"
         eyebrow="OUR PACKAGES"
         title="Marketing Built for Hospitality"
-        subtitle="From social media management to full-service digital marketing — choose the package that fits your property and let us handle the rest."
+        subtitle="From social media management to full-service digital marketing. Choose the package that fits your property and let us handle the rest."
         primaryCTA={{ label: "Book a Discovery Call", href: "/contact" }}
         secondaryCTA={{ label: "View Our Services", href: "/services" }}
       />
@@ -217,7 +217,7 @@ export default function PackagesPage() {
             <SectionHeading
               eyebrow="HOW WE WORK"
               title="Built Specifically for Hospitality"
-              subtitle="We don't just post content — we create a strategy designed to drive direct bookings and reduce your dependency on OTAs."
+              subtitle="We don't just post content; we create a strategy designed to drive direct bookings and reduce your dependency on OTAs."
               theme="dark"
             />
           </FadeIn>
@@ -240,7 +240,7 @@ export default function PackagesPage() {
                 step: "03",
                 title: "Execution",
                 description:
-                  "We manage your platforms, run your campaigns, and publish content on schedule — so you can focus on your guests.",
+                  "We manage your platforms, run your campaigns, and publish content on schedule, so you can focus on your guests.",
               },
               {
                 step: "04",
@@ -274,7 +274,7 @@ export default function PackagesPage() {
             <SectionHeading
               eyebrow="REAL DATA, REAL RESULTS"
               title="We Track What Actually Drives Revenue"
-              subtitle="Most agencies use generic analytics metrics as their key conversions to inflate results. We report those too — but we also track the actions that actually lead to bookings."
+              subtitle="Most agencies use generic analytics metrics as their key conversions to inflate results. We report those too, but we also track the actions that actually lead to bookings."
             />
           </FadeIn>
 
@@ -295,7 +295,7 @@ export default function PackagesPage() {
                   <h3 className="text-lg font-bold text-midnight">The Problem With Most Agency Reporting</h3>
                 </div>
                 <p className="mb-4 text-sm leading-relaxed text-midnight/70">
-                  Many agencies use default analytics metrics as their key performance indicators — scrolls, total clicks, page views, impressions, reach, and ad spend totals. These are useful as supplementary data, but when they&apos;re presented as your main conversions, they paint a misleading picture of how your marketing is actually performing.
+                  Many agencies use default analytics metrics as their key performance indicators: scrolls, total clicks, page views, impressions, reach, and ad spend totals. These are useful as supplementary data, but when they&apos;re presented as your main conversions, they paint a misleading picture of how your marketing is actually performing.
                 </p>
                 <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                   {[
@@ -317,7 +317,7 @@ export default function PackagesPage() {
                   ))}
                 </div>
                 <p className="mt-4 text-xs leading-relaxed text-midnight/50">
-                  These metrics are reported as &quot;conversions&quot; — making it look like your campaigns are performing, when in reality, nobody may have called, enquired, or booked.
+                  These metrics are reported as &quot;conversions,&quot; making it look like your campaigns are performing, when in reality, nobody may have called, enquired, or booked.
                 </p>
               </div>
             </FadeIn>
@@ -336,7 +336,7 @@ export default function PackagesPage() {
                     <h3 className="text-lg font-bold text-midnight">The Conversions We Track</h3>
                   </div>
                   <p className="mb-4 text-sm leading-relaxed text-midnight/60">
-                    We still report social metrics, reach, and engagement — they matter for growth. But our key conversions are tied to real business actions:
+                    We still report social metrics, reach, and engagement; they matter for growth. But our key conversions are tied to real business actions:
                   </p>
                   <ul className="flex-1 space-y-3">
                     {[
@@ -395,7 +395,7 @@ export default function PackagesPage() {
 
             <FadeIn delay={0.3}>
               <p className="mt-8 text-center text-sm leading-relaxed text-midnight/60">
-                We set up proper analytics infrastructure on day one — GA4, Google Tag Manager, and custom event tracking — so every click, call, and form submission is captured. Your social metrics and page growth are still reported, but they&apos;re never used to mask what really matters: are people booking?
+                We set up proper analytics infrastructure on day one (GA4, Google Tag Manager, and custom event tracking), so every click, call, and form submission is captured. Your social metrics and page growth are still reported, but they&apos;re never used to mask what really matters: are people booking?
               </p>
             </FadeIn>
           </div>

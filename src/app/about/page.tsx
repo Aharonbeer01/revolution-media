@@ -7,7 +7,7 @@ import { FadeIn } from "@/components/motion/FadeIn";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "The Revolution Media story — how a passion for hospitality and frustration with generic agencies led us to build a marketing partner made exclusively for hotels, resorts, and travel brands.",
+    "The Revolution Media story: how a passion for hospitality and frustration with generic agencies led us to build a marketing partner made exclusively for hotels, resorts, and travel brands.",
 };
 
 export default function AboutPage() {
@@ -31,15 +31,15 @@ export default function AboutPage() {
             <div className="mt-8 space-y-6 text-lg leading-relaxed text-midnight/70">
               <p>
                 Revolution Media was founded after years of watching independent
-                hotels and resorts hand their budgets to generic digital agencies
-                — agencies that ran the same playbook for dentists, e-commerce
+                hotels and resorts hand their budgets to generic digital agencies,
+                agencies that ran the same playbook for dentists, e-commerce
                 stores, and five-star properties alike. The results were
                 predictable: wasted spend, irrelevant strategies, and an
                 ever-growing dependence on OTAs that kept eating into margins.
               </p>
               <p>
                 We knew there had to be a better way. Hospitality is not a
-                commodity — it is seasonal, experience-driven, and fiercely
+                commodity; it is seasonal, experience-driven, and fiercely
                 competitive. It demands a marketing partner who understands rate
                 parity, shoulder-season strategy, and the difference between a
                 booking and a browser. So we built one.
@@ -80,7 +80,7 @@ export default function AboutPage() {
                 <p className="mt-3 text-sm leading-relaxed text-midnight/60">
                   Tourism doesn't follow a flat demand curve. We plan campaigns
                   around peak seasons, shoulder periods, and off-season
-                  opportunities — so your budget works harder when it matters
+                  opportunities, so your budget works harder when it matters
                   most and stays efficient when demand dips.
                 </p>
               </div>
@@ -93,8 +93,8 @@ export default function AboutPage() {
                   We Speak Your Language
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-midnight/60">
-                  OTA commission structures, ADR, RevPAR, direct-booking ratios
-                  — these aren't buzzwords to us, they're the metrics we optimise
+                  OTA commission structures, ADR, RevPAR, direct-booking ratios:
+                  these aren't buzzwords to us, they're the metrics we optimise
                   against every day. You'll never have to explain your business
                   model before a strategy session.
                 </p>

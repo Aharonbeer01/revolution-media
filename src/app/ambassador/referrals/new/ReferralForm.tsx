@@ -27,7 +27,7 @@ const SERVICES = [
   "Copywriting",
   "SEO",
   "Email Marketing",
-  "Revolution Motion",
+  "Video Production",
 ];
 
 const INPUT_STYLES =

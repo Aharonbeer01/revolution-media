@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
 
     // Send notification email
     await sendNotificationEmail({
-      subject: "New Contact Form Submission — Revolution Media",
+      subject: "New Contact Form Submission - Revolution Media",
       body: [
         "A new contact form submission has been received.",
         "",

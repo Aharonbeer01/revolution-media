@@ -22,7 +22,7 @@ const serviceGroups = [
       "Property Showcase",
       "Complete Visual Identity",
       "Seasonal Refresh",
-      "Revolution Motion (Video)",
+      "Video Production",
     ],
   },
   {
@@ -37,7 +37,7 @@ const serviceGroups = [
   },
   {
     label: "Other",
-    options: ["Not sure yet — help me decide"],
+    options: ["Not sure yet (help me decide)"],
   },
 ];
 

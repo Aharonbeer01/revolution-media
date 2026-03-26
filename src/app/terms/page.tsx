@@ -50,7 +50,7 @@ export default function TermsPage() {
           <div>
             <h2 className="text-xl font-semibold text-midnight">4. Intellectual Property</h2>
             <p className="mt-2">
-              All content on this website — including text, graphics, logos, images, and software — is
+              All content on this website (including text, graphics, logos, images, and software) is
               the property of Revolution Media Agency or its content suppliers and is protected by
               intellectual property laws. You may not reproduce, distribute, or create derivative
               works from any content without our prior written consent.

@@ -10,7 +10,7 @@ export const testimonials: Testimonial[] = [
   },
   {
     quote:
-      "Revolution Media took our social media from an afterthought to our strongest booking channel. The content they produce captures the feeling of being at the lodge — guests tell us they booked because of what they saw on Instagram. That kind of emotional connection is something we could never have built on our own.",
+      "Revolution Media took our social media from an afterthought to our strongest booking channel. The content they produce captures the feeling of being at the lodge. Guests tell us they booked because of what they saw on Instagram. That kind of emotional connection is something we could never have built on our own.",
     author: "David Erasmus",
     role: "Owner & Managing Director",
     property: "Thornfield Safari Lodge",

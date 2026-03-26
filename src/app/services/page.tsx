@@ -8,7 +8,7 @@ import { FadeIn } from "@/components/motion/FadeIn";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Full-service hospitality marketing services — from strategy and paid ads to social media, content creation, SEO, and email marketing — built to drive direct bookings for independent properties.",
+    "Full-service hospitality marketing services, from strategy and paid ads to social media, content creation, SEO, and email marketing, built to drive direct bookings for independent properties.",
 };
 
 const steps = [
@@ -22,7 +22,7 @@ const steps = [
     number: "02",
     title: "Strategy",
     description:
-      "We build a custom plan aligned to your revenue goals — mapping channels, audiences, creative direction, and budget to a clear 90-day roadmap.",
+      "We build a custom plan aligned to your revenue goals, mapping channels, audiences, creative direction, and budget to a clear 90-day roadmap.",
   },
   {
     number: "03",
@@ -34,7 +34,7 @@ const steps = [
     number: "04",
     title: "Optimise",
     description:
-      "We continuously refine based on data to maximise your return — adjusting bids, creative, targeting, and messaging to keep improving results.",
+      "We continuously refine based on data to maximise your return, adjusting bids, creative, targeting, and messaging to keep improving results.",
   },
 ];
 
@@ -45,7 +45,7 @@ export default function ServicesPage() {
         size="medium"
         eyebrow="WHAT WE DO"
         title="Services Built for Hospitality Growth"
-        subtitle="Full-service digital marketing for independent hotels, lodges, and hospitality properties — every service designed to turn online visibility into direct bookings and revenue."
+        subtitle="Full-service digital marketing for independent hotels, lodges, and hospitality properties. Every service designed to turn online visibility into direct bookings and revenue."
         primaryCTA={{ label: "Get in Touch", href: "/contact" }}
       />
 
@@ -58,7 +58,7 @@ export default function ServicesPage() {
               Our Approach
             </h2>
             <p className="mt-4 max-w-2xl text-midnight/60">
-              Every engagement follows the same proven framework — so nothing is
+              Every engagement follows the same proven framework, so nothing is
               left to guesswork and every dollar you invest works harder.
             </p>
           </FadeIn>

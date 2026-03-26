@@ -81,7 +81,7 @@ export function ProfileContent({ ambassador }: { ambassador: Ambassador }) {
             <input
               type="tel"
               readOnly
-              value={ambassador.phone || "—"}
+              value={ambassador.phone || "-"}
               className={`${INPUT_STYLES} cursor-not-allowed bg-soft-white`}
             />
           </div>
@@ -90,7 +90,7 @@ export function ProfileContent({ ambassador }: { ambassador: Ambassador }) {
             <input
               type="text"
               readOnly
-              value={ambassador.referral_code || "—"}
+              value={ambassador.referral_code || "-"}
               className={`${INPUT_STYLES} cursor-not-allowed bg-soft-white font-semibold text-gold`}
             />
           </div>

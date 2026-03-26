@@ -97,7 +97,7 @@ const segments = [
     title: "Enterprise / Group",
     subtitle: "150+ rooms or multi-property",
     description:
-      "You need a full-service digital partner. Total revenue management across every touchpoint — social, search, email, paid media, and reporting.",
+      "You need a full-service digital partner. Total revenue management across every touchpoint: social, search, email, paid media, and reporting.",
     recommended: ["Total Rev."],
     icon: EnterpriseIcon,
   },
@@ -135,7 +135,7 @@ const packageDetails: PackageDetail[] = [
   },
   {
     name: "Boost",
-    tagline: "Paid advertising only — amplify your reach",
+    tagline: "Paid advertising only. Amplify your reach",
     isBoost: true,
     features: [
       "1 ad campaign managed",

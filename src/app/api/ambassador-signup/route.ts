@@ -67,7 +67,7 @@ export async function POST(request: NextRequest) {
     const rejectUrl = `${siteUrl}/api/ambassador-reject/${ambassador.id}?token=${ambassador.approval_token}`;
 
     await sendAdminHtmlEmail({
-      subject: "New Referral Ambassador Application — Revolution Media",
+      subject: "New Referral Ambassador Application - Revolution Media",
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #1A1A1A;">New Ambassador Application</h2>

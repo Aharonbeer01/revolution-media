@@ -112,7 +112,7 @@ export function DashboardContent({
             Your referral code
           </span>
           <span className="text-sm font-bold tracking-wide text-gold">
-            {ambassador.referral_code || "—"}
+            {ambassador.referral_code || "-"}
           </span>
         </div>
       </div>

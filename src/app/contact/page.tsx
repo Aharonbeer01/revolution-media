@@ -16,7 +16,7 @@ const discoverySteps = [
     number: "1",
     title: "We learn about your property",
     description:
-      "Tell us about your hotel, guesthouse, or resort — your location, target market, and what makes your property unique.",
+      "Tell us about your hotel, guesthouse, or resort: your location, target market, and what makes your property unique.",
   },
   {
     number: "2",
@@ -34,7 +34,7 @@ const discoverySteps = [
     number: "4",
     title: "We outline next steps",
     description:
-      "You leave the call with a clear understanding of what to prioritise — whether you work with us or not.",
+      "You leave the call with a clear understanding of what to prioritise, whether you work with us or not.",
   },
 ];
 
@@ -42,7 +42,7 @@ const faqs = [
   {
     question: "Do you work with properties outside South Africa?",
     answer:
-      "Yes. All of our digital marketing services — paid advertising, social media management, SEO, and web design — are delivered remotely. We work with hospitality properties across Africa and internationally.",
+      "Yes. All of our digital marketing services (paid advertising, social media management, SEO, and web design) are delivered remotely. We work with hospitality properties across Africa and internationally.",
   },
   {
     question: "What's the minimum contract period?",
@@ -57,7 +57,7 @@ const faqs = [
   {
     question: "What information should I have ready for the call?",
     answer:
-      "It helps to know your average occupancy rate, your current marketing budget (if any), and your main goals. But don't worry if you don't have everything — we'll guide the conversation.",
+      "It helps to know your average occupancy rate, your current marketing budget (if any), and your main goals. But don't worry if you don't have everything; we'll guide the conversation.",
   },
 ];
 

@@ -13,7 +13,6 @@ const serviceLinks = [
   { label: "Copywriting", href: "/services/copywriting" },
   { label: "SEO", href: "/services/seo-google-business-profile" },
   { label: "Email Marketing", href: "/services/email-marketing" },
-  { label: "Revolution Motion", href: "/revolution-motion" },
 ];
 
 const quickLinks = [
