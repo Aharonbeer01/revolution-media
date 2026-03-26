@@ -31,9 +31,30 @@ export async function generateMetadata({
 
   if (!post) return { title: "Post Not Found" };
 
+  const url = `https://revolutionmedia.agency/blog/${slug}`;
+  const ogImage = post.coverImage?.asset
+    ? urlFor(post.coverImage).width(1200).height(630).auto("format").url()
+    : undefined;
+
   return {
     title: post.title,
     description: post.excerpt,
+    alternates: { canonical: url },
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      url,
+      type: "article",
+      publishedTime: post.publishedAt,
+      authors: [post.author],
+      ...(ogImage && { images: [{ url: ogImage, width: 1200, height: 630, alt: post.title }] }),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+      ...(ogImage && { images: [ogImage] }),
+    },
   };
 }
 
@@ -43,8 +64,31 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   if (!post) notFound();
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.excerpt,
+    author: { "@type": "Organization", name: post.author },
+    publisher: {
+      "@type": "Organization",
+      name: "Revolution Media Agency",
+      url: "https://revolutionmedia.agency",
+    },
+    datePublished: post.publishedAt,
+    url: `https://revolutionmedia.agency/blog/${slug}`,
+    ...(post.coverImage?.asset && {
+      image: urlFor(post.coverImage).width(1200).height(630).auto("format").url(),
+    }),
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       {/* Cover Image */}
       {post.coverImage?.asset && (
         <div className="relative h-64 w-full sm:h-80 lg:h-96">
