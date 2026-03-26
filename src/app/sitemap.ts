@@ -1,5 +1,9 @@
 import { MetadataRoute } from "next";
+import { sanityClient } from "@/sanity/client";
+import { SITEMAP_POSTS_QUERY } from "@/sanity/queries";
 import { caseStudies } from "@/lib/case-studies";
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 const BASE_URL = "https://revolutionmedia.agency";
 
@@ -17,13 +21,14 @@ const services = [
   "web-design-development",
 ];
 
-const blogSlugs = [
+// Fallback slugs in case Sanity is unreachable
+const fallbackBlogSlugs = [
   "5-ways-to-reduce-ota-dependency",
   "google-ads-for-hotels-complete-guide",
   "why-your-hotel-needs-tiktok",
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages: MetadataRoute.Sitemap = [
     { url: BASE_URL, lastModified: new Date(), changeFrequency: "weekly", priority: 1 },
     { url: `${BASE_URL}/about`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
@@ -51,12 +56,33 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  const blogPages: MetadataRoute.Sitemap = blogSlugs.map((slug) => ({
-    url: `${BASE_URL}/blog/${slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
+  // Fetch blog posts from Sanity; fall back to hardcoded slugs
+  let blogPages: MetadataRoute.Sitemap;
+  try {
+    const sanityPosts: any[] = await sanityClient.fetch(SITEMAP_POSTS_QUERY);
+    if (sanityPosts.length > 0) {
+      blogPages = sanityPosts.map((p: any) => ({
+        url: `${BASE_URL}/blog/${p.slug}`,
+        lastModified: p.publishedAt ? new Date(p.publishedAt) : new Date(),
+        changeFrequency: "monthly" as const,
+        priority: 0.7,
+      }));
+    } else {
+      blogPages = fallbackBlogSlugs.map((slug) => ({
+        url: `${BASE_URL}/blog/${slug}`,
+        lastModified: new Date(),
+        changeFrequency: "monthly" as const,
+        priority: 0.7,
+      }));
+    }
+  } catch {
+    blogPages = fallbackBlogSlugs.map((slug) => ({
+      url: `${BASE_URL}/blog/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    }));
+  }
 
   return [...staticPages, ...servicePages, ...caseStudyPages, ...blogPages];
 }

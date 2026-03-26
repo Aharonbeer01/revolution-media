@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Logo } from "./Logo";
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 
 const serviceLinks = [
@@ -32,7 +32,16 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand Column */}
           <div className="lg:col-span-1">
-            <Logo variant="white" />
+            <Link href="/" className="inline-flex items-center gap-2">
+              <Image
+                src="/images/logo/r-monogram-180.png"
+                alt="Revolution Media"
+                width={40}
+                height={40}
+                className="h-10 w-10"
+              />
+              <span className="text-lg font-bold text-soft-white">Revolution Media</span>
+            </Link>
             <p className="mt-4 text-sm text-soft-white/60">
               Digital marketing built exclusively for travel &amp; hospitality.
               More guests. Fewer commissions.

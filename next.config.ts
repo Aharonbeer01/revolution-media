@@ -1,10 +1,18 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+      },
+    ],
+  },
   async headers() {
     return [
       {
-        source: "/(.*)",
+        source: "/((?!studio).*)",
         headers: [
           {
             key: "X-Content-Type-Options",

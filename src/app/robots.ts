@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/ambassador/dashboard", "/ambassador/profile", "/ambassador/referrals"],
+        disallow: ["/api/", "/studio", "/ambassador/dashboard", "/ambassador/profile", "/ambassador/referrals"],
       },
     ],
     sitemap: "https://revolutionmedia.agency/sitemap.xml",
