@@ -270,69 +270,76 @@ export default function PackagesPage() {
             <SectionHeading
               eyebrow="REAL DATA, REAL RESULTS"
               title="We Track What Actually Drives Revenue"
-              subtitle="Most agencies report vanity metrics that look impressive but don't tell you if your marketing is working. We track the actions that lead to bookings."
+              subtitle="Most agencies use generic analytics metrics as their key conversions to inflate results. We report those too — but we also track the actions that actually lead to bookings."
             />
           </FadeIn>
 
           <div className="mx-auto max-w-5xl">
-            <div className="grid gap-6 md:grid-cols-2">
-              {/* What most agencies report */}
-              <FadeIn delay={0.1}>
-                <div className="rounded-lg border border-midnight/10 bg-white p-6 shadow-sm sm:p-8">
-                  <div className="mb-5 flex items-center gap-3">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-red-100">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5 text-red-500">
+            {/* The Problem */}
+            <FadeIn delay={0.1}>
+              <div className="mb-8 rounded-lg border border-midnight/10 bg-white p-6 shadow-sm sm:p-8">
+                <div className="mb-5 flex items-center gap-3">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-red-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5 text-red-500">
+                      <path fillRule="evenodd" d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-8-5a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-1.5 0v-4.5A.75.75 0 0 1 10 5Zm0 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clipRule="evenodd" />
+                    </svg>
+                  </span>
+                  <h3 className="text-lg font-bold text-midnight">The Problem With Most Agency Reporting</h3>
+                </div>
+                <p className="mb-4 text-sm leading-relaxed text-midnight/70">
+                  Many agencies use default analytics metrics as their key performance indicators — scrolls, total clicks, page views, impressions, reach, and ad spend totals. These are useful as supplementary data, but when they&apos;re presented as your main conversions, they paint a misleading picture of how your marketing is actually performing.
+                </p>
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                  {[
+                    "Scroll depth",
+                    "Total page clicks",
+                    "Impressions & reach",
+                    "Total ad spend",
+                    "Page views",
+                    "Follower count",
+                    "Post engagement rate",
+                    "Generic session data",
+                  ].map((item) => (
+                    <div key={item} className="flex items-center gap-2 rounded bg-red-50 px-3 py-2 text-xs font-medium text-red-700">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-3.5 w-3.5 flex-shrink-0 text-red-400">
                         <path fillRule="evenodd" d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-8-5a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-1.5 0v-4.5A.75.75 0 0 1 10 5Zm0 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clipRule="evenodd" />
                       </svg>
-                    </span>
-                    <h3 className="text-lg font-bold text-midnight">What Most Agencies Report</h3>
-                  </div>
-                  <ul className="space-y-3">
-                    {[
-                      "Impressions & reach",
-                      "Follower count growth",
-                      "Post engagement rate",
-                      "Page likes",
-                      "Total clicks (undefined)",
-                      "Ad spend summary",
-                      "Generic monthly overview",
-                    ].map((item) => (
-                      <li key={item} className="flex items-start gap-3 text-sm text-midnight/70">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="mt-0.5 h-4 w-4 flex-shrink-0 text-red-400">
-                          <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
-                        </svg>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                  <p className="mt-5 rounded bg-red-50 px-4 py-3 text-xs leading-relaxed text-red-700">
-                    These metrics can look impressive on a report, but they don&apos;t tell you if anyone actually booked, called, or enquired.
-                  </p>
+                      {item}
+                    </div>
+                  ))}
                 </div>
-              </FadeIn>
+                <p className="mt-4 text-xs leading-relaxed text-midnight/50">
+                  These metrics are reported as &quot;conversions&quot; — making it look like your campaigns are performing, when in reality, nobody may have called, enquired, or booked.
+                </p>
+              </div>
+            </FadeIn>
 
-              {/* What we report */}
-              <FadeIn delay={0.2}>
-                <div className="rounded-lg border border-gold/30 bg-white p-6 shadow-sm ring-1 ring-gold/10 sm:p-8">
+            {/* Two columns: What we also track + What that unlocks */}
+            <div className="grid gap-6 md:grid-cols-2">
+              {/* What we track */}
+              <FadeIn delay={0.15}>
+                <div className="flex h-full flex-col rounded-lg border border-gold/30 bg-white p-6 shadow-sm ring-1 ring-gold/10 sm:p-8">
                   <div className="mb-5 flex items-center gap-3">
                     <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gold/10">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5 text-gold">
                         <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clipRule="evenodd" />
                       </svg>
                     </span>
-                    <h3 className="text-lg font-bold text-midnight">What We Track & Report</h3>
+                    <h3 className="text-lg font-bold text-midnight">The Conversions We Track</h3>
                   </div>
-                  <ul className="space-y-3">
+                  <p className="mb-4 text-sm leading-relaxed text-midnight/60">
+                    We still report social metrics, reach, and engagement — they matter for growth. But our key conversions are tied to real business actions:
+                  </p>
+                  <ul className="flex-1 space-y-3">
                     {[
                       "Direct booking link clicks",
                       "Form submissions & enquiries",
-                      "Click-to-call, email & WhatsApp",
-                      "Cost per lead (CPL)",
-                      "Return on ad spend (ROAS)",
-                      "Click-through rate (CTR) by campaign",
+                      "Click-to-call tracking",
+                      "Click-to-email tracking",
+                      "Click-to-WhatsApp / chatbot",
                       "GBP actions (calls, directions, website visits)",
-                      "Cross-channel attribution",
-                      "Revenue per marketing channel",
+                      "Click-through rate (CTR) by campaign",
+                      "Return on ad spend (ROAS)",
                     ].map((item) => (
                       <li key={item} className="flex items-start gap-3 text-sm text-midnight/70">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="mt-0.5 h-4 w-4 flex-shrink-0 text-gold">
@@ -342,16 +349,45 @@ export default function PackagesPage() {
                       </li>
                     ))}
                   </ul>
-                  <p className="mt-5 rounded bg-gold/10 px-4 py-3 text-xs leading-relaxed text-midnight/70">
-                    Every metric we report is tied to a real business action — someone called, someone clicked, someone booked.
+                </div>
+              </FadeIn>
+
+              {/* What that unlocks */}
+              <FadeIn delay={0.25}>
+                <div className="flex h-full flex-col rounded-lg border border-gold/30 bg-white p-6 shadow-sm ring-1 ring-gold/10 sm:p-8">
+                  <div className="mb-5 flex items-center gap-3">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gold/10">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5 text-gold">
+                        <path d="M15.5 2A1.5 1.5 0 0 0 14 3.5v13a1.5 1.5 0 0 0 3 0v-13A1.5 1.5 0 0 0 15.5 2ZM10 7a1.5 1.5 0 0 0-1.5 1.5v8a1.5 1.5 0 0 0 3 0v-8A1.5 1.5 0 0 0 10 7ZM4.5 12A1.5 1.5 0 0 0 3 13.5v3a1.5 1.5 0 0 0 3 0v-3A1.5 1.5 0 0 0 4.5 12Z" />
+                      </svg>
+                    </span>
+                    <h3 className="text-lg font-bold text-midnight">The Insights This Unlocks</h3>
+                  </div>
+                  <p className="mb-4 text-sm leading-relaxed text-midnight/60">
+                    When you track real conversions, you can measure what actually matters to your bottom line:
                   </p>
+                  <ul className="flex-1 space-y-3">
+                    {[
+                      { metric: "Cost Per Acquisition (CPA)", desc: "How much it costs to acquire each guest" },
+                      { metric: "Cost Per Lead (CPL)", desc: "What you pay for each enquiry or call" },
+                      { metric: "Customer Lifetime Value (LTV)", desc: "The long-term revenue value of each guest" },
+                      { metric: "Revenue Per Channel", desc: "Which marketing channel drives the most bookings" },
+                      { metric: "Cross-Channel Attribution", desc: "How channels work together to convert guests" },
+                      { metric: "True ROAS", desc: "Real return on every rand spent on advertising" },
+                    ].map((item) => (
+                      <li key={item.metric} className="rounded bg-gold/5 px-3 py-2.5">
+                        <span className="text-sm font-semibold text-midnight">{item.metric}</span>
+                        <p className="mt-0.5 text-xs text-midnight/50">{item.desc}</p>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </FadeIn>
             </div>
 
             <FadeIn delay={0.3}>
               <p className="mt-8 text-center text-sm leading-relaxed text-midnight/60">
-                We set up proper analytics infrastructure on day one — GA4, Google Tag Manager, and custom event tracking — so every click, call, and form submission is captured. No guesswork, no inflated numbers.
+                We set up proper analytics infrastructure on day one — GA4, Google Tag Manager, and custom event tracking — so every click, call, and form submission is captured. Your social metrics and page growth are still reported, but they&apos;re never used to mask what really matters: are people booking?
               </p>
             </FadeIn>
           </div>
