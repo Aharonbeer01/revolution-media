@@ -111,6 +111,7 @@ interface PackageDetail {
   tagline: string;
   isBoost?: boolean;
   features: string[];
+  tracking: string[];
 }
 
 const packageDetails: PackageDetail[] = [
@@ -125,6 +126,11 @@ const packageDetails: PackageDetail[] = [
       "Monthly performance report",
       "Monthly strategy call",
     ],
+    tracking: [
+      "GA4 & GTM setup",
+      "Click-to-call, email & WhatsApp tracking",
+      "Monthly KPI report (CTR, reach, engagement)",
+    ],
   },
   {
     name: "Boost",
@@ -138,6 +144,12 @@ const packageDetails: PackageDetail[] = [
       "Bi-monthly strategy call",
       "Can be added to any organic package",
     ],
+    tracking: [
+      "GA4 & GTM setup",
+      "Conversion tracking (form submissions, calls, emails)",
+      "Ad platform tracking (CTR, CPC, ROAS)",
+      "Bi-monthly KPI report with cost per lead",
+    ],
   },
   {
     name: "Foundation",
@@ -150,6 +162,12 @@ const packageDetails: PackageDetail[] = [
       "Google Business Profile management",
       "Bi-monthly performance report",
       "Bi-monthly strategy call",
+    ],
+    tracking: [
+      "GA4 & GTM setup",
+      "Click-to-call, email & WhatsApp tracking",
+      "GBP insights (search queries, direction requests, calls)",
+      "Bi-monthly KPI report (CTR, reach, direct booking clicks)",
     ],
   },
   {
@@ -165,6 +183,13 @@ const packageDetails: PackageDetail[] = [
       "Retargeting included",
       "Weekly strategy calls",
       "Monthly performance report",
+    ],
+    tracking: [
+      "GA4 & GTM setup with custom events",
+      "Conversion tracking (forms, calls, emails, WhatsApp)",
+      "Ad platform tracking (CTR, CPC, ROAS)",
+      "GBP insights (search queries, direction requests, calls)",
+      "Monthly KPI report with cost per lead & booking attribution",
     ],
   },
   {
@@ -182,6 +207,14 @@ const packageDetails: PackageDetail[] = [
       "Weekly strategy calls",
       "Monthly report + quarterly review",
     ],
+    tracking: [
+      "GA4 & GTM setup with custom events",
+      "Full conversion tracking (forms, calls, emails, WhatsApp, chatbot)",
+      "Multi-platform ad tracking (CTR, CPC, CPL, ROAS)",
+      "GBP insights (search queries, direction requests, calls)",
+      "Cross-channel attribution reporting",
+      "Monthly KPI report + quarterly deep-dive review",
+    ],
   },
   {
     name: "Total Rev.",
@@ -198,6 +231,15 @@ const packageDetails: PackageDetail[] = [
       "Retargeting included",
       "Bi-weekly strategy calls",
       "Monthly report + quarterly review",
+    ],
+    tracking: [
+      "GA4 & GTM setup with custom events",
+      "Full conversion tracking (forms, calls, emails, WhatsApp, chatbot)",
+      "Multi-platform ad tracking (CTR, CPC, CPL, ROAS)",
+      "GBP insights (search queries, direction requests, calls)",
+      "Cross-channel attribution reporting",
+      "Revenue attribution per marketing channel",
+      "Monthly KPI report + quarterly deep-dive review",
     ],
   },
 ];
@@ -238,6 +280,17 @@ const rows: Row[] = [
   { label: "Quarterly review", values: [false, false, false, false, true, true] },
 ];
 
+const trackingRows: Row[] = [
+  { label: "GA4 & GTM setup", values: [true, true, true, true, true, true] },
+  { label: "Click-to-call/email/WhatsApp", values: [true, true, true, true, true, true] },
+  { label: "Form submission tracking", values: [false, true, false, true, true, true] },
+  { label: "GBP insights", values: [false, false, true, true, true, true] },
+  { label: "Ad performance (CTR, CPC, ROAS)", values: [false, true, false, true, true, true] },
+  { label: "Cost per lead reporting", values: [false, true, false, true, true, true] },
+  { label: "Cross-channel attribution", values: [false, false, false, false, true, true] },
+  { label: "Revenue attribution per channel", values: [false, false, false, false, false, true] },
+];
+
 /* ------------------------------------------------------------------ */
 /*  Render helpers                                                     */
 /* ------------------------------------------------------------------ */
@@ -272,6 +325,19 @@ function CheckIcon() {
         d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
         clipRule="evenodd"
       />
+    </svg>
+  );
+}
+
+function TrackingIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+      className="mt-0.5 h-4 w-4 flex-shrink-0 text-gold-deep"
+    >
+      <path d="M15.5 2A1.5 1.5 0 0 0 14 3.5v13a1.5 1.5 0 0 0 3 0v-13A1.5 1.5 0 0 0 15.5 2ZM10 7a1.5 1.5 0 0 0-1.5 1.5v8a1.5 1.5 0 0 0 3 0v-8A1.5 1.5 0 0 0 10 7ZM4.5 12A1.5 1.5 0 0 0 3 13.5v3a1.5 1.5 0 0 0 3 0v-3A1.5 1.5 0 0 0 4.5 12Z" />
     </svg>
   );
 }
@@ -336,6 +402,21 @@ function PackageAccordion({ pkg }: { pkg: PackageDetail }) {
               </li>
             ))}
           </ul>
+
+          <div className="mt-5 rounded-md border border-gold/20 bg-gold/5 px-5 py-4">
+            <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-gold-deep">
+              Tracking & Reporting
+            </h4>
+            <ul className="grid gap-2 sm:grid-cols-2">
+              {pkg.tracking.map((item) => (
+                <li key={item} className="flex items-start gap-2 text-sm text-midnight/80">
+                  <TrackingIcon />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
           <div className="mt-5">
             <Button href="/contact" variant="primary" className="text-sm">
               Get Started with {pkg.name}
@@ -428,6 +509,32 @@ export function PackagesTable() {
                 <tr
                   key={row.label}
                   className={i % 2 === 0 ? "bg-white" : "bg-soft-white/50"}
+                >
+                  <td className="whitespace-nowrap px-4 py-3 font-medium text-midnight">
+                    {row.label}
+                  </td>
+                  {row.values.map((val, j) => (
+                    <td
+                      key={`${row.label}-${j}`}
+                      className="px-3 py-3 text-center text-midnight/80"
+                    >
+                      <CellContent value={val} />
+                    </td>
+                  ))}
+                </tr>
+              ))}
+              <tr className="bg-gold/10">
+                <td
+                  colSpan={7}
+                  className="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-gold-deep"
+                >
+                  Tracking & Reporting
+                </td>
+              </tr>
+              {trackingRows.map((row, i) => (
+                <tr
+                  key={row.label}
+                  className={i % 2 === 0 ? "bg-gold/5" : "bg-white"}
                 >
                   <td className="whitespace-nowrap px-4 py-3 font-medium text-midnight">
                     {row.label}

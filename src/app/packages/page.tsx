@@ -263,8 +263,103 @@ export default function PackagesPage() {
         </Container>
       </section>
 
-      {/* Photography Bundles */}
+      {/* What We Track vs What Most Agencies Track */}
       <section className="bg-soft-white py-16 sm:py-20">
+        <Container>
+          <FadeIn>
+            <SectionHeading
+              eyebrow="REAL DATA, REAL RESULTS"
+              title="We Track What Actually Drives Revenue"
+              subtitle="Most agencies report vanity metrics that look impressive but don't tell you if your marketing is working. We track the actions that lead to bookings."
+            />
+          </FadeIn>
+
+          <div className="mx-auto max-w-5xl">
+            <div className="grid gap-6 md:grid-cols-2">
+              {/* What most agencies report */}
+              <FadeIn delay={0.1}>
+                <div className="rounded-lg border border-midnight/10 bg-white p-6 shadow-sm sm:p-8">
+                  <div className="mb-5 flex items-center gap-3">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-red-100">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5 text-red-500">
+                        <path fillRule="evenodd" d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-8-5a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-1.5 0v-4.5A.75.75 0 0 1 10 5Zm0 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clipRule="evenodd" />
+                      </svg>
+                    </span>
+                    <h3 className="text-lg font-bold text-midnight">What Most Agencies Report</h3>
+                  </div>
+                  <ul className="space-y-3">
+                    {[
+                      "Impressions & reach",
+                      "Follower count growth",
+                      "Post engagement rate",
+                      "Page likes",
+                      "Total clicks (undefined)",
+                      "Ad spend summary",
+                      "Generic monthly overview",
+                    ].map((item) => (
+                      <li key={item} className="flex items-start gap-3 text-sm text-midnight/70">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="mt-0.5 h-4 w-4 flex-shrink-0 text-red-400">
+                          <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
+                        </svg>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="mt-5 rounded bg-red-50 px-4 py-3 text-xs leading-relaxed text-red-700">
+                    These metrics can look impressive on a report, but they don&apos;t tell you if anyone actually booked, called, or enquired.
+                  </p>
+                </div>
+              </FadeIn>
+
+              {/* What we report */}
+              <FadeIn delay={0.2}>
+                <div className="rounded-lg border border-gold/30 bg-white p-6 shadow-sm ring-1 ring-gold/10 sm:p-8">
+                  <div className="mb-5 flex items-center gap-3">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gold/10">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5 text-gold">
+                        <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clipRule="evenodd" />
+                      </svg>
+                    </span>
+                    <h3 className="text-lg font-bold text-midnight">What We Track & Report</h3>
+                  </div>
+                  <ul className="space-y-3">
+                    {[
+                      "Direct booking link clicks",
+                      "Form submissions & enquiries",
+                      "Click-to-call, email & WhatsApp",
+                      "Cost per lead (CPL)",
+                      "Return on ad spend (ROAS)",
+                      "Click-through rate (CTR) by campaign",
+                      "GBP actions (calls, directions, website visits)",
+                      "Cross-channel attribution",
+                      "Revenue per marketing channel",
+                    ].map((item) => (
+                      <li key={item} className="flex items-start gap-3 text-sm text-midnight/70">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="mt-0.5 h-4 w-4 flex-shrink-0 text-gold">
+                          <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clipRule="evenodd" />
+                        </svg>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="mt-5 rounded bg-gold/10 px-4 py-3 text-xs leading-relaxed text-midnight/70">
+                    Every metric we report is tied to a real business action — someone called, someone clicked, someone booked.
+                  </p>
+                </div>
+              </FadeIn>
+            </div>
+
+            <FadeIn delay={0.3}>
+              <p className="mt-8 text-center text-sm leading-relaxed text-midnight/60">
+                We set up proper analytics infrastructure on day one — GA4, Google Tag Manager, and custom event tracking — so every click, call, and form submission is captured. No guesswork, no inflated numbers.
+              </p>
+            </FadeIn>
+          </div>
+        </Container>
+      </section>
+
+      {/* Photography Bundles */}
+      <section className="bg-cream py-16 sm:py-20">
         <Container>
           <FadeIn>
             <SectionHeading
