@@ -373,7 +373,7 @@ function PackageAccordion({ pkg }: { pkg: PackageDetail }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className={`rounded-lg border shadow-sm transition-all ${pkg.isBoost ? "border-gold/40 bg-gold/5" : "border-midnight/10 bg-white"}`}>
+    <div className="rounded-lg border border-midnight/10 bg-white shadow-sm transition-all">
       <button
         onClick={() => setOpen(!open)}
         className="flex w-full items-center justify-between px-6 py-5 text-left"
@@ -382,7 +382,7 @@ function PackageAccordion({ pkg }: { pkg: PackageDetail }) {
           <div className="flex items-center gap-3">
             <h3 className="text-lg font-bold text-midnight">{pkg.name}</h3>
             {pkg.isBoost && (
-              <span className="rounded-full bg-gold/20 px-3 py-0.5 text-xs font-semibold text-gold-deep">
+              <span className="rounded-full bg-midnight/10 px-3 py-0.5 text-xs font-semibold text-midnight/60">
                 PAID ADS ONLY
               </span>
             )}
