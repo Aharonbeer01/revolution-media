@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   title: "Revolution Motion | Video Production for Hospitality",
   description:
     "Professional video production for hotels, lodges, and hospitality properties. Cinematic content that inspires guests to book direct.",
+  alternates: {
+    canonical: "/revolution-motion",
+  },
 };
 
 const contentTypes = [

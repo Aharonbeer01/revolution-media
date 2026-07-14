@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { GoogleTagManager, GoogleTagManagerNoScript } from "@/components/analytics/GoogleAnalytics";
+import { SITE_URL } from "@/lib/constants";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -13,6 +14,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Revolution Media Agency | Digital Marketing for Hotels & Hospitality",
     template: "%s | Revolution Media Agency",
@@ -28,10 +30,17 @@ export const metadata: Metadata = {
     "travel marketing",
   ],
   authors: [{ name: "Revolution Media Agency" }],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
     siteName: "Revolution Media Agency",
+    url: SITE_URL,
+    title: "Revolution Media Agency | Digital Marketing for Hotels & Hospitality",
+    description:
+      "Drive direct bookings and reduce OTA commissions. Revolution Media is a specialist digital marketing agency for travel & hospitality brands worldwide.",
   },
 };
 
@@ -54,7 +63,7 @@ export default function RootLayout({
               name: "Revolution Media Agency",
               description:
                 "Specialist digital marketing agency for travel and hospitality businesses. We drive direct bookings and reduce OTA dependency.",
-              url: "https://revolutionmedia.agency",
+              url: SITE_URL,
               email: "info@revolutionmedia.agency",
               areaServed: "Worldwide",
               serviceType: [

@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: "Referral Ambassador Program | Revolution Media",
   description:
     "Earn 15% commission by referring hospitality businesses to Revolution Media. Join our Referral Ambassador Program today.",
+  alternates: {
+    canonical: "/referral-program",
+  },
 };
 
 /* ------------------------------------------------

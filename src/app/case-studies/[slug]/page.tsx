@@ -28,6 +28,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: caseStudy.title,
     description: `${caseStudy.propertyType} in ${caseStudy.location}. See how Revolution Media delivered measurable results for ${caseStudy.title.split(":")[0]}.`,
+    alternates: {
+      canonical: `/case-studies/${slug}`,
+    },
   };
 }
 

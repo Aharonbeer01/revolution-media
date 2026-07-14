@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   title: "Case Studies",
   description:
     "Real results for hospitality brands. Explore how Revolution Media drives measurable growth for hotels, lodges, and tourism properties across South Africa.",
+  alternates: {
+    canonical: "/case-studies",
+  },
 };
 
 export default function CaseStudiesPage() {

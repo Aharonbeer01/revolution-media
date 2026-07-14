@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   title: "Packages | Revolution Media: Digital Marketing for Hospitality",
   description:
     "Explore our monthly marketing packages, photography bundles, and one-time strategy services built exclusively for hotels, lodges, and hospitality businesses.",
+  alternates: {
+    canonical: "/packages",
+  },
 };
 
 /* ------------------------------------------------------------------ */

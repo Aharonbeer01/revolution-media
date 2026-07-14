@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: "Services",
   description:
     "Full-service hospitality marketing services, from strategy and paid ads to social media, content creation, SEO, and email marketing, built to drive direct bookings for independent properties.",
+  alternates: {
+    canonical: "/services",
+  },
 };
 
 const steps = [

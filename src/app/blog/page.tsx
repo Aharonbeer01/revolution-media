@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   title: "Blog",
   description:
     "Hospitality marketing insights, strategies, and industry knowledge to help your property compete and drive more direct bookings.",
+  alternates: {
+    canonical: "/blog",
+  },
 };
 
 export default async function BlogPage() {

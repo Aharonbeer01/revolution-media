@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: "About",
   description:
     "The Revolution Media story: how a passion for hospitality and frustration with generic agencies led us to build a marketing partner made exclusively for hotels, resorts, and travel brands.",
+  alternates: {
+    canonical: "/about",
+  },
 };
 
 export default function AboutPage() {

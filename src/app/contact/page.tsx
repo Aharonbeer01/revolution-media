@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: "Contact",
   description:
     "Book a free 30-minute discovery call with Revolution Media to discuss your property's marketing goals and how we can help drive more direct bookings.",
+  alternates: {
+    canonical: "/contact",
+  },
 };
 
 const discoverySteps = [
