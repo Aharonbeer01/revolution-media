@@ -1,3 +1,5 @@
+import Link from "next/link";
+import Image from "next/image";
 import { Hero } from "@/components/sections/Hero";
 import { ServiceGrid } from "@/components/sections/ServiceGrid";
 import { FeaturedCaseStudy } from "@/components/sections/FeaturedCaseStudy";
@@ -5,9 +7,20 @@ import { Testimonials } from "@/components/sections/Testimonials";
 import { CTABanner } from "@/components/sections/CTABanner";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import { Badge } from "@/components/ui/Badge";
 import { FadeIn } from "@/components/motion/FadeIn";
+import { sanityClient } from "@/sanity/client";
+import { ALL_POSTS_QUERY } from "@/sanity/queries";
+import { urlFor } from "@/sanity/image";
 
-export default function HomePage() {
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+export const revalidate = 3600;
+
+export default async function HomePage() {
+  const allPosts: any[] = await sanityClient.fetch(ALL_POSTS_QUERY);
+  const featuredPosts = allPosts.slice(0, 3);
+
   return (
     <>
       {/* --- Hero --- */}
@@ -143,6 +156,75 @@ export default function HomePage() {
 
       {/* --- Testimonials --- */}
       <Testimonials />
+
+      {/* --- Featured Blog Posts --- */}
+      {featuredPosts.length > 0 && (
+        <section className="bg-soft-white py-16 sm:py-20">
+          <Container>
+            <FadeIn>
+              <div className="text-center">
+                <p className="mb-3 text-sm font-semibold uppercase tracking-[0.15em] text-gold-deep">
+                  INSIGHTS
+                </p>
+                <h2 className="mx-auto max-w-2xl text-3xl font-bold text-midnight sm:text-4xl">
+                  From the Blog
+                </h2>
+                <p className="mx-auto mt-4 max-w-xl text-lg text-warm-gray">
+                  Practical hospitality marketing strategies to help your
+                  property compete and drive more direct bookings.
+                </p>
+              </div>
+            </FadeIn>
+
+            <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-3">
+              {featuredPosts.map((post: any, index: number) => (
+                <FadeIn key={post._id} delay={index * 0.1}>
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className="group block overflow-hidden rounded-lg bg-warm-white shadow-sm transition-shadow duration-200 hover:shadow-md"
+                  >
+                    {post.coverImage?.asset && (
+                      <div className="relative aspect-[16/9] w-full overflow-hidden">
+                        <Image
+                          src={urlFor(post.coverImage)
+                            .width(600)
+                            .height(338)
+                            .auto("format")
+                            .url()}
+                          alt={post.coverImage.alt || post.title}
+                          fill
+                          className="object-cover transition-transform duration-300 group-hover:scale-105"
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                        />
+                      </div>
+                    )}
+
+                    <div className="p-5">
+                      <Badge>{post.category}</Badge>
+
+                      <h3 className="mt-3 text-lg font-semibold text-midnight transition-colors duration-200 group-hover:text-gold">
+                        {post.title}
+                      </h3>
+
+                      <p className="mt-2 text-sm leading-relaxed text-midnight/60">
+                        {post.excerpt}
+                      </p>
+                    </div>
+                  </Link>
+                </FadeIn>
+              ))}
+            </div>
+
+            <FadeIn delay={0.3}>
+              <div className="mt-10 text-center">
+                <Button href="/blog" variant="secondary">
+                  View All Articles
+                </Button>
+              </div>
+            </FadeIn>
+          </Container>
+        </section>
+      )}
 
       {/* --- Referral Program CTA --- */}
       <section className="bg-cream py-16 sm:py-20">

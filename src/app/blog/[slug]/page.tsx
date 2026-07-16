@@ -1,10 +1,12 @@
 import { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { sanityClient } from "@/sanity/client";
 import {
   POST_BY_SLUG_QUERY,
   ALL_POST_SLUGS_QUERY,
+  RELATED_POSTS_QUERY,
 } from "@/sanity/queries";
 import { urlFor } from "@/sanity/image";
 import { PortableTextRenderer } from "@/components/blog/PortableTextRenderer";
@@ -13,6 +15,8 @@ import { Container } from "@/components/ui/Container";
 import { Badge } from "@/components/ui/Badge";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
+export const revalidate = 3600;
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -63,6 +67,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const post: any = await sanityClient.fetch(POST_BY_SLUG_QUERY, { slug });
 
   if (!post) notFound();
+
+  const relatedPosts: any[] = await sanityClient.fetch(RELATED_POSTS_QUERY, {
+    slug,
+  });
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -141,6 +149,55 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </article>
         </Container>
       </section>
+
+      {/* Related Posts */}
+      {relatedPosts.length > 0 && (
+        <section className="bg-cream py-16 sm:py-20">
+          <Container>
+            <h2 className="text-2xl font-bold text-midnight sm:text-3xl">
+              Related Articles
+            </h2>
+
+            <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-3">
+              {relatedPosts.map((related: any) => (
+                <Link
+                  key={related._id}
+                  href={`/blog/${related.slug}`}
+                  className="group block overflow-hidden rounded-lg bg-warm-white shadow-sm transition-shadow duration-200 hover:shadow-md"
+                >
+                  {related.coverImage?.asset && (
+                    <div className="relative aspect-[16/9] w-full overflow-hidden">
+                      <Image
+                        src={urlFor(related.coverImage)
+                          .width(600)
+                          .height(338)
+                          .auto("format")
+                          .url()}
+                        alt={related.coverImage.alt || related.title}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                      />
+                    </div>
+                  )}
+
+                  <div className="p-5">
+                    <Badge>{related.category}</Badge>
+
+                    <h3 className="mt-3 text-lg font-semibold text-midnight transition-colors duration-200 group-hover:text-gold">
+                      {related.title}
+                    </h3>
+
+                    <p className="mt-2 text-sm leading-relaxed text-midnight/60">
+                      {related.excerpt}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </Container>
+        </section>
+      )}
 
       <CTABanner
         variant="dark"

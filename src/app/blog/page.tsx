@@ -12,6 +12,8 @@ import { FadeIn } from "@/components/motion/FadeIn";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Blog",
   description:
