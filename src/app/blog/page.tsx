@@ -49,6 +49,7 @@ export default async function BlogPage() {
       {/* Blog Post Grid */}
       <section className="bg-soft-white py-16 sm:py-20">
         <Container>
+          <h2 className="sr-only">Latest Articles</h2>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             {posts.map((post: any, index: number) => (
               <FadeIn key={post.slug} delay={index * 0.1}>

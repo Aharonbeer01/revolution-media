@@ -30,6 +30,7 @@ export default function CaseStudiesPage() {
       {/* Case Study Grid */}
       <section className="bg-soft-white py-20 sm:py-28">
         <Container>
+          <h2 className="sr-only">Client Success Stories</h2>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             {caseStudies.map((caseStudy, index) => (
               <FadeIn key={caseStudy.slug} delay={index * 0.1}>

@@ -7,6 +7,7 @@ import { CTABanner } from "@/components/sections/CTABanner";
 import { Container } from "@/components/ui/Container";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { Badge } from "@/components/ui/Badge";
+import { SITE_URL } from "@/lib/constants";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -56,8 +57,51 @@ export default async function ServicePage({ params }: PageProps) {
 
   const { title, subtitle } = getHeroCopy(service.heroDescription);
 
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.title,
+    description: service.shortDescription,
+    serviceType: service.title,
+    url: `${SITE_URL}/services/${slug}`,
+    areaServed: service.isLocationRestricted ? "South Africa" : "Worldwide",
+    provider: {
+      "@type": "Organization",
+      name: "Revolution Media Agency",
+      url: SITE_URL,
+    },
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Services",
+        item: `${SITE_URL}/services`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: service.title,
+        item: `${SITE_URL}/services/${slug}`,
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       {/* ---- Hero ---- */}
       <Hero
         size="medium"

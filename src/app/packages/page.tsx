@@ -141,6 +141,19 @@ const faqItems = [
   },
 ];
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer,
+    },
+  })),
+};
+
 /* ------------------------------------------------------------------ */
 /*  COMPONENTS                                                         */
 /* ------------------------------------------------------------------ */
@@ -186,6 +199,10 @@ function CircleCheckIcon() {
 export default function PackagesPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       {/* Hero */}
       <Hero
         size="medium"
