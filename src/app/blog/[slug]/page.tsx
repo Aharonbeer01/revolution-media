@@ -80,6 +80,50 @@ function buildFaqSchema(body: any[]): Record<string, unknown> | null {
   };
 }
 
+/**
+ * Build ItemList JSON-LD from a "listicle" body section: an H2 heading whose
+ * text matches `headingPattern`, followed by numbered H3 items ("1. Name",
+ * "2. Name", ...), stopping at the next H2. Returns null if no matching
+ * section or items are found. Used for ranked list posts (e.g. best agencies).
+ */
+function buildItemListSchema(
+  body: any[],
+  headingPattern: RegExp,
+): Record<string, unknown> | null {
+  if (!Array.isArray(body)) return null;
+
+  const startIndex = body.findIndex(
+    (block: any) =>
+      block?._type === "block" &&
+      block?.style === "h2" &&
+      headingPattern.test(blockText(block)),
+  );
+  if (startIndex === -1) return null;
+
+  const items: string[] = [];
+  for (let i = startIndex + 1; i < body.length; i++) {
+    const block = body[i];
+    if (block?._type !== "block") continue;
+    if (block.style === "h2") break; // next section
+    if (block.style === "h3") {
+      const text = blockText(block).replace(/^\d+\.\s*/, "").trim();
+      if (text) items.push(text);
+    }
+  }
+
+  if (items.length === 0) return null;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: items.map((name, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name,
+    })),
+  };
+}
+
 export async function generateStaticParams() {
   const sanityPosts: any[] = await sanityClient.fetch(ALL_POST_SLUGS_QUERY);
   return sanityPosts.map((p: any) => ({ slug: p.slug }));
@@ -175,6 +219,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   const faqSchema = buildFaqSchema(post.body);
 
+  // Ranked-list posts get ItemList JSON-LD from their numbered H3 sections.
+  const itemListSchema =
+    slug === "best-digital-marketing-agencies-hotels-2026"
+      ? buildItemListSchema(post.body, /best hotel marketing agencies/i)
+      : null;
+
   return (
     <>
       <script
@@ -189,6 +239,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
+      {itemListSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
         />
       )}
 

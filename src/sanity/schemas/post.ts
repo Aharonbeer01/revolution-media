@@ -102,6 +102,7 @@ export const post = defineType({
       options: {
         list: [
           { title: "Revenue Strategy", value: "Revenue Strategy" },
+          { title: "Marketing Strategy", value: "Marketing Strategy" },
           { title: "Direct Bookings", value: "Direct Bookings" },
           { title: "Paid Advertising", value: "Paid Advertising" },
           { title: "Hotel Technology", value: "Hotel Technology" },
@@ -109,6 +110,7 @@ export const post = defineType({
           { title: "SEO", value: "SEO" },
           { title: "Email Marketing", value: "Email Marketing" },
           { title: "Content Marketing", value: "Content Marketing" },
+          { title: "Industry News", value: "Industry News" },
         ],
       },
       validation: (Rule) => Rule.required(),
