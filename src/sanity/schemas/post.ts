@@ -104,6 +104,7 @@ export const post = defineType({
           { title: "Revenue Strategy", value: "Revenue Strategy" },
           { title: "Direct Bookings", value: "Direct Bookings" },
           { title: "Paid Advertising", value: "Paid Advertising" },
+          { title: "Hotel Technology", value: "Hotel Technology" },
           { title: "Social Media", value: "Social Media" },
           { title: "SEO", value: "SEO" },
           { title: "Email Marketing", value: "Email Marketing" },
