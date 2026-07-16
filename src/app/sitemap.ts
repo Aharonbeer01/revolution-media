@@ -2,24 +2,11 @@ import { MetadataRoute } from "next";
 import { sanityClient } from "@/sanity/client";
 import { SITEMAP_POSTS_QUERY } from "@/sanity/queries";
 import { caseStudies } from "@/lib/case-studies";
+import { services } from "@/lib/services";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 const BASE_URL = "https://revolutionmedia.agency";
-
-const services = [
-  "marketing-strategy",
-  "google-ads",
-  "meta-ads",
-  "tiktok-ads",
-  "social-media-management",
-  "content-creation",
-  "photography",
-  "copywriting",
-  "seo-google-business-profile",
-  "email-marketing",
-  "web-design-development",
-];
 
 // Fallback slugs in case Sanity is unreachable
 const fallbackBlogSlugs = [
@@ -42,8 +29,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE_URL}/terms`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
   ];
 
-  const servicePages: MetadataRoute.Sitemap = services.map((slug) => ({
-    url: `${BASE_URL}/services/${slug}`,
+  const servicePages: MetadataRoute.Sitemap = services.map((service) => ({
+    url: `${BASE_URL}/services/${service.slug}`,
     lastModified: new Date(),
     changeFrequency: "monthly",
     priority: 0.7,

@@ -3,6 +3,7 @@ import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import { GoogleTagManager, GoogleTagManagerNoScript } from "@/components/analytics/GoogleAnalytics";
 import { SITE_URL } from "@/lib/constants";
 
@@ -86,6 +87,7 @@ export default function RootLayout({
         <Header />
         <main id="main-content">{children}</main>
         <Footer />
+        <WhatsAppButton />
       </body>
     </html>
   );
