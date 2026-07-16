@@ -22,6 +22,64 @@ interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
 }
 
+/** Extract the plain text of a Portable Text block. */
+function blockText(block: any): string {
+  if (!block?.children) return "";
+  return block.children
+    .map((child: any) => child?.text ?? "")
+    .join("")
+    .trim();
+}
+
+/**
+ * Build FAQPage JSON-LD by parsing a post body's "Frequently Asked Questions"
+ * section: an H2 heading followed by H3 (question) + normal (answer) pairs,
+ * stopping at the next H2. Returns null if no FAQ section is found.
+ */
+function buildFaqSchema(body: any[]): Record<string, unknown> | null {
+  if (!Array.isArray(body)) return null;
+
+  const startIndex = body.findIndex(
+    (block: any) =>
+      block?._type === "block" &&
+      block?.style === "h2" &&
+      /frequently asked questions/i.test(blockText(block)),
+  );
+  if (startIndex === -1) return null;
+
+  const faqs: { question: string; answer: string }[] = [];
+  let current: { question: string; answer: string } | null = null;
+
+  for (let i = startIndex + 1; i < body.length; i++) {
+    const block = body[i];
+    if (block?._type !== "block") continue;
+    if (block.style === "h2") break; // next section
+
+    if (block.style === "h3") {
+      if (current && current.answer) faqs.push(current);
+      current = { question: blockText(block), answer: "" };
+    } else if (current) {
+      const text = blockText(block);
+      if (text) {
+        current.answer = current.answer ? `${current.answer} ${text}` : text;
+      }
+    }
+  }
+  if (current && current.answer) faqs.push(current);
+
+  if (faqs.length === 0) return null;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: { "@type": "Answer", text: faq.answer },
+    })),
+  };
+}
+
 export async function generateStaticParams() {
   const sanityPosts: any[] = await sanityClient.fetch(ALL_POST_SLUGS_QUERY);
   return sanityPosts.map((p: any) => ({ slug: p.slug }));
@@ -115,6 +173,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     ],
   };
 
+  const faqSchema = buildFaqSchema(post.body);
+
   return (
     <>
       <script
@@ -125,6 +185,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
 
       {/* Cover Image */}
       {post.coverImage?.asset && (

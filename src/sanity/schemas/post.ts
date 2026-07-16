@@ -102,6 +102,7 @@ export const post = defineType({
       options: {
         list: [
           { title: "Revenue Strategy", value: "Revenue Strategy" },
+          { title: "Direct Bookings", value: "Direct Bookings" },
           { title: "Paid Advertising", value: "Paid Advertising" },
           { title: "Social Media", value: "Social Media" },
           { title: "SEO", value: "SEO" },
