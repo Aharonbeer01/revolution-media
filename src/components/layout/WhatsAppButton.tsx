@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 
-// TODO: Replace the placeholder number before deploy. International format,
-// digits only, no plus/spaces/dashes (e.g. South African: 27821234567).
-const WHATSAPP_NUMBER = "YOUR-WHATSAPP-NUMBER";
+// South African number 068 816 1597 in international format (digits only,
+// leading 0 dropped, 27 country code prepended).
+const WHATSAPP_NUMBER = "27688161597";
 const PREFILLED_MESSAGE =
   "Hi Revolution Media, I would like to chat about marketing for my property.";
 
