@@ -5,6 +5,7 @@ import { ServiceGrid } from "@/components/sections/ServiceGrid";
 import { FeaturedCaseStudy } from "@/components/sections/FeaturedCaseStudy";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { CTABanner } from "@/components/sections/CTABanner";
+import { OtaCalculator } from "@/components/sections/OtaCalculator";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
@@ -118,6 +119,9 @@ export default async function HomePage() {
           </FadeIn>
         </Container>
       </section>
+
+      {/* --- OTA Commission Calculator --- */}
+      <OtaCalculator />
 
       {/* --- Positioning Statement --- */}
       <section className="bg-cream py-16 sm:py-20">
