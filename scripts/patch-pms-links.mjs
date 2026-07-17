@@ -1,4 +1,5 @@
-import "dotenv/config";
+import { config } from "dotenv";
+config({ path: ".env.local" });
 import { randomUUID } from "node:crypto";
 import { createClient } from "@sanity/client";
 
@@ -83,21 +84,31 @@ for (const slug of TARGET_SLUGS) {
 
   const doc = JSON.parse(JSON.stringify(post));
   const report = [];
-  let changed = 0;
+  const changedKeys = [];
   for (const block of doc.body || []) {
-    if (linkifyBlock(block, report)) changed++;
+    if (linkifyBlock(block, report)) changedKeys.push(block._key);
   }
 
   console.log(`\n===== ${slug} =====`);
-  if (changed === 0) {
+  if (changedKeys.length === 0) {
     console.log("  (no unlinked PMS bullets found - already linked?)");
     continue;
   }
   report.forEach((r) => console.log(`  ${r}`));
 
-  const { _rev, _createdAt, _updatedAt, ...clean } = doc;
-  await client.createOrReplace(clean);
-  console.log(`  linked ${changed} platform name(s).`);
+  // Patch each changed block's children + markDefs by _key. The write token
+  // has "update" (patch) permission but not create, so we avoid createOrReplace.
+  for (const key of changedKeys) {
+    const block = doc.body.find((b) => b._key === key);
+    await client
+      .patch(doc._id)
+      .set({
+        [`body[_key=="${key}"].children`]: block.children,
+        [`body[_key=="${key}"].markDefs`]: block.markDefs,
+      })
+      .commit();
+  }
+  console.log(`  linked ${changedKeys.length} platform name(s).`);
 }
 
 console.log("\nDone.");

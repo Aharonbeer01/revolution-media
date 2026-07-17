@@ -1,4 +1,5 @@
-import "dotenv/config";
+import { config } from "dotenv";
+config({ path: ".env.local" });
 import { createClient } from "@sanity/client";
 
 const client = createClient({
@@ -70,10 +71,8 @@ let applied = 0;
 let missing = [];
 
 for (const { slug, replacements } of patches) {
-  // Fetch the FULL document. The write token can createOrReplace (create-type)
-  // but lacks the "update"/patch permission, so we replace the whole doc.
   const post = await client.fetch(
-    `*[_type=="post" && slug.current==$slug][0]`,
+    `*[_type=="post" && slug.current==$slug][0]{_id, body}`,
     { slug }
   );
   if (!post) {
@@ -81,19 +80,19 @@ for (const { slug, replacements } of patches) {
     continue;
   }
 
-  const doc = JSON.parse(JSON.stringify(post));
-  let changedInPost = 0;
+  const body = JSON.parse(JSON.stringify(post.body || []));
+  const changedBlockKeys = new Set();
 
   for (const [oldStr, newStr] of replacements) {
     let done = false;
-    for (const block of doc.body || []) {
+    for (const block of body) {
       if (block._type !== "block") continue;
       for (const child of block.children || []) {
         if (typeof child.text === "string" && child.text.includes(oldStr)) {
           child.text = child.text.replace(oldStr, newStr);
           done = true;
           applied++;
-          changedInPost++;
+          changedBlockKeys.add(block._key);
           break;
         }
       }
@@ -102,11 +101,26 @@ for (const { slug, replacements } of patches) {
     if (!done) missing.push({ slug, oldStr });
   }
 
-  if (changedInPost > 0) {
-    // Strip system fields that createOrReplace rejects / re-derives.
-    const { _rev, _createdAt, _updatedAt, ...clean } = doc;
-    await client.createOrReplace(clean);
-    console.log(`  patched ${slug}: ${changedInPost} replacement(s)`);
+  if (changedBlockKeys.size > 0) {
+    // Patch only the children of the blocks that changed, addressed by _key.
+    // The write token has "update" (patch) permission but not create, so we
+    // use set() on existing paths rather than createOrReplace.
+    for (const key of changedBlockKeys) {
+      const block = body.find((b) => b._key === key);
+      if (!key) {
+        console.error(`  [${slug}] changed block has NO _key, skipping`);
+        continue;
+      }
+      try {
+        await client
+          .patch(post._id)
+          .set({ [`body[_key=="${key}"].children`]: block.children })
+          .commit();
+      } catch (e) {
+        console.error(`  [${slug}] block ${key} FAILED: ${e.message.split("\n")[0]}`);
+      }
+    }
+    console.log(`  patched ${slug}: ${changedBlockKeys.size} block(s)`);
   }
 }
 
