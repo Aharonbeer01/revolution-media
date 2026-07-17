@@ -27,6 +27,7 @@ const OTAS: Ota[] = [
   { id: "airbnb", name: "Airbnb", rate: 0.15 },
   { id: "agoda", name: "Agoda", rate: 0.2 },
   { id: "hotels", name: "Hotels.com", rate: 0.18 },
+  { id: "trivago", name: "Trivago", rate: 0.15 },
 ];
 
 const inputStyles =
