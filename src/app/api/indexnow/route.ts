@@ -2,6 +2,8 @@ import { NextRequest } from "next/server";
 import { createClient } from "next-sanity";
 import { projectId, dataset, apiVersion } from "@/sanity/env";
 import { SITE_URL } from "@/lib/constants";
+import { services } from "@/lib/services";
+import { caseStudies } from "@/lib/case-studies";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
@@ -40,6 +42,11 @@ export async function GET(request: NextRequest) {
   }
 
   const urls = new Set(staticPaths.map((p) => `${SITE_URL}${p}`));
+
+  // Service and case study detail pages (kept in sync with the sitemap).
+  for (const s of services) urls.add(`${SITE_URL}/services/${s.slug}`);
+  for (const cs of caseStudies) urls.add(`${SITE_URL}/case-studies/${cs.slug}`);
+
   try {
     const slugs: any[] = await client.fetch(
       `*[_type=="post" && publishedAt <= now()]{ "slug": slug.current }`,

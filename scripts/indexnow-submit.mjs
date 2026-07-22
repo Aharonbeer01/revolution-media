@@ -24,6 +24,27 @@ const staticPaths = [
   "/terms",
 ];
 
+// Service detail pages (kept in sync with src/lib/services.ts).
+const serviceSlugs = [
+  "marketing-strategy",
+  "google-ads",
+  "meta-ads",
+  "tiktok-ads",
+  "social-media-management",
+  "content-creation",
+  "photography",
+  "copywriting",
+  "seo-google-business-profile",
+  "email-marketing",
+];
+
+// Case study detail pages (kept in sync with src/lib/case-studies.ts).
+const caseStudySlugs = [
+  "boutique-safari-lodge",
+  "event-furniture-rental",
+  "luxury-private-island",
+];
+
 const client = createClient({
   projectId: "xoemestg",
   dataset: "production",
@@ -33,6 +54,9 @@ const client = createClient({
 
 async function collectUrls() {
   const urls = new Set(staticPaths.map((p) => `${SITE_URL}${p}`));
+
+  for (const slug of serviceSlugs) urls.add(`${SITE_URL}/services/${slug}`);
+  for (const slug of caseStudySlugs) urls.add(`${SITE_URL}/case-studies/${slug}`);
 
   try {
     const slugs = await client.fetch(
