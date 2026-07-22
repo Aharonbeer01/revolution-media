@@ -50,7 +50,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     if (sanityPosts.length > 0) {
       blogPages = sanityPosts.map((p: any) => ({
         url: `${BASE_URL}/blog/${p.slug}`,
-        lastModified: p.publishedAt ? new Date(p.publishedAt) : new Date(),
+        // Prefer the document's last-edited time so content edits refresh
+        // lastmod, not just the original publish date.
+        lastModified: p._updatedAt
+          ? new Date(p._updatedAt)
+          : p.publishedAt
+            ? new Date(p.publishedAt)
+            : new Date(),
         changeFrequency: "monthly" as const,
         priority: 0.7,
       }));

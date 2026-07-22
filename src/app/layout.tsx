@@ -33,6 +33,11 @@ export const metadata: Metadata = {
   authors: [{ name: "Revolution Media Agency" }],
   alternates: {
     canonical: "/",
+    types: {
+      "application/rss+xml": [
+        { url: "/feed.xml", title: "Revolution Media Blog Feed" },
+      ],
+    },
   },
   openGraph: {
     type: "website",
