@@ -81,6 +81,22 @@ const components: Partial<PortableTextReactComponents> = {
       const headers: string[] = value?.headers || [];
       const rows: { cells?: string[] }[] = value?.rows || [];
       if (headers.length === 0 || rows.length === 0) return null;
+      // Cells written as "[Label](https://url)" render as a link; plain text
+      // renders as-is.
+      const renderCell = (cell: string) => {
+        const match = /^\[([^\]]+)\]\((https?:\/\/[^)]+)\)$/.exec(cell || "");
+        if (!match) return cell;
+        return (
+          <a
+            href={match[2]}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gold underline underline-offset-2 hover:text-gold-deep"
+          >
+            {match[1]}
+          </a>
+        );
+      };
       return (
         <figure className="my-8 overflow-x-auto">
           <table className="w-full border-collapse text-left text-sm">
@@ -114,7 +130,7 @@ const components: Partial<PortableTextReactComponents> = {
                           : "p-3 text-midnight/80"
                       }
                     >
-                      {cell}
+                      {renderCell(cell)}
                     </td>
                   ))}
                 </tr>
