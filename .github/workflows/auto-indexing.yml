@@ -1,0 +1,27 @@
+name: Auto Indexing (IndexNow)
+
+# Broadcasts recently changed sitemap URLs to IndexNow (Bing, Yandex and
+# partners such as ChatGPT Search and Perplexity). Runs after every push to
+# main and once daily to catch content published via the CMS without a deploy.
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "0 2 * * *"
+  workflow_dispatch:
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Submit sitemap URLs to IndexNow
+        uses: bojieyang/indexnow-action@v3
+        with:
+          sitemap-location: "https://revolutionmedia.agency/sitemap.xml"
+          key: ${{ secrets.INDEXNOW_KEY }}
+          key-location: "https://revolutionmedia.agency/69d26c471fb84d1f83feffe9a86bb6f8.txt"
+          since: 2
+          since-unit: day
+          endpoint: www.bing.com
+          limit: 500
