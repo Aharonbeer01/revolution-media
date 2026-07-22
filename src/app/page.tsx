@@ -123,6 +123,34 @@ export default async function HomePage() {
       {/* --- OTA Commission Calculator --- */}
       <OtaCalculator />
 
+      {/* --- Advanced calculator CTA --- */}
+      <section className="bg-soft-white pb-16 sm:pb-20">
+        <Container>
+          <FadeIn>
+            <div className="mx-auto max-w-3xl rounded-lg border border-gold/30 bg-cream p-6 text-center sm:p-8">
+              <h3 className="text-xl font-bold text-midnight sm:text-2xl">
+                Want the full picture?
+              </h3>
+              <p className="mx-auto mt-3 max-w-xl text-warm-gray">
+                Use the advanced calculator to adjust for your currency and
+                region, set your platform mix, and see payout delays, the cash
+                tied up waiting on OTAs, and what you could save by shifting
+                bookings direct.
+              </p>
+              <div className="mt-6">
+                <Button
+                  href="/tools/ota-commission-calculator"
+                  variant="primary"
+                  data-track="home_advanced_calculator"
+                >
+                  Open the Advanced Calculator
+                </Button>
+              </div>
+            </div>
+          </FadeIn>
+        </Container>
+      </section>
+
       {/* --- Positioning Statement --- */}
       <section className="bg-cream py-16 sm:py-20">
         <Container className="text-center">
