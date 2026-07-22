@@ -3,7 +3,7 @@ import { Hero } from "@/components/sections/Hero";
 import { CTABanner } from "@/components/sections/CTABanner";
 import { Container } from "@/components/ui/Container";
 import { FadeIn } from "@/components/motion/FadeIn";
-import { OtaCalculator } from "@/components/sections/OtaCalculator";
+import { AdvancedOtaCalculator } from "@/components/sections/AdvancedOtaCalculator";
 import { SITE_URL } from "@/lib/constants";
 
 const PAGE_PATH = "/tools/ota-commission-calculator";
@@ -11,7 +11,7 @@ const PAGE_PATH = "/tools/ota-commission-calculator";
 export const metadata: Metadata = {
   title: "Free Hotel OTA Commission Calculator",
   description:
-    "Calculate how much your hotel or lodge pays Booking.com, Expedia, Agoda and other OTAs in commission every year. A free tool for hospitality operators.",
+    "Calculate how much your hotel or lodge pays Booking.com, Expedia, Agoda and other OTAs in commission every year. Adjust for currency, region, platform mix and payout delays. A free tool for hospitality operators.",
   alternates: {
     canonical: PAGE_PATH,
   },
@@ -33,7 +33,15 @@ export default function OtaCommissionCalculatorPage() {
     operatingSystem: "Web",
     url: `${SITE_URL}${PAGE_PATH}`,
     description:
-      "A free calculator that estimates how much a hotel or lodge pays in OTA commission each year, based on rooms, average nightly rate, occupancy and the platforms they sell through.",
+      "A free calculator that estimates how much a hotel or lodge pays in OTA commission each year, based on rooms, average nightly rate, occupancy, platform mix, region, currency and payout terms.",
+    featureList: [
+      "Multi-currency reporting",
+      "Regional commission adjustments",
+      "Per-platform booking mix",
+      "Premium placement surcharge modelling",
+      "Average payout delay and cash-in-pipeline estimate",
+      "Direct-booking shift savings scenario",
+    ],
     offers: {
       "@type": "Offer",
       price: "0",
@@ -98,11 +106,14 @@ export default function OtaCommissionCalculatorPage() {
               </p>
               <p className="mt-4 leading-relaxed text-midnight/70">
                 The calculator below turns that abstract percentage into a real
-                annual figure for your property. Enter your rooms, average
-                nightly rate and occupancy, then select the platforms you sell
-                through. Most operators are surprised by how much a single year
-                of commission adds up to, and by how much of it could be
-                redirected into marketing that drives direct bookings instead.
+                annual figure for your property. Set your currency and region,
+                choose the platforms you sell through, and adjust your OTA share,
+                visibility programmes and payout terms. It also shows the cash
+                tied up waiting for OTA payouts and how much you could save by
+                shifting a portion of those bookings direct. Most operators are
+                surprised by how much a single year of commission adds up to, and
+                by how much of it could be redirected into marketing that drives
+                direct bookings instead.
               </p>
             </div>
           </FadeIn>
@@ -110,7 +121,7 @@ export default function OtaCommissionCalculatorPage() {
       </section>
 
       {/* The calculator itself */}
-      <OtaCalculator />
+      <AdvancedOtaCalculator />
 
       <CTABanner
         variant="dark"
