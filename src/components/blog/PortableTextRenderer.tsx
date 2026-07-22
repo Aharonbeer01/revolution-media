@@ -77,6 +77,53 @@ const components: Partial<PortableTextReactComponents> = {
         </figure>
       );
     },
+    comparisonTable: ({ value }: any) => {
+      const headers: string[] = value?.headers || [];
+      const rows: { cells?: string[] }[] = value?.rows || [];
+      if (headers.length === 0 || rows.length === 0) return null;
+      return (
+        <figure className="my-8 overflow-x-auto">
+          <table className="w-full border-collapse text-left text-sm">
+            {value.caption && (
+              <caption className="mb-3 text-left text-sm text-midnight/50">
+                {value.caption}
+              </caption>
+            )}
+            <thead>
+              <tr className="border-b-2 border-gold">
+                {headers.map((header, i) => (
+                  <th
+                    key={i}
+                    scope="col"
+                    className="p-3 font-semibold text-gold-deep"
+                  >
+                    {header}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((row, r) => (
+                <tr key={r} className="border-b border-midnight/10">
+                  {(row.cells || []).map((cell, c) => (
+                    <td
+                      key={c}
+                      className={
+                        c === 0
+                          ? "p-3 font-semibold text-midnight"
+                          : "p-3 text-midnight/80"
+                      }
+                    >
+                      {cell}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </figure>
+      );
+    },
   },
 };
 

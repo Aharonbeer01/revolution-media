@@ -79,6 +79,71 @@ export const post = defineType({
             },
           ],
         },
+        {
+          type: "object",
+          name: "comparisonTable",
+          title: "Comparison Table",
+          fields: [
+            {
+              name: "caption",
+              type: "string",
+              title: "Caption (optional)",
+              description:
+                "Short description shown above the table and used as its accessible caption.",
+            },
+            {
+              name: "headers",
+              type: "array",
+              title: "Column Headers",
+              of: [{ type: "string" }],
+              validation: (Rule) => Rule.required().min(1),
+            },
+            {
+              name: "rows",
+              type: "array",
+              title: "Rows",
+              of: [
+                {
+                  type: "object",
+                  name: "tableRow",
+                  title: "Row",
+                  fields: [
+                    {
+                      name: "cells",
+                      type: "array",
+                      title: "Cells",
+                      of: [{ type: "string" }],
+                    },
+                  ],
+                  preview: {
+                    select: { cells: "cells" },
+                    prepare({ cells }: { cells?: string[] }) {
+                      return {
+                        title: (cells || []).join(" | ") || "Empty row",
+                      };
+                    },
+                  },
+                },
+              ],
+              validation: (Rule) => Rule.required().min(1),
+            },
+          ],
+          preview: {
+            select: { caption: "caption", rows: "rows" },
+            prepare({
+              caption,
+              rows,
+            }: {
+              caption?: string;
+              rows?: unknown[];
+            }) {
+              return {
+                title: caption || "Comparison Table",
+                subtitle: `${(rows || []).length} row(s)`,
+              };
+            },
+          },
+        },
       ],
     }),
     defineField({
