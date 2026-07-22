@@ -9,6 +9,17 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        // Retired page: permanently redirect the old URL to the services list
+        // so old links and stale search results never hit a 404.
+        source: "/services/web-design-development",
+        destination: "/services",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {
