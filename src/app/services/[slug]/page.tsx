@@ -7,6 +7,8 @@ import { CTABanner } from "@/components/sections/CTABanner";
 import { Container } from "@/components/ui/Container";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { Badge } from "@/components/ui/Badge";
+import { RelatedServices } from "@/components/sections/RelatedServices";
+import { RelatedCaseStudies } from "@/components/sections/RelatedCaseStudies";
 import { SITE_URL } from "@/lib/constants";
 
 interface PageProps {
@@ -207,6 +209,19 @@ export default async function ServicePage({ params }: PageProps) {
           </div>
         </Container>
       </section>
+
+      {/* ---- Related Services ---- */}
+      {service.relatedSlugs && service.relatedSlugs.length > 0 && (
+        <RelatedServices slugs={service.relatedSlugs} />
+      )}
+
+      {/* ---- Proof: related case studies ---- */}
+      {service.relatedCaseStudies && service.relatedCaseStudies.length > 0 && (
+        <RelatedCaseStudies
+          slugs={service.relatedCaseStudies}
+          heading="See It In Action"
+        />
+      )}
 
       {/* ---- CTA ---- */}
       <CTABanner

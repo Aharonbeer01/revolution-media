@@ -5,6 +5,8 @@ import { CTABanner } from "@/components/sections/CTABanner";
 import { Container } from "@/components/ui/Container";
 import { Badge } from "@/components/ui/Badge";
 import { FadeIn } from "@/components/motion/FadeIn";
+import { RelatedServices } from "@/components/sections/RelatedServices";
+import { RelatedCaseStudies } from "@/components/sections/RelatedCaseStudies";
 import { caseStudies } from "@/lib/case-studies";
 import { SITE_URL } from "@/lib/constants";
 
@@ -164,6 +166,23 @@ export default async function CaseStudyPage({ params }: PageProps) {
           </FadeIn>
         </Container>
       </section>
+
+      {/* Services used on this project */}
+      {caseStudy.relatedServices && caseStudy.relatedServices.length > 0 && (
+        <RelatedServices
+          slugs={caseStudy.relatedServices}
+          heading="Services We Used"
+          variant="dark"
+        />
+      )}
+
+      {/* More case studies */}
+      {caseStudy.relatedCaseStudies && caseStudy.relatedCaseStudies.length > 0 && (
+        <RelatedCaseStudies
+          slugs={caseStudy.relatedCaseStudies}
+          heading="More Case Studies"
+        />
+      )}
 
       <CTABanner
         variant="gold"

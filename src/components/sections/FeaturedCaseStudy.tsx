@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { caseStudies } from "@/lib/case-studies";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
@@ -8,6 +9,8 @@ import { FadeIn } from "@/components/motion/FadeIn";
 export function FeaturedCaseStudy() {
   const featured = caseStudies[0];
   if (!featured) return null;
+
+  const others = caseStudies.slice(1);
 
   return (
     <section className="bg-midnight dark-texture py-16 sm:py-20">
@@ -67,6 +70,38 @@ export function FeaturedCaseStudy() {
             </div>
           </FadeIn>
         </div>
+
+        {/* More success stories: keeps every case study linked from the homepage */}
+        {others.length > 0 && (
+          <div className="mt-12 grid gap-6 md:grid-cols-2">
+            {others.map((cs, index) => (
+              <FadeIn key={cs.slug} delay={index * 0.1}>
+                <Link
+                  href={`/case-studies/${cs.slug}`}
+                  className="group block h-full rounded-lg bg-deep-black p-6 transition-transform duration-300 hover:-translate-y-1"
+                >
+                  <Badge variant="gold">{cs.propertyType}</Badge>
+                  <h3 className="mt-4 text-lg font-bold text-soft-white transition-colors duration-300 group-hover:text-gold">
+                    {cs.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-gold">{cs.location}</p>
+                  <div className="mt-4 flex flex-wrap gap-6">
+                    {cs.metrics.slice(0, 3).map((metric) => (
+                      <div key={metric.label}>
+                        <p className="text-xl font-bold text-gold">
+                          {metric.value}
+                        </p>
+                        <p className="text-xs text-soft-white/60">
+                          {metric.label}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </Link>
+              </FadeIn>
+            ))}
+          </div>
+        )}
       </Container>
     </section>
   );

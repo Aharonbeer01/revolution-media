@@ -9,4 +9,6 @@ export interface Service {
   includes: string[];
   isLocationRestricted?: boolean;
   locationNote?: string;
+  relatedSlugs?: string[];
+  relatedCaseStudies?: string[];
 }

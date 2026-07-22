@@ -34,6 +34,8 @@ export const caseStudies: CaseStudy[] = [
       "We engineered content that captured over 2 million organic views across Facebook and Instagram before a single rand was spent on ads. Paid campaigns achieved a 13% click-through rate (5x the industry average) at a cost per click of just R0.24 against an industry standard of R2–R5. On-site engagement showed visitors arriving with genuine purchase intent: time on the reservations page was 67% above industry standard. A critical insight revealed that 90% of visitors arrived on Android via Facebook's in-app browser, leading to targeted technical optimisations of the booking engine.",
     results:
       "Direct bookings surged from 10% to over 80%, achieved alongside a simultaneous rate increase. The industry norm for independent hotels is just 30–40% direct bookings. The property now sits at more than double the industry benchmark, with maximised revenue, full customer data ownership, and complete brand control. Link clicks converted to reservations at 9.7%, over 3x the industry average of 2.82%.",
+    relatedServices: ["meta-ads", "content-creation", "google-ads"],
+    relatedCaseStudies: ["luxury-private-island", "event-furniture-rental"],
   },
   {
     slug: "event-furniture-rental",
@@ -68,6 +70,8 @@ export const caseStudies: CaseStudy[] = [
       "Top headline ads achieved a 15.5% click-through rate, 3x the industry norm. Average time on page reached 80 seconds, 48% above the global average, with a bounce rate of 49.55% versus the industry norm of 60–70% for B2B paid traffic. The catalogue page was the second most-visited page on the entire site with 1,710 views, signalling immediate commercial intent. Mobile-optimised CTAs including click-to-call and WhatsApp chat validated the mobile-first strategy.",
     results:
       "Year-over-year traffic and acquisition doubled. The campaign generated 120+ qualified leads and captured 2,000+ high-intent active users. Ad conversion rate hit 3.5% (28% above the 2.73% industry average) while formal quote forms converted at 6.6%, well above the 2–5% industry standard. Cost per qualified lead came in at approximately R218–R360, highly sustainable given the high lifetime value of recurring event rental contracts.",
+    relatedServices: ["google-ads", "marketing-strategy", "copywriting"],
+    relatedCaseStudies: ["boutique-safari-lodge", "luxury-private-island"],
   },
   {
     slug: "luxury-private-island",
@@ -102,5 +106,7 @@ export const caseStudies: CaseStudy[] = [
       "A consistent publishing schedule of 2 high-quality blog posts per month drove organic traffic growth of 36%. Google Ads targeted users searching for high-intent terms, generating 7,200+ qualified sessions at a mobile CTR of 10.3% (37% above the industry standard) and a CPC of just \u20AC0.60 versus the \u20AC1.50 benchmark, achieving what Google classifies as 'Unicorn' status. Facebook campaigns reached 340,000+ unique people with 1.3M+ impressions delivered for approximately \u20AC700, achieving a CPM of \u20AC0.52, 8x more efficient than the industry benchmark of \u20AC4.40.",
     results:
       "Total active users grew 114% from 22,762 to 48,732. Key international markets surged: US +115%, Germany +116%, UK +128%. The campaign tracked 344 click-to-book events, 315 deep engagement events (60+ seconds on page), and 64 contact form submissions, all signals of genuine purchase intent from high-value travellers. The property transformed from a destination discovered by chance to a market leader with a proactive digital presence.",
+    relatedServices: ["google-ads", "meta-ads", "seo-google-business-profile"],
+    relatedCaseStudies: ["boutique-safari-lodge", "event-furniture-rental"],
   },
 ];

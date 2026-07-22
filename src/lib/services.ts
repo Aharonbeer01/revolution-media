@@ -28,6 +28,8 @@ export const services: Service[] = [
       "Monthly strategy review and optimisation sessions",
       "KPI dashboard and performance reporting",
     ],
+    relatedSlugs: ["google-ads", "meta-ads", "seo-google-business-profile"],
+    relatedCaseStudies: ["boutique-safari-lodge", "luxury-private-island"],
   },
   {
     slug: "google-ads",
@@ -56,6 +58,8 @@ export const services: Service[] = [
       "Bi-weekly performance reporting with revenue attribution",
       "Ongoing bid management and keyword refinement",
     ],
+    relatedSlugs: ["meta-ads", "tiktok-ads", "marketing-strategy"],
+    relatedCaseStudies: ["boutique-safari-lodge", "event-furniture-rental"],
   },
   {
     slug: "meta-ads",
@@ -84,6 +88,8 @@ export const services: Service[] = [
       "Monthly creative refresh and A/B testing",
       "Detailed performance reporting with cost-per-booking metrics",
     ],
+    relatedSlugs: ["tiktok-ads", "google-ads", "content-creation"],
+    relatedCaseStudies: ["boutique-safari-lodge", "luxury-private-island"],
   },
   {
     slug: "tiktok-ads",
@@ -112,6 +118,8 @@ export const services: Service[] = [
       "Campaign launches for new offerings, seasonal packages, and promotions",
       "Performance reporting with engagement and traffic metrics",
     ],
+    relatedSlugs: ["meta-ads", "content-creation", "social-media-management"],
+    relatedCaseStudies: ["boutique-safari-lodge", "event-furniture-rental"],
   },
   {
     slug: "social-media-management",
@@ -140,6 +148,8 @@ export const services: Service[] = [
       "Hashtag strategy and local discovery optimisation",
       "Monthly analytics report with growth insights",
     ],
+    relatedSlugs: ["content-creation", "meta-ads", "copywriting"],
+    relatedCaseStudies: ["boutique-safari-lodge", "event-furniture-rental"],
   },
   {
     slug: "content-creation",
@@ -168,6 +178,8 @@ export const services: Service[] = [
       "Full post-production editing, colour grading, and formatting",
       "Organised content library delivered in platform-ready formats",
     ],
+    relatedSlugs: ["photography", "copywriting", "social-media-management"],
+    relatedCaseStudies: ["boutique-safari-lodge", "luxury-private-island"],
   },
   {
     slug: "photography",
@@ -196,6 +208,8 @@ export const services: Service[] = [
       "Professional retouching and colour correction",
       "High-resolution and web-optimised image delivery",
     ],
+    relatedSlugs: ["content-creation", "social-media-management", "copywriting"],
+    relatedCaseStudies: ["luxury-private-island", "boutique-safari-lodge"],
     isLocationRestricted: true,
     locationNote:
       "Photography sessions are available for properties located in South Africa. For properties outside South Africa, please contact us to discuss availability and travel arrangements.",
@@ -227,6 +241,8 @@ export const services: Service[] = [
       "Email marketing copy and subject line creation",
       "Social media caption templates and frameworks",
     ],
+    relatedSlugs: ["content-creation", "email-marketing", "seo-google-business-profile"],
+    relatedCaseStudies: ["boutique-safari-lodge", "luxury-private-island"],
   },
   {
     slug: "seo-google-business-profile",
@@ -256,6 +272,8 @@ export const services: Service[] = [
       "Monthly Google Posts and profile updates",
       "Quarterly ranking and visibility reporting",
     ],
+    relatedSlugs: ["google-ads", "marketing-strategy", "copywriting"],
+    relatedCaseStudies: ["boutique-safari-lodge", "event-furniture-rental"],
   },
   {
     slug: "email-marketing",
@@ -285,5 +303,7 @@ export const services: Service[] = [
       "Monthly performance reporting with revenue attribution",
       "List growth strategy and opt-in optimisation",
     ],
+    relatedSlugs: ["copywriting", "marketing-strategy", "social-media-management"],
+    relatedCaseStudies: ["boutique-safari-lodge", "luxury-private-island"],
   },
 ];

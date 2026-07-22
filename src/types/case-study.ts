@@ -16,4 +16,6 @@ export interface CaseStudy {
   strategy: string;
   execution: string;
   results: string;
+  relatedServices?: string[];
+  relatedCaseStudies?: string[];
 }
