@@ -96,6 +96,22 @@ export default async function CaseStudyPage({ params }: PageProps) {
         </Container>
       </section>
 
+      {/* TL;DR Executive Summary */}
+      <section className="bg-soft-white pt-20 sm:pt-28">
+        <Container>
+          <FadeIn>
+            <div className="mx-auto max-w-3xl rounded-lg border border-gold/30 bg-cream p-6 sm:p-8">
+              <p className="text-sm font-semibold uppercase tracking-[0.1em] text-gold">
+                TL;DR
+              </p>
+              <p className="mt-3 text-lg leading-relaxed text-midnight/80">
+                {caseStudy.summary}
+              </p>
+            </div>
+          </FadeIn>
+        </Container>
+      </section>
+
       {/* The Problem */}
       <section className="bg-soft-white py-20 sm:py-28">
         <Container>

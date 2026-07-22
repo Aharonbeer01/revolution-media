@@ -80,6 +80,32 @@ export default function RootLayout({
                 "Content Creation",
                 "Hotel Marketing",
               ],
+              knowsAbout: [
+                {
+                  "@type": "Thing",
+                  name: "Online travel agency",
+                  sameAs: "https://en.wikipedia.org/wiki/Online_travel_agency",
+                },
+                {
+                  "@type": "Thing",
+                  name: "Search engine optimization",
+                  sameAs: "https://en.wikipedia.org/wiki/Search_engine_optimization",
+                },
+                {
+                  "@type": "Thing",
+                  name: "Pay-per-click",
+                  sameAs: "https://en.wikipedia.org/wiki/Pay-per-click",
+                },
+                {
+                  "@type": "Thing",
+                  name: "Revenue management",
+                  sameAs: "https://en.wikipedia.org/wiki/Revenue_management",
+                },
+                "Hospitality digital marketing",
+                "Hotel direct bookings",
+                "OTA commission reduction",
+                "Travel and tourism marketing",
+              ],
             }),
           }}
         />

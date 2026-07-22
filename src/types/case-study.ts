@@ -11,6 +11,7 @@ export interface CaseStudy {
   location: string;
   tags: string[];
   heroImage: string;
+  summary: string;
   metrics: CaseStudyMetric[];
   problem: string;
   strategy: string;

@@ -8,6 +8,8 @@ export const caseStudies: CaseStudy[] = [
     location: "South Africa",
     tags: ["Viral Content", "Paid Media", "Conversion Optimisation"],
     heroImage: "/images/case-studies/placeholder.jpg",
+    summary:
+      "A boutique safari lodge stuck at 90% OTA-driven bookings rebuilt its demand around viral organic content and high-performance paid media. Direct bookings rose from 10% to over 80% alongside a rate increase, giving the property full control of its guest data, pricing and margin.",
     metrics: [
       {
         label: "Direct Booking Rate",
@@ -44,6 +46,8 @@ export const caseStudies: CaseStudy[] = [
     location: "Gauteng, South Africa",
     tags: ["Paid Search", "Lead Generation", "Conversion Optimisation"],
     heroImage: "/images/case-studies/placeholder.jpg",
+    summary:
+      "An event furniture rental company needed higher-quality traffic and a sustainable lead engine in a competitive B2B/B2C market. A three-stage paid search and conversion system doubled year-over-year traffic, generated 120+ qualified leads, and delivered a cost per lead of roughly R218 to R360 against high-value recurring contracts.",
     metrics: [
       {
         label: "YoY Traffic Growth",
@@ -80,6 +84,8 @@ export const caseStudies: CaseStudy[] = [
     location: "Seychelles",
     tags: ["Full-Funnel Strategy", "Google Ads", "Meta Ads", "SEO & Content"],
     heroImage: "/images/case-studies/placeholder.jpg",
+    summary:
+      "An ultra-luxury private island resort relying on passive organic traffic moved to a proactive, full-funnel model spanning Meta awareness, organic SEO authority and high-intent Google Ads. Active users grew 114% and organic traffic 36%, turning a hidden gem into a market leader with a repeatable acquisition engine.",
     metrics: [
       {
         label: "Active User Growth",

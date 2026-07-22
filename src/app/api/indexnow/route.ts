@@ -23,6 +23,7 @@ const staticPaths = [
   "/case-studies",
   "/blog",
   "/packages",
+  "/tools/ota-commission-calculator",
   "/contact",
   "/referral-program",
   "/privacy-policy",
