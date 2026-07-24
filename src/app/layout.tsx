@@ -57,6 +57,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={dmSans.variable}>
+      <head>
+        {/* Warm up the connection to Google Tag Manager / Analytics so the
+            deferred analytics scripts load faster once they fire. */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+      </head>
       <body className="antialiased">
         <GoogleTagManager />
         <GoogleTagManagerNoScript />
