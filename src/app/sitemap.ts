@@ -8,6 +8,12 @@ import { services } from "@/lib/services";
 
 const BASE_URL = "https://revolutionmedia.agency";
 
+// Regenerate the sitemap every 6 hours so posts scheduled via a future
+// publishedAt appear shortly after their publish date, rather than waiting for
+// the next deploy. This also keeps the daily IndexNow GitHub Action (which
+// reads sitemap.xml) fed with newly live URLs.
+export const revalidate = 21600;
+
 // Fallback slugs in case Sanity is unreachable
 const fallbackBlogSlugs = [
   "5-ways-to-reduce-ota-dependency",
