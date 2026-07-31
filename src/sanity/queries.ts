@@ -43,6 +43,19 @@ export const RELATED_POSTS_QUERY = groq`
   }
 `;
 
+export const POSTS_BY_CATEGORY_QUERY = groq`
+  *[_type == "post" && publishedAt <= now() && category == $category] | order(publishedAt desc) {
+    _id,
+    title,
+    "slug": slug.current,
+    excerpt,
+    coverImage,
+    category,
+    author,
+    publishedAt
+  }
+`;
+
 export const SITEMAP_POSTS_QUERY = groq`
   *[_type == "post" && publishedAt <= now()] {
     "slug": slug.current,

@@ -3,6 +3,7 @@ import { sanityClient } from "@/sanity/client";
 import { SITEMAP_POSTS_QUERY } from "@/sanity/queries";
 import { caseStudies } from "@/lib/case-studies";
 import { services } from "@/lib/services";
+import { blogCategories } from "@/lib/blog-categories";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
@@ -50,6 +51,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
+  const categoryPages: MetadataRoute.Sitemap = blogCategories.map((c) => ({
+    url: `${BASE_URL}/blog/category/${c.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly",
+    priority: 0.6,
+  }));
+
   // Fetch blog posts from Sanity; fall back to hardcoded slugs
   let blogPages: MetadataRoute.Sitemap;
   try {
@@ -84,5 +92,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }));
   }
 
-  return [...staticPages, ...servicePages, ...caseStudyPages, ...blogPages];
+  return [
+    ...staticPages,
+    ...servicePages,
+    ...caseStudyPages,
+    ...categoryPages,
+    ...blogPages,
+  ];
 }
