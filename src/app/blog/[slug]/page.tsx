@@ -13,6 +13,7 @@ import { PortableTextRenderer } from "@/components/blog/PortableTextRenderer";
 import { CTABanner } from "@/components/sections/CTABanner";
 import { Container } from "@/components/ui/Container";
 import { Badge } from "@/components/ui/Badge";
+import { categorySlugForName } from "@/lib/blog-categories";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
@@ -174,6 +175,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     slug,
   });
 
+  const categorySlug = categorySlugForName(post.category);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -272,7 +275,16 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         className={`bg-midnight py-16 sm:py-20 ${post.coverImage?.asset ? "-mt-32 relative z-10 pt-40 sm:pt-44" : ""}`}
       >
         <Container className="max-w-3xl">
-          <Badge>{post.category}</Badge>
+          {categorySlug ? (
+            <Link
+              href={`/blog/category/${categorySlug}`}
+              className="inline-block rounded-sm transition-opacity hover:opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+            >
+              <Badge>{post.category}</Badge>
+            </Link>
+          ) : (
+            <Badge>{post.category}</Badge>
+          )}
 
           <h1 className="mt-4 text-3xl font-bold text-soft-white sm:text-4xl lg:text-5xl">
             {post.title}
