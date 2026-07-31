@@ -1,6 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
+import { blogCategories } from "@/lib/blog-categories";
+
+const blogTopicLinks = blogCategories.map((c) => ({
+  label: c.name,
+  href: `/blog/category/${c.slug}`,
+}));
 
 const serviceLinks = [
   { label: "Marketing Strategy", href: "/services/marketing-strategy" },
@@ -29,7 +35,7 @@ export function Footer() {
   return (
     <footer className="bg-midnight text-soft-white">
       <Container className="py-16">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-5">
           {/* Brand Column */}
           <div className="lg:col-span-1">
             <Link href="/" className="inline-flex items-center gap-2">
@@ -120,6 +126,25 @@ export function Footer() {
             </h3>
             <ul className="space-y-2">
               {quickLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-soft-white/60 transition-colors hover:text-gold"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Blog Topics Column */}
+          <div>
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.1em] text-gold">
+              Blog Topics
+            </h3>
+            <ul className="space-y-2">
+              {blogTopicLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
