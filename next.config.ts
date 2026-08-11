@@ -18,6 +18,14 @@ const nextConfig: NextConfig = {
         destination: "/services",
         permanent: true,
       },
+      {
+        // Consolidation: this older Google Ads post was a near-duplicate of the
+        // stronger 2026 pillar and was crawled-not-indexed for cannibalisation.
+        // Permanently redirect it to the pillar so link equity consolidates.
+        source: "/blog/google-ads-for-hotels-complete-guide",
+        destination: "/blog/google-ads-for-hotels-guide-2026",
+        permanent: true,
+      },
     ];
   },
   async headers() {

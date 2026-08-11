@@ -189,6 +189,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       url: "https://revolutionmedia.agency",
     },
     datePublished: post.publishedAt,
+    ...(post._updatedAt && { dateModified: post._updatedAt }),
     url: `https://revolutionmedia.agency/blog/${slug}`,
     ...(post.coverImage?.asset && {
       image: urlFor(post.coverImage).width(1200).height(630).auto("format").url(),

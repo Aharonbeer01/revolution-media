@@ -23,7 +23,8 @@ export const POST_BY_SLUG_QUERY = groq`
     coverImage,
     category,
     author,
-    publishedAt
+    publishedAt,
+    _updatedAt
   }
 `;
 
