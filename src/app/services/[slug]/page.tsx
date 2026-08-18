@@ -9,6 +9,7 @@ import { FadeIn } from "@/components/motion/FadeIn";
 import { Badge } from "@/components/ui/Badge";
 import { RelatedServices } from "@/components/sections/RelatedServices";
 import { RelatedCaseStudies } from "@/components/sections/RelatedCaseStudies";
+import { RemoteContentSystem } from "@/components/sections/RemoteContentSystem";
 import { SITE_URL } from "@/lib/constants";
 
 interface PageProps {
@@ -209,6 +210,9 @@ export default async function ServicePage({ params }: PageProps) {
           </div>
         </Container>
       </section>
+
+      {/* ---- Remote Content System (content-creation only) ---- */}
+      {slug === "content-creation" && <RemoteContentSystem />}
 
       {/* ---- Related Services ---- */}
       {service.relatedSlugs && service.relatedSlugs.length > 0 && (
