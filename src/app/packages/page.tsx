@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Hero } from "@/components/sections/Hero";
 import { CTABanner } from "@/components/sections/CTABanner";
 import { Container } from "@/components/ui/Container";
@@ -7,6 +8,7 @@ import { SlideUp } from "@/components/motion/SlideUp";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
 import { PackagesTable } from "./PackagesTable";
+import { CustomPackageBuilder } from "./CustomPackageBuilder";
 import { FAQAccordion } from "./FAQAccordion";
 import { MobileTrackingSection } from "./MobileTrackingSection";
 import { MobilePhotographyBundles } from "./MobilePhotographyBundles";
@@ -67,12 +69,16 @@ const photographyBundles = [
   },
 ];
 
+const REMOTE_CONTENT_ADDON =
+  "Remote Content System (full remote content programme for international clients)";
+const REMOTE_CONTENT_HREF = "/services/content-creation#remote-content-system";
+
 const photographyAddOns = [
   "Additional editing day",
   "Rush delivery (48-hour turnaround)",
   "Drone / aerial photography",
   "Food & beverage session",
-  "Creative direction (available remotely for international clients)",
+  REMOTE_CONTENT_ADDON,
 ];
 
 const oneTimeServices = [
@@ -137,7 +143,7 @@ const faqItems = [
   {
     question: "Are photography packages available internationally?",
     answer:
-      "Photography and video production are currently available in South Africa only. Remote creative direction is available for international clients.",
+      "Our photography and film crew shoots on location in South Africa. For international properties, we offer the Remote Content System: seasonal content calendars and shot-by-shot filming guides your own team executes on a smartphone and gimbal, with our remote creative direction, editing, and publishing behind it. It's how we run full content programmes for properties thousands of kilometres away.",
   },
 ];
 
@@ -422,6 +428,23 @@ export default function PackagesPage() {
         </Container>
       </section>
 
+      {/* Build Your Own Package */}
+      <section className="bg-soft-white py-16 sm:py-20">
+        <Container>
+          <FadeIn>
+            <SectionHeading
+              eyebrow="CUSTOM PACKAGES"
+              title="Build Your Own Package"
+              subtitle="Don't see the perfect fit? Build it. Choose your foundation, add the services your property actually needs, and we'll come back to you with a tailored proposal within two business days. Custom packages are built for properties of every size, from boutique guesthouses to multi-property groups."
+            />
+          </FadeIn>
+
+          <FadeIn delay={0.1}>
+            <CustomPackageBuilder />
+          </FadeIn>
+        </Container>
+      </section>
+
       {/* Photography Bundles */}
       <section className="bg-cream py-16 sm:py-20">
         <Container>
@@ -480,7 +503,16 @@ export default function PackagesPage() {
                       className="flex items-center gap-3 text-sm text-midnight/70"
                     >
                       <CircleCheckIcon />
-                      <span>{addOn}</span>
+                      {addOn === REMOTE_CONTENT_ADDON ? (
+                        <Link
+                          href={REMOTE_CONTENT_HREF}
+                          className="font-medium text-gold underline underline-offset-2 hover:text-gold-deep"
+                        >
+                          {addOn}
+                        </Link>
+                      ) : (
+                        <span>{addOn}</span>
+                      )}
                     </li>
                   ))}
                 </ul>
