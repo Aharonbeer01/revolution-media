@@ -29,3 +29,17 @@ export function GoogleTagManagerNoScript() {
     </noscript>
   );
 }
+
+const AHREFS_KEY = "TsIr6sRN3rYZLtge9eWV9Q";
+
+// Ahrefs Web Analytics. Loaded lazily so it never blocks page rendering.
+export function AhrefsAnalytics() {
+  return (
+    <Script
+      id="ahrefs-analytics"
+      src="https://analytics.ahrefs.com/analytics.js"
+      data-key={AHREFS_KEY}
+      strategy="lazyOnload"
+    />
+  );
+}

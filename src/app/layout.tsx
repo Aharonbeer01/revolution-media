@@ -4,7 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
-import { GoogleTagManager, GoogleTagManagerNoScript } from "@/components/analytics/GoogleAnalytics";
+import { GoogleTagManager, GoogleTagManagerNoScript, AhrefsAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { SITE_URL } from "@/lib/constants";
 
 const dmSans = DM_Sans({
@@ -62,10 +62,13 @@ export default function RootLayout({
             deferred analytics scripts load faster once they fire. */}
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://analytics.ahrefs.com" />
+        <link rel="dns-prefetch" href="https://analytics.ahrefs.com" />
       </head>
       <body className="antialiased">
         <GoogleTagManager />
         <GoogleTagManagerNoScript />
+        <AhrefsAnalytics />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
