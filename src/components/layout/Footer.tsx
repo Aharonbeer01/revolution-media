@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { blogCategories } from "@/lib/blog-categories";
 import { SOCIAL_LINKS } from "@/lib/constants";
+import { PreferredSourceButton } from "@/components/seo/PreferredSourceButton";
 
 const blogTopicLinks = blogCategories.map((c) => ({
   label: c.name,
@@ -99,6 +100,20 @@ export function Footer() {
                 </svg>
               </a>
             </div>
+
+            {/* Google Preferred Sources. Clear space above so it does not
+                compete with the brand-gold call-to-action elements. The
+                noscript deeplink is the fallback for JavaScript-disabled
+                users and is automatically hidden once JS renders the button. */}
+            <PreferredSourceButton className="mt-8" />
+            <noscript>
+              <a
+                href="https://www.google.com/preferences/source?q=revolutionmedia.agency"
+                className="mt-3 inline-block text-sm text-soft-white/60 underline transition-colors hover:text-gold"
+              >
+                Add as Preferred Source
+              </a>
+            </noscript>
           </div>
 
           {/* Services Column */}
