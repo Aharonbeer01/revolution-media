@@ -10,6 +10,7 @@ import {
 } from "@/sanity/queries";
 import { urlFor } from "@/sanity/image";
 import { PortableTextRenderer } from "@/components/blog/PortableTextRenderer";
+import { PreferredSourceButton } from "@/components/seo/PreferredSourceButton";
 import { CTABanner } from "@/components/sections/CTABanner";
 import { Container } from "@/components/ui/Container";
 import { Badge } from "@/components/ui/Badge";
@@ -311,6 +312,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <article>
             <PortableTextRenderer value={post.body} />
           </article>
+
+          {/* Google Preferred Sources: left-aligned with the post body, with
+              clear space above so it does not crowd the content. */}
+          <PreferredSourceButton
+            label="Get our hotel marketing insights in your Google results"
+            className="mt-12 border-t border-midnight/10 pt-8"
+          />
         </Container>
       </section>
 

@@ -7,10 +7,10 @@ export const NAV_LINKS = [
 ] as const;
 
 export const SOCIAL_LINKS = {
-  instagram: "#",
-  linkedin: "#",
-  facebook: "#",
-  tiktok: "#",
+  instagram: "https://www.instagram.com/aharon_beer/",
+  linkedin: "https://www.linkedin.com/in/aharon-beer/",
+  facebook: "https://www.facebook.com/RevolutionMedia01",
+  tiktok: "https://www.tiktok.com/@aharon.beer",
 } as const;
 
 export const CONTACT_EMAIL = "info@revolutionmedia.agency";

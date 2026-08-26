@@ -5,6 +5,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import { GoogleTagManager, GoogleTagManagerNoScript, AhrefsAnalytics } from "@/components/analytics/GoogleAnalytics";
+import { PreferredSourceScript } from "@/components/seo/PreferredSourceButton";
 import { SITE_URL } from "@/lib/constants";
 
 const dmSans = DM_Sans({
@@ -64,11 +65,16 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://analytics.ahrefs.com" />
         <link rel="dns-prefetch" href="https://analytics.ahrefs.com" />
+        {/* Warm up the connection for the Google Preferred Sources library
+            (loaded once, site-wide, via PreferredSourceScript below). */}
+        <link rel="preconnect" href="https://news.google.com" />
+        <link rel="dns-prefetch" href="https://news.google.com" />
       </head>
       <body className="antialiased">
         <GoogleTagManager />
         <GoogleTagManagerNoScript />
         <AhrefsAnalytics />
+        <PreferredSourceScript />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
