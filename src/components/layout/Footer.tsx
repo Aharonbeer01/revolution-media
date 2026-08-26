@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { blogCategories } from "@/lib/blog-categories";
+import { SOCIAL_LINKS } from "@/lib/constants";
 
 const blogTopicLinks = blogCategories.map((c) => ({
   label: c.name,
@@ -54,7 +55,7 @@ export function Footer() {
             </p>
             <div className="mt-6 flex gap-4">
               <a
-                href="https://instagram.com"
+                href={SOCIAL_LINKS.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-soft-white/50 transition-colors hover:text-gold"
@@ -65,7 +66,7 @@ export function Footer() {
                 </svg>
               </a>
               <a
-                href="https://linkedin.com"
+                href={SOCIAL_LINKS.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-soft-white/50 transition-colors hover:text-gold"
@@ -76,7 +77,7 @@ export function Footer() {
                 </svg>
               </a>
               <a
-                href="https://facebook.com"
+                href={SOCIAL_LINKS.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-soft-white/50 transition-colors hover:text-gold"
@@ -87,7 +88,7 @@ export function Footer() {
                 </svg>
               </a>
               <a
-                href="https://tiktok.com"
+                href={SOCIAL_LINKS.tiktok}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-soft-white/50 transition-colors hover:text-gold"
