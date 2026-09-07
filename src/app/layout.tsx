@@ -59,6 +59,20 @@ export default function RootLayout({
   return (
     <html lang="en" className={dmSans.variable}>
       <head>
+        {/* Google tag (gtag.js) */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-0E82RYW396"
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0E82RYW396');`,
+          }}
+        />
         {/* Warm up the connection to Google Tag Manager / Analytics so the
             deferred analytics scripts load faster once they fire. */}
         <link rel="preconnect" href="https://www.googletagmanager.com" />
