@@ -5,6 +5,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import { GoogleTagManager, GoogleTagManagerNoScript, AhrefsAnalytics } from "@/components/analytics/GoogleAnalytics";
+import { MicrosoftClarity } from "@/components/analytics/MicrosoftClarity";
 import { PreferredSourceScript } from "@/components/seo/PreferredSourceButton";
 import { SITE_URL } from "@/lib/constants";
 
@@ -79,6 +80,8 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://analytics.ahrefs.com" />
         <link rel="dns-prefetch" href="https://analytics.ahrefs.com" />
+        <link rel="preconnect" href="https://www.clarity.ms" />
+        <link rel="dns-prefetch" href="https://www.clarity.ms" />
         {/* Warm up the connection for the Google Preferred Sources library
             (loaded once, site-wide, via PreferredSourceScript below). */}
         <link rel="preconnect" href="https://news.google.com" />
@@ -88,6 +91,7 @@ export default function RootLayout({
         <GoogleTagManager />
         <GoogleTagManagerNoScript />
         <AhrefsAnalytics />
+        <MicrosoftClarity />
         <PreferredSourceScript />
         <script
           type="application/ld+json"
