@@ -67,16 +67,22 @@ export default async function ServicePage({ params }: PageProps) {
 
   // Related reading. The query filters publishedAt <= now(), so scheduled posts
   // never surface here, and we re-order to match the curated list.
-  const relatedPosts: { title: string; slug: string; excerpt: string }[] =
-    detail?.relatedPosts?.length
-      ? await sanityClient
-          .fetch(POSTS_BY_SLUGS_QUERY, { slugs: detail.relatedPosts })
-          .then((rows: { title: string; slug: string; excerpt: string }[]) =>
-            detail.relatedPosts
-              .map((s) => rows.find((r) => r.slug === s))
-              .filter(Boolean) as { title: string; slug: string; excerpt: string }[],
-          )
-      : [];
+  // Fetched at build time. Wrapped so a CMS blip degrades to "no related
+  // reading" rather than failing the whole deployment.
+  let relatedPosts: { title: string; slug: string; excerpt: string }[] = [];
+  if (detail?.relatedPosts?.length) {
+    try {
+      const rows: { title: string; slug: string; excerpt: string }[] =
+        await sanityClient.fetch(POSTS_BY_SLUGS_QUERY, {
+          slugs: detail.relatedPosts,
+        });
+      relatedPosts = detail.relatedPosts
+        .map((s) => rows.find((r) => r.slug === s))
+        .filter(Boolean) as { title: string; slug: string; excerpt: string }[];
+    } catch (error) {
+      console.error(`Related posts fetch failed for /services/${slug}:`, error);
+    }
+  }
 
   const serviceSchema = {
     "@context": "https://schema.org",
