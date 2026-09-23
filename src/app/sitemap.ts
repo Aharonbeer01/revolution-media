@@ -16,7 +16,7 @@ const BASE_URL = "https://revolutionmedia.agency";
 export const revalidate = 21600;
 
 // Fallback slugs in case Sanity is unreachable
-const fallbackBlogSlugs = [
+const fallbackBlogSlugs: string[] = [
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
