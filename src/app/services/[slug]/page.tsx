@@ -10,6 +10,10 @@ import { Badge } from "@/components/ui/Badge";
 import { RelatedServices } from "@/components/sections/RelatedServices";
 import { RelatedCaseStudies } from "@/components/sections/RelatedCaseStudies";
 import { RemoteContentSystem } from "@/components/sections/RemoteContentSystem";
+import { FaqAccordion } from "@/components/ui/FaqAccordion";
+import { serviceDetails } from "@/lib/service-details";
+import { sanityClient } from "@/sanity/client";
+import { POSTS_BY_SLUGS_QUERY } from "@/sanity/queries";
 import { SITE_URL } from "@/lib/constants";
 
 interface PageProps {
@@ -59,6 +63,20 @@ export default async function ServicePage({ params }: PageProps) {
   }
 
   const { title, subtitle } = getHeroCopy(service.heroDescription);
+  const detail = serviceDetails[slug];
+
+  // Related reading. The query filters publishedAt <= now(), so scheduled posts
+  // never surface here, and we re-order to match the curated list.
+  const relatedPosts: { title: string; slug: string; excerpt: string }[] =
+    detail?.relatedPosts?.length
+      ? await sanityClient
+          .fetch(POSTS_BY_SLUGS_QUERY, { slugs: detail.relatedPosts })
+          .then((rows: { title: string; slug: string; excerpt: string }[]) =>
+            detail.relatedPosts
+              .map((s) => rows.find((r) => r.slug === s))
+              .filter(Boolean) as { title: string; slug: string; excerpt: string }[],
+          )
+      : [];
 
   const serviceSchema = {
     "@context": "https://schema.org",
@@ -95,12 +113,30 @@ export default async function ServicePage({ params }: PageProps) {
     ],
   };
 
+  const faqSchema = detail?.faqs?.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: detail.faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: { "@type": "Answer", text: faq.answer },
+        })),
+      }
+    : null;
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
@@ -128,8 +164,13 @@ export default async function ServicePage({ params }: PageProps) {
         <Container>
           <FadeIn>
             <h2 className="text-3xl font-bold text-midnight sm:text-4xl">
-              The Challenge
+              {detail?.openingHeading ?? "The Challenge"}
             </h2>
+            {detail?.whoFor && (
+              <p className="mt-4 max-w-3xl text-sm font-semibold text-gold-deep">
+                {detail.whoFor}
+              </p>
+            )}
             <p className="mt-6 max-w-3xl leading-relaxed text-midnight/70">
               {service.challenge}
             </p>
@@ -213,6 +254,91 @@ export default async function ServicePage({ params }: PageProps) {
 
       {/* ---- Remote Content System (content-creation only) ---- */}
       {slug === "content-creation" && <RemoteContentSystem />}
+
+      {/* ---- Proof point ---- */}
+      {detail?.showProofPoint && (
+        <section className="bg-midnight py-14 sm:py-16">
+          <Container>
+            <FadeIn>
+              <div className="mx-auto max-w-3xl text-center">
+                <p className="text-sm font-semibold uppercase tracking-[0.15em] text-gold">
+                  Proof
+                </p>
+                <p className="mt-4 text-2xl font-bold leading-snug text-soft-white sm:text-3xl">
+                  A boutique safari lodge went from 90% OTA reliance to more than
+                  80% direct bookings.
+                </p>
+                <p className="mt-4 text-soft-white/70">
+                  Built on the same approach we would apply to your property.
+                </p>
+                <a
+                  href="/case-studies/boutique-safari-lodge"
+                  className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-gold underline underline-offset-4 hover:text-gold-deep"
+                >
+                  Read the full case study
+                </a>
+              </div>
+            </FadeIn>
+          </Container>
+        </section>
+      )}
+
+      {/* ---- Service FAQs ---- */}
+      {detail?.faqs && detail.faqs.length > 0 && (
+        <section className="bg-soft-white py-16 sm:py-20">
+          <Container>
+            <div className="mx-auto max-w-3xl">
+              <FadeIn>
+                <h2 className="text-3xl font-bold text-midnight sm:text-4xl">
+                  {service.title} Questions
+                </h2>
+              </FadeIn>
+              <FadeIn delay={0.1}>
+                <div className="mt-8">
+                  <FaqAccordion items={detail.faqs} />
+                </div>
+              </FadeIn>
+            </div>
+          </Container>
+        </section>
+      )}
+
+      {/* ---- Related reading ---- */}
+      {relatedPosts.length > 0 && (
+        <section className="bg-cream py-16 sm:py-20">
+          <Container>
+            <FadeIn>
+              <h2 className="text-3xl font-bold text-midnight sm:text-4xl">
+                Related Reading
+              </h2>
+              <p className="mt-3 max-w-2xl text-midnight/70">
+                Deeper guides on {service.title.toLowerCase()} from our blog.
+              </p>
+            </FadeIn>
+
+            <div className="mt-8 grid gap-6 md:grid-cols-3">
+              {relatedPosts.map((post, index) => (
+                <FadeIn key={post.slug} delay={index * 0.08}>
+                  <a
+                    href={`/blog/${post.slug}`}
+                    className="flex h-full flex-col rounded-lg bg-warm-white p-6 shadow-sm transition-shadow hover:shadow-md"
+                  >
+                    <h3 className="text-base font-semibold leading-snug text-midnight">
+                      {post.title}
+                    </h3>
+                    <p className="mt-3 flex-1 text-sm leading-relaxed text-midnight/60">
+                      {post.excerpt}
+                    </p>
+                    <span className="mt-4 text-sm font-semibold text-gold">
+                      Read the guide
+                    </span>
+                  </a>
+                </FadeIn>
+              ))}
+            </div>
+          </Container>
+        </section>
+      )}
 
       {/* ---- Related Services ---- */}
       {service.relatedSlugs && service.relatedSlugs.length > 0 && (
