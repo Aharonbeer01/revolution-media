@@ -76,3 +76,12 @@ export const FEED_POSTS_QUERY = groq`
     _updatedAt
   }
 `;
+
+export const POSTS_BY_SLUGS_QUERY = groq`
+  *[_type == "post" && publishedAt <= now() && slug.current in $slugs] {
+    title,
+    "slug": slug.current,
+    excerpt,
+    category
+  }
+`;

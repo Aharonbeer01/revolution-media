@@ -17,8 +17,6 @@ export const revalidate = 21600;
 
 // Fallback slugs in case Sanity is unreachable
 const fallbackBlogSlugs = [
-  "5-ways-to-reduce-ota-dependency",
-  "why-your-hotel-needs-tiktok",
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
