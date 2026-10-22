@@ -1,0 +1,22 @@
+name: Site Health (crawlability)
+
+# Checks the live site the way Googlebot, bingbot and AI citation crawlers see
+# it: crawler access, robots.txt, sitemap, redirects and tracking. A failure
+# fails this workflow, and GitHub emails the repository owner.
+#
+# Exists because a Cloudflare rule blocked Googlebot for 17 days and nobody
+# noticed until Search Console reported it. See scripts/site-health-check.sh.
+
+on:
+  schedule:
+    - cron: "0 5 * * *" # 07:00 SAST daily
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run crawlability health check
+        run: bash scripts/site-health-check.sh
