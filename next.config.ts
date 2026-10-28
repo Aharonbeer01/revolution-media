@@ -11,6 +11,12 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // The ambassador portal moved to the agency's client portal in October
+      // 2026, by invitation only. Old links land on the programme page, which
+      // explains how to join and where existing ambassadors sign in.
+      // Temporary, so nothing is cached for good.
+      { source: "/ambassador", destination: "/referral-program", permanent: false },
+      { source: "/ambassador/:path*", destination: "/referral-program", permanent: false },
       {
         // Retired page: permanently redirect the old URL to the services list
         // so old links and stale search results never hit a 404.

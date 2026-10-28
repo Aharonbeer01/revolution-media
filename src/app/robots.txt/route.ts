@@ -20,9 +20,6 @@ import { SITE_URL } from "@/lib/constants";
 const disallow = [
   "/api/",
   "/studio",
-  "/ambassador/dashboard",
-  "/ambassador/profile",
-  "/ambassador/referrals",
 ];
 
 // AI search and answer-engine crawlers. Allowing these explicitly (in addition

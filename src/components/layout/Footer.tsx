@@ -29,7 +29,8 @@ const quickLinks = [
   { label: "Case Studies", href: "/case-studies" },
   { label: "Blog", href: "/blog" },
   { label: "Referral Program", href: "/referral-program" },
-  { label: "Ambassador Portal", href: "/ambassador" },
+  // The programme runs on the agency's client portal since October 2026.
+  { label: "Ambassador Sign In", href: "https://portal.revolutionmedia.agency/login" },
   { label: "Contact", href: "/contact" },
 ];
 

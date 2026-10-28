@@ -266,18 +266,15 @@ export default async function HomePage() {
               REFERRAL AMBASSADOR PROGRAM
             </p>
             <h2 className="mx-auto max-w-2xl text-3xl font-bold text-midnight sm:text-4xl">
-              Know a Property That Needs Better Marketing?
+              Know a Business That Needs Better Marketing?
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-lg text-warm-gray">
-              Earn a 15% commission for every hospitality business you refer to
-              Revolution Media. It&apos;s simple: refer, we close, you get paid.
+              Earn a 15% commission for every business you refer to Revolution
+              Media. It&apos;s simple: refer, we close, you get paid.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Button href="/referral-program" variant="primary">
                 Refer &amp; Earn 15%
-              </Button>
-              <Button href="/ambassador" variant="ghost">
-                Ambassador Login
               </Button>
             </div>
           </FadeIn>

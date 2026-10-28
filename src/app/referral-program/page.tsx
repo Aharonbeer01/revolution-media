@@ -4,12 +4,21 @@ import { CTABanner } from "@/components/sections/CTABanner";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { FadeIn } from "@/components/motion/FadeIn";
-import { AmbassadorSignupForm } from "@/components/sections/AmbassadorSignupForm";
+
+/**
+ * The referral programme. Since October 2026 it runs on the agency's client
+ * portal, by invitation: there is no sign-up form here any more. Somebody
+ * interested emails us; an existing ambassador signs in on the portal.
+ * Referrals come from any industry.
+ */
+const JOIN_EMAIL = "aharon@revolutionmedia.agency";
+const JOIN_HREF = `mailto:${JOIN_EMAIL}?subject=${encodeURIComponent("Referral Ambassador Program")}`;
+const PORTAL_SIGN_IN = "https://portal.revolutionmedia.agency/login";
 
 export const metadata: Metadata = {
   title: "Referral Ambassador Program | Revolution Media",
   description:
-    "Earn 15% commission by referring hospitality businesses to Revolution Media. Join our Referral Ambassador Program today.",
+    "Earn 15% commission by referring businesses to Revolution Media. Our Referral Ambassador Program is open to anyone with connections, by invitation.",
   alternates: {
     canonical: "/referral-program",
   },
@@ -24,7 +33,7 @@ const steps = [
     number: "1",
     title: "Refer",
     description:
-      "Connect us with a hospitality business in your network. Share their details through your ambassador portal or introduce us directly.",
+      "Connect us with a business in your network. Submit their details from your ambassador portal, send them your personal booking link, or introduce us directly.",
   },
   {
     number: "2",
@@ -44,28 +53,28 @@ const audiences = [
   {
     title: "Industry Professionals",
     description:
-      "Hotel managers, tourism operators, and hospitality consultants with connections in the industry.",
+      "Managers, operators and consultants with connections across the businesses they work with.",
   },
   {
     title: "Current Clients",
     description:
-      "Already working with us? Refer another property and receive your commission as a credit on your next invoice.",
+      "Already working with us? Refer another business and receive your commission as a credit on your next invoice.",
   },
   {
     title: "Business Networks",
     description:
-      "Accountants, business coaches, and advisors who work with hospitality businesses.",
+      "Accountants, business coaches, and advisors who work with growing businesses.",
   },
   {
     title: "Anyone with Connections",
     description:
-      "If you know someone in hospitality who needs better marketing, you can be an ambassador.",
+      "If you know a business that needs better marketing, you can be an ambassador.",
   },
 ];
 
 const benefits = [
   "15% commission on the referred client\u2019s first invoice",
-  "Personal referral code and tracking dashboard",
+  "Personal referral code, booking link and tracking dashboard",
   "Dedicated ambassador support",
   "No limit on referrals",
   "Current clients receive invoice credit instead of cash",
@@ -83,8 +92,8 @@ export default function ReferralProgramPage() {
         size="medium"
         eyebrow="REFERRAL AMBASSADOR PROGRAM"
         title="Earn While You Connect"
-        subtitle="Know a hospitality business that needs better marketing? Refer them to Revolution Media and earn a 15% commission when they sign on."
-        primaryCTA={{ label: "Start Earning Today", href: "#signup" }}
+        subtitle="Know a business that needs better marketing? Refer them to Revolution Media and earn a 15% commission when they sign on."
+        primaryCTA={{ label: "Become an Ambassador", href: "#join" }}
         secondaryCTA={{ label: "Learn More", href: "#how-it-works" }}
       />
 
@@ -171,7 +180,7 @@ export default function ReferralProgramPage() {
 
               <div className="mt-10 text-center">
                 <a
-                  href="#signup"
+                  href="#join"
                   className="inline-flex items-center justify-center rounded bg-gold px-6 py-3 text-sm font-semibold tracking-wide text-midnight transition-all duration-200 hover:bg-gold-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
                 >
                   Join the Program
@@ -182,8 +191,8 @@ export default function ReferralProgramPage() {
         </Container>
       </section>
 
-      {/* ---- Sign-Up Form ---- */}
-      <section id="signup" className="bg-soft-white py-16 sm:py-20">
+      {/* ---- How to Join ---- */}
+      <section id="join" className="bg-soft-white py-16 sm:py-20">
         <Container>
           <FadeIn>
             <SectionHeading
@@ -193,8 +202,32 @@ export default function ReferralProgramPage() {
           </FadeIn>
 
           <FadeIn delay={0.15}>
-            <div className="mx-auto max-w-xl">
-              <AmbassadorSignupForm />
+            <div className="mx-auto max-w-xl text-center">
+              <p className="leading-relaxed text-midnight/80">
+                The program is by invitation. Email us to tell us who you are
+                and the kind of businesses you know. We review every request,
+                and when it is a good fit we send you an invitation to accept
+                the ambassador agreement and set up your portal login.
+              </p>
+              <div className="mt-8">
+                <a
+                  href={JOIN_HREF}
+                  className="inline-flex items-center justify-center rounded bg-gold px-6 py-3 text-sm font-semibold tracking-wide text-midnight transition-all duration-200 hover:bg-gold-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
+                  data-track="referral_join_email"
+                >
+                  Email {JOIN_EMAIL}
+                </a>
+              </div>
+              <p className="mt-6 text-sm text-midnight/60">
+                Already an ambassador?{" "}
+                <a
+                  href={PORTAL_SIGN_IN}
+                  className="font-semibold text-gold-deep underline underline-offset-4"
+                  data-track="referral_portal_sign_in"
+                >
+                  Sign in to your portal
+                </a>
+              </p>
             </div>
           </FadeIn>
         </Container>
@@ -205,8 +238,8 @@ export default function ReferralProgramPage() {
         variant="gold"
         title="Start Earning Today"
         subtitle="Join our network of referral ambassadors and earn commission on every successful referral."
-        ctaLabel="Apply Now"
-        ctaHref="#signup"
+        ctaLabel="Get in Touch"
+        ctaHref={JOIN_HREF}
       />
     </>
   );
