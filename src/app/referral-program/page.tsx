@@ -4,12 +4,13 @@ import { CTABanner } from "@/components/sections/CTABanner";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { FadeIn } from "@/components/motion/FadeIn";
+import { AmbassadorSignupForm } from "@/components/sections/AmbassadorSignupForm";
 
 /**
  * The referral programme. Since October 2026 it runs on the agency's client
- * portal, by invitation: there is no sign-up form here any more. Somebody
- * interested emails us; an existing ambassador signs in on the portal.
- * Referrals come from any industry.
+ * portal, by invitation. The form here registers interest only: it emails
+ * the team, who send a portal invitation when it is a good fit. An existing
+ * ambassador signs in on the portal. Referrals come from any industry.
  */
 const JOIN_EMAIL = "aharon@revolutionmedia.agency";
 const JOIN_HREF = `mailto:${JOIN_EMAIL}?subject=${encodeURIComponent("Referral Ambassador Program")}`;
@@ -202,23 +203,15 @@ export default function ReferralProgramPage() {
           </FadeIn>
 
           <FadeIn delay={0.15}>
-            <div className="mx-auto max-w-xl text-center">
-              <p className="leading-relaxed text-midnight/80">
-                The program is by invitation. Email us to tell us who you are
-                and the kind of businesses you know. We review every request,
-                and when it is a good fit we send you an invitation to accept
-                the ambassador agreement and set up your portal login.
+            <div className="mx-auto max-w-xl">
+              <p className="mb-8 text-center leading-relaxed text-midnight/80">
+                The program is by invitation. Tell us who you are and the kind
+                of businesses you know. We review every request, and when it is
+                a good fit we email you an invitation to set up your login on
+                the ambassador portal.
               </p>
-              <div className="mt-8">
-                <a
-                  href={JOIN_HREF}
-                  className="inline-flex items-center justify-center rounded bg-gold px-6 py-3 text-sm font-semibold tracking-wide text-midnight transition-all duration-200 hover:bg-gold-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
-                  data-track="referral_join_email"
-                >
-                  Email {JOIN_EMAIL}
-                </a>
-              </div>
-              <p className="mt-6 text-sm text-midnight/60">
+              <AmbassadorSignupForm />
+              <p className="mt-6 text-center text-sm text-midnight/60">
                 Already an ambassador?{" "}
                 <a
                   href={PORTAL_SIGN_IN}
@@ -226,6 +219,16 @@ export default function ReferralProgramPage() {
                   data-track="referral_portal_sign_in"
                 >
                   Sign in to your portal
+                </a>
+              </p>
+              <p className="mt-2 text-center text-sm text-midnight/60">
+                Prefer to email?{" "}
+                <a
+                  href={JOIN_HREF}
+                  className="font-semibold text-gold-deep underline underline-offset-4"
+                  data-track="referral_join_email"
+                >
+                  {JOIN_EMAIL}
                 </a>
               </p>
             </div>
@@ -238,8 +241,8 @@ export default function ReferralProgramPage() {
         variant="gold"
         title="Start Earning Today"
         subtitle="Join our network of referral ambassadors and earn commission on every successful referral."
-        ctaLabel="Get in Touch"
-        ctaHref={JOIN_HREF}
+        ctaLabel="Register Your Interest"
+        ctaHref="#join"
       />
     </>
   );
